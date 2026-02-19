@@ -36,11 +36,16 @@
     </div>
     <div class="sticky-nav__subrow" id="sub-projects">
       <div class="sticky-nav__subrow-inner">
-        <a href="#p-indicators">1. Вызов 1 (ядро)</a>
-        <a href="#proj-1533">2. ст. 15.33.2</a>
-        <a href="#proj-ns">3. Расследование НС</a>
-        <a href="#proj-kts">4. Хищения КТС</a>
-        <a href="#proj-ai">ИИ+ЭКДО</a>
+        <a href="#p-indicators">1. Ядро КНД</a>
+        <a href="#proj-1533">2. 15.33.2</a>
+        <a href="#proj-ns">3. НС</a>
+        <a href="#proj-ai">4. ИИ</a>
+        <a href="#proj-ekdo">5. ЭКДО</a>
+        <a href="#proj-oi-challenges">6. ОИ.рф</a>
+        <a href="#proj-ubr-challenges">7. АИС УБР</a>
+        <a href="#proj-illegal">8. Нелегальная</a>
+        <a href="#proj-risk">9. РОП</a>
+        <a href="#proj-kts">10. КТС</a>
         <a href="#risks">Импортозамещение</a>
       </div>
     </div>
@@ -1321,9 +1326,25 @@
 
         <div class="mt-4 gap-5" style="display: grid; grid-template-columns: 1fr 1fr">
           <div>
-            <div class="bg-amber-50 rounded-8 text-center" style="padding: 20px; border: 2px dashed #F59E0B">
-              <div class="tc-amber text-md fw-600">Скриншот интерфейса АИС УБР</div>
-              <div class="tc-amber-dk text-xs mt-1">TODO: запросить у команды АИС УБР</div>
+            <div class="oi-carousel oi-carousel--contain" id="ubrCarousel" tabindex="0">
+              <div class="oi-carousel__viewport">
+                <div class="oi-carousel__slide is-active" data-slide="0">
+                  <div class="oi-slice">
+                    <img class="zoomable oi-slice__img" src="img/ubr1.jpg" data-caption="АИС УБР — Исполнение бюджета и кассового плана" alt="АИС УБР — дашборд исполнения бюджета">
+                  </div>
+                </div>
+                <div class="oi-carousel__slide" data-slide="1">
+                  <div class="oi-slice">
+                    <img class="zoomable oi-slice__img" src="img/ubr2.jpg" data-caption="АИС УБР — Мониторинг планирования и исполнения закупок" alt="АИС УБР — дашборд мониторинга закупок">
+                  </div>
+                </div>
+              </div>
+              <button class="oi-carousel__btn oi-carousel__btn--prev" type="button" aria-label="Предыдущий фрагмент">&#8592;</button>
+              <button class="oi-carousel__btn oi-carousel__btn--next" type="button" aria-label="Следующий фрагмент">&#8594;</button>
+              <div class="oi-carousel__dots" role="tablist" aria-label="Фрагменты интерфейса АИС УБР">
+                <button class="oi-carousel__dot is-active" type="button" data-slide="0" aria-label="Фрагмент 1" aria-selected="true"></button>
+                <button class="oi-carousel__dot" type="button" data-slide="1" aria-label="Фрагмент 2" aria-selected="false"></button>
+              </div>
             </div>
           </div>
           <div>
@@ -1399,7 +1420,7 @@
             </svg>
             На весь экран
           </button></div>
-<svg viewBox="0 0 1140 570" xmlns="http://www.w3.org/2000/svg" class="svg-diagram svg-diagram--lg" font-family="Inter, system-ui, sans-serif">
+<svg viewBox="0 0 1140 660" xmlns="http://www.w3.org/2000/svg" class="svg-diagram svg-diagram--lg" font-family="Inter, system-ui, sans-serif">
   <defs>
     <linearGradient id="ubrGrad" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" stop-color="#F59E0B"/><stop offset="100%" stop-color="#D97706"/>
@@ -1421,6 +1442,15 @@
     </marker>
     <marker id="ubr-arr-slate" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
       <path d="M0,0.5 L7,3 L0,5.5" fill="#94A3B8"/>
+    </marker>
+    <marker id="ubr-arr-green" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0.5 L7,3 L0,5.5" fill="#059669"/>
+    </marker>
+    <marker id="ubr-arr-red" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0.5 L7,3 L0,5.5" fill="#DC2626"/>
+    </marker>
+    <marker id="ubr-arr-orange" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0.5 L7,3 L0,5.5" fill="#D97706"/>
     </marker>
   </defs>
 
@@ -1466,34 +1496,42 @@
   <line x1="22" y1="177" x2="98" y2="177" stroke="#CBD5E1" stroke-width="1.5"/>
 
   <g filter="url(#ubrSoft)">
-    <rect x="16" y="190" width="200" height="62" rx="10" fill="white" stroke="#2563EB" stroke-width="1.5"/>
-    <text x="116" y="214" text-anchor="middle" fill="#1E40AF" font-size="12" font-weight="700">АСУ КНД</text>
-    <text x="116" y="238" text-anchor="middle" fill="#2563EB" font-size="16" font-weight="800">>420 тыс.</text>
-    <text x="175" y="238" fill="#64748B" font-size="8">начислений</text>
+    <rect x="16" y="190" width="200" height="76" rx="10" fill="white" stroke="#059669" stroke-width="1.5"/>
+    <circle cx="36" cy="210" r="4.5" fill="#059669"/>
+    <text x="50" y="214" fill="#1E40AF" font-size="12" font-weight="700">АСУ КНД</text>
+    <text x="116" y="232" text-anchor="middle" fill="#64748B" font-size="8.5">Загрузка по наложенным АШ</text>
+    <text x="116" y="244" text-anchor="middle" fill="#64748B" font-size="8.5">Выгрузка по оплаченным и квитированным</text>
+    <text x="116" y="260" text-anchor="middle" fill="#059669" font-size="8" font-weight="600">реализовано / план 2026</text>
   </g>
   <g filter="url(#ubrSoft)">
-    <rect x="16" y="262" width="200" height="48" rx="10" fill="white" stroke="#93C5FD" stroke-width="1"/>
-    <text x="116" y="284" text-anchor="middle" fill="#1E40AF" font-size="11" font-weight="600">ОИ.рф</text>
-    <text x="116" y="301" text-anchor="middle" fill="#64748B" font-size="9">оплата штрафов онлайн</text>
+    <rect x="16" y="276" width="200" height="54" rx="10" fill="white" stroke="#D97706" stroke-width="1" stroke-dasharray="5,3"/>
+    <circle cx="36" cy="296" r="4.5" fill="#D97706"/>
+    <text x="50" y="300" fill="#1E40AF" font-size="11" font-weight="600">ОИ.рф</text>
+    <text x="116" y="316" text-anchor="middle" fill="#64748B" font-size="9">Реестр должников</text>
+    <text x="116" y="327" text-anchor="middle" fill="#D97706" font-size="7.5" font-weight="600">для обсуждения</text>
   </g>
   <g filter="url(#ubrSoft)">
-    <rect x="16" y="320" width="200" height="48" rx="10" fill="white" stroke="#CBD5E1" stroke-width="1"/>
-    <text x="116" y="342" text-anchor="middle" fill="#334155" font-size="11" font-weight="600">ЕИС Закупки</text>
-    <text x="116" y="359" text-anchor="middle" fill="#64748B" font-size="10" font-weight="700">>10 тыс.</text>
+    <rect x="16" y="340" width="200" height="42" rx="10" fill="white" stroke="#059669" stroke-width="1"/>
+    <circle cx="36" cy="361" r="4.5" fill="#059669"/>
+    <text x="50" y="365" fill="#334155" font-size="11" font-weight="600">ЕИС Закупки</text>
+    <text x="196" y="365" text-anchor="end" fill="#059669" font-size="8" font-weight="600">в эксплуатации</text>
   </g>
   <g filter="url(#ubrSoft)">
-    <rect x="16" y="378" width="200" height="48" rx="10" fill="#1E293B"/>
-    <text x="116" y="400" text-anchor="middle" fill="white" font-size="11" font-weight="600">ГИИС ЭБ</text>
-    <text x="116" y="417" text-anchor="middle" fill="#94A3B8" font-size="10" font-weight="700">>480 тыс.</text>
+    <rect x="16" y="392" width="200" height="62" rx="10" fill="#1E293B" stroke="#059669" stroke-width="1"/>
+    <circle cx="36" cy="410" r="4.5" fill="#059669"/>
+    <text x="50" y="414" fill="white" font-size="11" font-weight="600">ГИИС ЭБ</text>
+    <text x="116" y="430" text-anchor="middle" fill="#94A3B8" font-size="8">Приказ Минфина от 15.04.2021 №61н</text>
+    <text x="116" y="444" text-anchor="middle" fill="#94A3B8" font-size="7.5">Выписки · Уведомления · ЗКР · ЗВР · УУПП</text>
+    <text x="196" y="414" text-anchor="end" fill="#059669" font-size="7.5" font-weight="600">в экспл.</text>
   </g>
 
   <!-- Стрелки от источников к центру -->
-  <path d="M219,220 C235,220 235,235 247,235" stroke="#2563EB" stroke-width="2.5" fill="none" marker-end="url(#ubr-arr-blue)" stroke-dasharray="6,3">
+  <path d="M219,228 C235,228 235,235 247,235" stroke="#059669" stroke-width="2.5" fill="none" marker-end="url(#ubr-arr-green)" stroke-dasharray="6,3">
     <animate attributeName="stroke-dashoffset" values="18;0" dur="1.5s" repeatCount="indefinite"/>
   </path>
-  <path d="M219,286 C236,286 236,260 247,260" stroke="#93C5FD" stroke-width="1.5" fill="none" marker-end="url(#ubr-arr-blue)" opacity="0.7"/>
-  <path d="M219,344 C236,344 236,320 247,320" stroke="#CBD5E1" stroke-width="1.5" fill="none" marker-end="url(#ubr-arr-slate)" opacity="0.5"/>
-  <path d="M219,402 C236,402 236,370 247,370" stroke="#64748B" stroke-width="1.5" fill="none" marker-end="url(#ubr-arr-slate)" opacity="0.4"/>
+  <path d="M219,303 C236,303 236,270 247,270" stroke="#D97706" stroke-width="1.5" fill="none" marker-end="url(#ubr-arr-orange)" stroke-dasharray="5,3"/>
+  <path d="M219,361 C236,361 236,330 247,330" stroke="#059669" stroke-width="1.5" fill="none" marker-end="url(#ubr-arr-green)" opacity="0.6"/>
+  <path d="M219,423 C236,423 236,380 247,380" stroke="#059669" stroke-width="1.5" fill="none" marker-end="url(#ubr-arr-green)" opacity="0.5"/>
 
   <!-- ═══════ АДМИНИСТРИРОВАНИЕ ДОХОДОВ ═══════ -->
   <text x="254" y="180" fill="#92400E" font-size="10.5" font-weight="700" letter-spacing="0.3">АДМИНИСТРИРОВАНИЕ ДОХОДОВ</text>
@@ -1510,6 +1548,11 @@
     <text x="360" y="323" text-anchor="middle" fill="#B45309" font-size="20" font-weight="800">20 903</text>
     <text x="360" y="339" text-anchor="middle" fill="#78716C" font-size="9">юридические лица</text>
   </g>
+
+  <!-- Центральная подпись: функции АИС УБР -->
+  <text x="360" y="370" text-anchor="middle" fill="#92400E" font-size="8.5" font-style="italic">планирование бюджетных расходов</text>
+  <text x="360" y="382" text-anchor="middle" fill="#92400E" font-size="8.5" font-style="italic">учёт бюджетных назначений</text>
+  <text x="360" y="394" text-anchor="middle" fill="#92400E" font-size="8.5" font-style="italic">контроль доведения и освоения ЛБО</text>
 
   <!-- Стрелки Admin → Exchange -->
   <path d="M478,230 L498,230" stroke="#F59E0B" stroke-width="2" fill="none" marker-end="url(#ubr-arr)"/>
@@ -1539,70 +1582,112 @@
     <animate attributeName="stroke-dashoffset" values="18;0" dur="2s" repeatCount="indefinite"/>
   </path>
 
-  <!-- ═══════ ИНТЕГРАЦИИ ═══════ -->
+  <!-- ═══════ ИНТЕГРАЦИИ (правая колонка) ═══════ -->
   <text x="758" y="172" fill="#334155" font-size="11" font-weight="700" letter-spacing="0.5">ИНТЕГРАЦИИ</text>
   <line x1="758" y1="177" x2="838" y2="177" stroke="#CBD5E1" stroke-width="1.5"/>
 
+  <!-- ГИС ГМП — 15 видов сведений -->
   <g filter="url(#ubrSoft)">
     <rect x="748" y="190" width="190" height="68" rx="10" fill="#1E293B"/>
     <circle cx="768" cy="212" r="4.5" fill="#059669"/>
     <text x="782" y="216" fill="white" font-size="12" font-weight="700">ГИС ГМП</text>
-    <text x="843" y="238" text-anchor="middle" fill="#60A5FA" font-size="10">12 видов сведений</text>
-    <text x="843" y="252" text-anchor="middle" fill="#94A3B8" font-size="8.5">гос. муницип. платежи</text>
+    <text x="843" y="238" text-anchor="middle" fill="#60A5FA" font-size="10">15 видов сведений</text>
+    <text x="843" y="252" text-anchor="middle" fill="#059669" font-size="8">реализовано / план 2026</text>
   </g>
+  <!-- ФССП — исполнительное производство -->
   <g filter="url(#ubrSoft)">
-    <rect x="748" y="268" width="190" height="52" rx="10" fill="white" stroke="#93C5FD" stroke-width="1.5"/>
-    <circle cx="768" cy="291" r="4.5" fill="#2563EB"/>
-    <text x="782" y="295" fill="#1E40AF" font-size="11" font-weight="600">→ ФССП</text>
-    <text x="843" y="311" text-anchor="middle" fill="#64748B" font-size="9">принудит. взыскание</text>
+    <rect x="748" y="268" width="190" height="52" rx="10" fill="white" stroke="#D97706" stroke-width="1.5" stroke-dasharray="5,3"/>
+    <circle cx="768" cy="291" r="4.5" fill="#D97706"/>
+    <text x="782" y="291" fill="#1E40AF" font-size="11" font-weight="600">ФССП России</text>
+    <text x="843" y="311" text-anchor="middle" fill="#64748B" font-size="9">Исполнительное производство</text>
+    <text x="843" y="316" text-anchor="middle" fill="#D97706" font-size="7.5" font-weight="600">план 2026</text>
   </g>
+  <!-- Мировые судьи -->
   <g filter="url(#ubrSoft)">
-    <rect x="748" y="330" width="190" height="52" rx="10" fill="white" stroke="#CBD5E1" stroke-width="1" stroke-dasharray="5,3"/>
-    <circle cx="768" cy="353" r="4.5" fill="#F59E0B"/>
-    <text x="782" y="357" fill="#475569" font-size="11" font-weight="600">Мировые судьи</text>
-    <text x="843" y="373" text-anchor="middle" fill="#94A3B8" font-size="8.5">план 2026 (пилот Минфина)</text>
+    <rect x="748" y="330" width="190" height="60" rx="10" fill="white" stroke="#D97706" stroke-width="1" stroke-dasharray="5,3"/>
+    <circle cx="768" cy="350" r="4.5" fill="#D97706"/>
+    <text x="782" y="354" fill="#475569" font-size="11" font-weight="600">Мировые судьи</text>
+    <text x="843" y="370" text-anchor="middle" fill="#64748B" font-size="8.5">20.25 КоАП (начисления)</text>
+    <text x="843" y="384" text-anchor="middle" fill="#D97706" font-size="7.5" font-weight="600">план 2026 (пилот Минфина)</text>
   </g>
+  <!-- Минфин — сверка по задолженности -->
+  <g filter="url(#ubrSoft)">
+    <rect x="748" y="400" width="190" height="54" rx="10" fill="white" stroke="#D97706" stroke-width="1" stroke-dasharray="5,3"/>
+    <circle cx="768" cy="422" r="4.5" fill="#D97706"/>
+    <text x="782" y="420" fill="#475569" font-size="11" font-weight="600">Минфин России</text>
+    <text x="843" y="436" text-anchor="middle" fill="#64748B" font-size="8">Сверка по задолженности с</text>
+    <text x="843" y="448" text-anchor="middle" fill="#64748B" font-size="8">единым реестром должников</text>
+  </g>
+
+  <!-- ═══════ ЕИП НСУД / СМЭВ 4.0 (нижний правый) ═══════ -->
+  <g filter="url(#ubrSoft)">
+    <rect x="955" y="190" width="168" height="120" rx="12" fill="white" stroke="#DC2626" stroke-width="1.5"/>
+    <circle cx="975" cy="210" r="4.5" fill="#DC2626"/>
+    <text x="989" y="214" fill="#334155" font-size="11" font-weight="700">ЕИП НСУД</text>
+    <text x="1039" y="232" text-anchor="middle" fill="#DC2626" font-size="9.5" font-weight="600">СМЭВ 4.0</text>
+    <line x1="970" y1="242" x2="1108" y2="242" stroke="#F3F4F6" stroke-width="1"/>
+    <text x="1039" y="258" text-anchor="middle" fill="#64748B" font-size="8.5">SQL-запрос (в т.ч. подписка)</text>
+    <text x="1039" y="272" text-anchor="middle" fill="#64748B" font-size="8.5">REST-запрос, REST/JDBS</text>
+    <text x="1039" y="286" text-anchor="middle" fill="#64748B" font-size="8.5">Ответ с данными</text>
+    <text x="1039" y="304" text-anchor="middle" fill="#DC2626" font-size="8" font-weight="600">план 2026-2029</text>
+  </g>
+
+  <!-- Стрелка от АИС УБР к ЕИП НСУД -->
+  <path d="M733,400 C845,395 920,300 952,260" stroke="#DC2626" stroke-width="2" fill="none" marker-end="url(#ubr-arr-red)"/>
 
   <!-- ═══════ ОБЪЁМЫ 2025 ═══════ -->
   <g filter="url(#ubrSoft)">
-    <rect x="955" y="190" width="168" height="192" rx="12" fill="white" stroke="#FCD34D" stroke-width="1"/>
-    <rect x="955" y="190" width="168" height="36" rx="12" fill="#FEF3C7"/>
-    <rect x="955" y="214" width="168" height="12" fill="#FEF3C7"/>
-    <text x="1039" y="214" text-anchor="middle" fill="#92400E" font-size="11" font-weight="700">ОБЪЁМЫ 2025</text>
-    <line x1="970" y1="232" x2="1108" y2="232" stroke="#FDE68A" stroke-width="1"/>
-    <text x="1039" y="254" text-anchor="middle" fill="#78716C" font-size="9.5">Штрафов обработано</text>
-    <text x="1039" y="280" text-anchor="middle" fill="#92400E" font-size="22" font-weight="800">410 866</text>
-    <line x1="970" y1="294" x2="1108" y2="294" stroke="#F3F4F6" stroke-width="1"/>
-    <text x="1039" y="314" text-anchor="middle" fill="#78716C" font-size="9.5">Видов сведений СМЭВ</text>
-    <text x="1039" y="340" text-anchor="middle" fill="#92400E" font-size="22" font-weight="800">16</text>
-    <text x="1039" y="358" text-anchor="middle" fill="#78716C" font-size="8.5">ГИС ГМП · Казначейство</text>
-    <line x1="970" y1="368" x2="1108" y2="368" stroke="#F3F4F6" stroke-width="1"/>
+    <rect x="955" y="328" width="168" height="130" rx="12" fill="white" stroke="#FCD34D" stroke-width="1"/>
+    <rect x="955" y="328" width="168" height="36" rx="12" fill="#FEF3C7"/>
+    <rect x="955" y="352" width="168" height="12" fill="#FEF3C7"/>
+    <text x="1039" y="352" text-anchor="middle" fill="#92400E" font-size="11" font-weight="700">ОБЪЁМЫ 2025</text>
+    <line x1="970" y1="370" x2="1108" y2="370" stroke="#FDE68A" stroke-width="1"/>
+    <text x="1039" y="392" text-anchor="middle" fill="#78716C" font-size="9.5">Штрафов обработано</text>
+    <text x="1039" y="414" text-anchor="middle" fill="#92400E" font-size="20" font-weight="800">410 866</text>
+    <line x1="970" y1="426" x2="1108" y2="426" stroke="#F3F4F6" stroke-width="1"/>
+    <text x="1039" y="444" text-anchor="middle" fill="#78716C" font-size="9.5">Видов сведений СМЭВ</text>
+    <text x="1039" y="456" text-anchor="middle" fill="#92400E" font-size="14" font-weight="800">16</text>
   </g>
 
   <!-- ═══════ ДИНАМИКА ДЕБИТОРКИ ═══════ -->
   <g filter="url(#ubrSoft)">
-    <rect x="16" y="445" width="545" height="82" rx="12" fill="white" stroke="#F3F4F6"/>
-    <text x="36" y="472" fill="#334155" font-size="11" font-weight="700">ДИНАМИКА ДЕБИТОРКИ (тыс. руб.)</text>
-    <text x="36" y="494" fill="#78716C" font-size="9.5">2021: 1 011 171</text>
-    <text x="36" y="510" fill="#78716C" font-size="9.5">2022: 613 397</text>
-    <text x="168" y="494" fill="#78716C" font-size="9.5">2023: 386 582</text>
-    <text x="168" y="510" fill="#78716C" font-size="9.5">2024: 267 507</text>
-    <text x="300" y="494" fill="#78716C" font-size="9.5">2025: 230 229</text>
-    <text x="460" y="492" text-anchor="middle" fill="#059669" font-size="26" font-weight="800">−77%</text>
-    <text x="460" y="514" text-anchor="middle" fill="#78716C" font-size="9.5">с 2021 года</text>
+    <rect x="16" y="472" width="545" height="82" rx="12" fill="white" stroke="#F3F4F6"/>
+    <text x="36" y="499" fill="#334155" font-size="11" font-weight="700">ДИНАМИКА ДЕБИТОРКИ (тыс. руб.)</text>
+    <text x="36" y="521" fill="#78716C" font-size="9.5">2021: 1 011 171</text>
+    <text x="36" y="537" fill="#78716C" font-size="9.5">2022: 613 397</text>
+    <text x="168" y="521" fill="#78716C" font-size="9.5">2023: 386 582</text>
+    <text x="168" y="537" fill="#78716C" font-size="9.5">2024: 267 507</text>
+    <text x="300" y="521" fill="#78716C" font-size="9.5">2025: 230 229</text>
+    <text x="460" y="519" text-anchor="middle" fill="#059669" font-size="26" font-weight="800">−77%</text>
+    <text x="460" y="541" text-anchor="middle" fill="#78716C" font-size="9.5">с 2021 года</text>
   </g>
 
   <!-- ═══════ РАЗВИТИЕ 2026 ═══════ -->
   <g filter="url(#ubrSoft)">
-    <rect x="578" y="445" width="545" height="82" rx="12" fill="white" stroke="#F3F4F6"/>
-    <text x="598" y="472" fill="#334155" font-size="11" font-weight="700">РАЗВИТИЕ 2026</text>
-    <text x="850" y="488" text-anchor="middle" fill="#1E40AF" font-size="12" font-weight="700">Пилотный проект Минфина РФ</text>
-    <text x="850" y="506" text-anchor="middle" fill="#2563EB" font-size="10">Оплата штрафа через ЕПГУ сразу после решения суда</text>
-    <text x="850" y="522" text-anchor="middle" fill="#94A3B8" font-size="8.5">Синхронность данных с ГИС ГМП · Поставка ПО апрель 2026</text>
+    <rect x="578" y="472" width="545" height="82" rx="12" fill="white" stroke="#F3F4F6"/>
+    <text x="598" y="499" fill="#334155" font-size="11" font-weight="700">РАЗВИТИЕ 2026-2029 · 546 млн ₽</text>
+    <text x="850" y="510" text-anchor="middle" fill="#1E40AF" font-size="10" font-weight="700">Пилот Минфина · ДЗ · ВФК · ИИ · Паспорта имущества</text>
+    <text x="850" y="526" text-anchor="middle" fill="#2563EB" font-size="9">424 млн разработка + 122 млн техподдержка</text>
+    <text x="850" y="542" text-anchor="middle" fill="#94A3B8" font-size="8.5">ВПЦТ 2026-2027: 68 млн · Требует доп. финансирования: 342 млн</text>
+  </g>
+
+  <!-- ═══════ ЛЕГЕНДА ═══════ -->
+  <g transform="translate(16,570)">
+    <text x="0" y="12" fill="#334155" font-size="9" font-weight="700">ЛЕГЕНДА:</text>
+    <circle cx="70" cy="9" r="4.5" fill="#059669"/>
+    <text x="80" y="12" fill="#64748B" font-size="8.5">Реализовано</text>
+    <circle cx="150" cy="9" r="4.5" fill="#D97706"/>
+    <text x="160" y="12" fill="#64748B" font-size="8.5">План 2026</text>
+    <circle cx="230" cy="9" r="4.5" fill="#DC2626"/>
+    <text x="240" y="12" fill="#64748B" font-size="8.5">Требует доп. финансирования</text>
+    <line x1="370" y1="9" x2="400" y2="9" stroke="#059669" stroke-width="2"/>
+    <text x="408" y="12" fill="#64748B" font-size="8.5">Сплошная = в экспл.</text>
+    <line x1="510" y1="9" x2="540" y2="9" stroke="#D97706" stroke-width="2" stroke-dasharray="5,3"/>
+    <text x="548" y="12" fill="#64748B" font-size="8.5">Пунктир = план</text>
   </g>
 
   <!-- Подпись -->
-  <text x="570" y="552" text-anchor="middle" fill="#94A3B8" font-size="9">АИС УБР: администрирование штрафов от наложения до взыскания · 78% собираемости</text>
+  <text x="570" y="640" text-anchor="middle" fill="#94A3B8" font-size="9">АИС УБР: управление финансово-хозяйственной деятельностью · 9 подсистем · 15 видов сведений СМЭВ</text>
 </svg>
         </div>
 
@@ -1622,7 +1707,7 @@
       <div class="challenges-toc mt-5">
         <div class="challenges-toc__title">Оглавление вызовов</div>
 
-        <div class="challenges-toc__group-label">Проекты цифровой трансформации</div>
+        <div class="challenges-toc__group-label">Вызовы и решения</div>
         <div class="challenges-toc__grid">
           <a href="#p-indicators" class="challenges-toc__item">
             <span class="challenges-toc__num">1</span>
@@ -1636,33 +1721,33 @@
             <span class="challenges-toc__num">3</span>
             Расследование несчастных случаев
           </a>
-          <a href="#proj-kts" class="challenges-toc__item">
+          <a href="#proj-ai" class="challenges-toc__item">
             <span class="challenges-toc__num">4</span>
-            Противодействие хищениям через КТС
+            Искусственный интеллект в КНД
           </a>
           <a href="#proj-ekdo" class="challenges-toc__item">
             <span class="challenges-toc__num">5</span>
             ЭКДО: проактивный контроль
           </a>
-          <a href="#proj-illegal" class="challenges-toc__item">
-            <span class="challenges-toc__num">6</span>
-            Борьба с нелегальной занятостью
-          </a>
-          <a href="#proj-risk" class="challenges-toc__item">
-            <span class="challenges-toc__num">7</span>
-            Развитие риск-ориентированного подхода
-          </a>
-        </div>
-
-        <div class="challenges-toc__group-label">Развитие информационных систем</div>
-        <div class="challenges-toc__grid">
           <a href="#proj-oi-challenges" class="challenges-toc__item challenges-toc__item--accent">
-            <span class="challenges-toc__num">📱</span>
+            <span class="challenges-toc__num">6</span>
             Развитие Онлайн-инспекции
           </a>
           <a href="#proj-ubr-challenges" class="challenges-toc__item challenges-toc__item--amber">
-            <span class="challenges-toc__num">💰</span>
-            Развитие АИС УБР
+            <span class="challenges-toc__num">7</span>
+            Развитие АИС УБР (546 млн ₽)
+          </a>
+          <a href="#proj-illegal" class="challenges-toc__item">
+            <span class="challenges-toc__num">8</span>
+            Борьба с нелегальной занятостью
+          </a>
+          <a href="#proj-risk" class="challenges-toc__item">
+            <span class="challenges-toc__num">9</span>
+            Развитие риск-ориентированного подхода
+          </a>
+          <a href="#proj-kts" class="challenges-toc__item">
+            <span class="challenges-toc__num">10</span>
+            Противодействие хищениям через КТС
           </a>
         </div>
       </div>
@@ -1670,7 +1755,7 @@
       <!-- Вызов 1: Реинжиниринг процессов КНД -->
       <div id="p-indicators" class="card project-card mt-6 print-break">
         <div class="card__head">
-          <h3>Вызов 1. Реинжиниринг процессов контрольно-надзорной деятельности</h3>
+          <h3>1. Реинжиниринг процессов контрольно-надзорной деятельности</h3>
           <span class="tag blue">248-ФЗ · 3745-р · 540-ФЗ</span>
         </div>
         <!-- Нормативный анализ: предпосылки реинжиниринга -->
@@ -1700,7 +1785,7 @@
         </div>
 
         <div class="callout-warning mt-3" style="margin-bottom: 0">
-          <strong>Разрыв:</strong> АСУ КНД реализовала требования 248-ФЗ — 65 процессов по 3 видам контроля, цифровые документы, жизненный цикл КНМ. Однако <strong>п. 2.1.1</strong> (виды сведений ЕРКНМ), <strong>Концепция 3745-р</strong> (динамические категории рисков, автоиндикаторы) и <strong>540-ФЗ</strong> (МП «Инспектор») требуют <strong>глубокой модернизации процессов КМ и ПМ</strong> — интеграция ЕРВК и ФГИС РОТ в процессы, перестройка досудебного обжалования, автоматизация контроля сроков. Два направления модернизации закроют этот разрыв.
+          <strong>Разрыв:</strong> в АСУ КНД реализованы требования 248-ФЗ — 65 процессов по 3 видам контроля, цифровые документы, жизненный цикл КНМ. Однако <strong>п. 2.1.1</strong> (виды сведений ЕРКНМ), <strong>Концепция 3745-р</strong> (динамические категории рисков, автоиндикаторы) и <strong>540-ФЗ</strong> (МП «Инспектор») требуют <strong>глубокой модернизации процессов КМ и ПМ</strong> — интеграции ЕРВК и ФГИС РОТ в процессы, перестройки досудебного обжалования, автоматизации контроля сроков. Два направления модернизации закроют этот разрыв.
         </div>
 
         <!-- ═══════════════════════════════════════════ -->
@@ -1955,8 +2040,176 @@
 
         </section>
 
-        <!-- 3 вида контроля: КМ и ПМ -->
-        <h4 class="bl-blue-3 mt-5" style="margin: 24px 0 12px; padding-left: 12px">3 вида контроля: контрольные и профилактические мероприятия</h4>
+        <!-- AS-IS детально (Направление 1) -->
+        <div class="print-break"></div>
+        <div class="cb cb--asis mt-5">
+          <h4 class="cb__label">Как сейчас (AS-IS) — Направление 1</h4>
+          <p class="text-base lh-normal" style="margin: 0 0 12px 0">В АСУ КНД реализованы требования 248-ФЗ, система интегрирована с федеральной инфраструктурой КНД:</p>
+
+          <div class="grid-2 gap-3 mt-3">
+            <div class="p-3 bg-blue-50 rounded-8">
+              <div class="fw-600 tc-blue text-sm" style="margin-bottom: 6px">✓ Реализовано</div>
+              <ul class="text-sm lh-relaxed" style="margin: 0; padding-left: 18px; color: var(--gray-700)">
+                <li><strong>Цифровые документы:</strong> решения о КМ/ПМ, акты, предписания — в электронном виде</li>
+                <li><strong>ЕРКНМ:</strong> размещение КНМ через СМЭВ 3 (переход на ВС 7.2.1 — 2П 2026)</li>
+                <li><strong>ЕРВК:</strong> добавление объектов контроля через вид сведений (в отдельном реестре)</li>
+                <li><strong>ПМ в АСУ КНД:</strong> профилактический визит, предостережение, консультирование</li>
+                <li><strong>Калькулятор рисков:</strong> автоматический, из АСУ КНД встроен на сайт Роструда</li>
+                <li><strong>Отчётность:</strong> ежедневные отчёты, анализ эффективности — через отчётный блок</li>
+              </ul>
+            </div>
+
+            <div class="p-3 bg-amber-50 rounded-8">
+              <div class="fw-600 tc-amber text-sm" style="margin-bottom: 6px">✋ Требуют модернизации</div>
+              <ul class="text-sm lh-relaxed" style="margin: 0; padding-left: 18px; color: var(--gray-700)">
+                <li><strong>п. 2.1.1 — виды сведений:</strong> нужно подключиться к видам сведений ЕРКНМ, перестроить процессы КМ и ПМ по 3 видам надзора</li>
+                <li><strong>Интеграция в процессы:</strong> ЕРВК (объекты контроля → в процессы КМ для редактирования), ФГИС РОТ (привязка требований в решениях и актах), ПМ → ЕРКНМ</li>
+                <li><strong>Досудебное обжалование:</strong> должно изменять решения и перезапускать процессы, а не только фиксировать факт рассмотрения</li>
+                <li><strong>КНМ без взаимодействия:</strong> рейдовый осмотр, выездное обследование, мониторинг — кардинальная модернизация (по труду)</li>
+                <li><strong>Гибкие возвраты</strong> на предыдущие этапы — нет реализации</li>
+                <li><strong>Мониторинг сроков</strong> и «брошенных» процессов — отсутствует</li>
+              </ul>
+            </div>
+          </div>
+
+          <p class="callout-warning mt-4 text-sm" style="margin-bottom: 0">
+            <strong>Итог:</strong> в АСУ КНД реализованы требования 248-ФЗ — 65 процессов, цифровые документы, жизненный цикл КНМ. Но <strong>новые требования</strong> (п. 2.1.1 — виды сведений, Концепция 3745-р — динамические риски) и <strong>недостаточная глубина интеграции</strong> (ЕРВК, ФГИС РОТ, досудебное обжалование) требуют модернизации процессов КМ и ПМ по всем 3 видам надзора.
+          </p>
+        </div>
+
+        <!-- ПРОБЛЕМА детально (Направление 1) -->
+        <div class="print-break"></div>
+        <div class="cb cb--problem mt-5">
+          <h4 class="cb__label">Проблема — Направление 1</h4>
+          <p class="cb__lead text-md lh-normal" style="margin: 0 0 16px">248-ФЗ реализован, но <strong>процессы КМ и ПМ</strong> требуют глубокой модернизации — новые нормативные требования (п. 2.1.1, 3745-р) и недостаточная интеграция с федеральными ГИС:</p>
+
+          <div class="grid-2 gap-3">
+            <div>
+              <div class="fw-600 tc-rose text-sm" style="margin-bottom: 8px">Недостаточная глубина интеграции</div>
+              <ul class="text-sm lh-relaxed" style="margin: 0; padding-left: 18px; color: var(--gray-700)">
+                <li><strong>п. 2.1.1:</strong> нужно подключиться к видам сведений ЕРКНМ, перестроить процессы КМ и ПМ по 3 видам надзора</li>
+                <li><strong>ЕРВК:</strong> объекты контроля — в отдельном реестре, не интегрированы в процессы КМ для редактирования и уточнения</li>
+                <li><strong>ФГИС РОТ:</strong> требования в решениях и актах не привязаны к реестру обязательных требований</li>
+                <li><strong>Досудебка:</strong> не изменяет решения и не перезапускает процессы в определённых точках</li>
+                <li><strong>ПМ:</strong> нет интеграции с ЕРКНМ; результаты досудебного обжалования не размещаются в ЕРКНМ</li>
+              </ul>
+            </div>
+
+            <div>
+              <div class="fw-600 tc-rose text-sm" style="margin-bottom: 8px">Процессы требуют модернизации</div>
+              <ul class="text-sm lh-relaxed" style="margin: 0; padding-left: 18px; color: var(--gray-700)">
+                <li><strong>Рейдовый осмотр, выездное обследование, мониторинг</strong> — кардинальная модернизация (по труду)</li>
+                <li><strong>Гибкие возвраты</strong> на предыдущие этапы — не реализованы</li>
+                <li><strong>Мониторинг сроков</strong> и «брошенных» процессов — отсутствует</li>
+                <li>Создание проверки: <strong>40 минут</strong> вручную</li>
+                <li>Ручной сбор данных ФНС (НПД, 6-НДФЛ) через платформу внешней поставки → ручное распределение по инспекциям</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- TO-BE детально (Направление 1) -->
+        <div class="cb cb--tobe print-break mt-5">
+          <h4 class="cb__label">Как надо (TO-BE) — Направление 1</h4>
+          <p class="cb__lead text-md lh-normal" style="margin: 0 0 16px"><strong>Сквозной цифровой контур КНД</strong> — полная автоматизация жизненного цикла контрольных и профилактических мероприятий по всем 3 видам надзора</p>
+
+          <!-- KPI акцент -->
+          <div class="tobe-kpi">
+            <div class="tobe-kpi__item tobe-kpi__item--hero">
+              <span class="tobe-kpi__value">40 мин → 3 мин</span>
+              <span class="tobe-kpi__label">создание проверки (в 13 раз)</span>
+            </div>
+            <div class="tobe-kpi__item">
+              <span class="tobe-kpi__value">−80%</span>
+              <span class="tobe-kpi__label">ручных операций</span>
+            </div>
+            <div class="tobe-kpi__item">
+              <span class="tobe-kpi__value">100%</span>
+              <span class="tobe-kpi__label">соответствие 248-ФЗ и 3745-р</span>
+            </div>
+          </div>
+
+          <!-- 5 стадий жизненного цикла -->
+          <div class="lifecycle">
+            <div class="lifecycle__stage" style="--stage-color: #93C5FD">
+              <div class="lifecycle__num">1</div>
+              <div class="lifecycle__title">Инициация</div>
+              <div class="lifecycle__desc">Автоматическое срабатывание по индикаторам риска или формирование плана КНМ</div>
+            </div>
+            <div class="lifecycle__stage" style="--stage-color: #60A5FA">
+              <div class="lifecycle__num">2</div>
+              <div class="lifecycle__title">Заведение КНМ</div>
+              <div class="lifecycle__desc">Автоматический сбор данных (ФНС, СФР, ЕГРЮЛ). Формирование решения</div>
+            </div>
+            <div class="lifecycle__stage" style="--stage-color: #3B82F6">
+              <div class="lifecycle__num">3</div>
+              <div class="lifecycle__title">Проведение</div>
+              <div class="lifecycle__desc">Фиксация в МП «Инспектор». Автоконтроль сроков, уведомления</div>
+            </div>
+            <div class="lifecycle__stage" style="--stage-color: #2563EB">
+              <div class="lifecycle__num">4</div>
+              <div class="lifecycle__title">Завершение</div>
+              <div class="lifecycle__desc">Авто-размещение в ЕРКНМ. Контроль качества пакета в Генпрокуратуру</div>
+            </div>
+            <div class="lifecycle__stage" style="--stage-color: #1E40AF">
+              <div class="lifecycle__num">5</div>
+              <div class="lifecycle__title">Принуждение</div>
+              <div class="lifecycle__desc">Привлечение к ответственности. Интеграция с АИС УБР. Авто-взыскание через ФССП</div>
+            </div>
+          </div>
+          <div class="lifecycle-bar"></div>
+
+          <!-- Ключевые изменения — мини-карточки 2×3 -->
+          <p class="text-sm fw-700 mt-4 mb-2" style="color: var(--text)">Ключевые изменения:</p>
+          <div class="changes-grid">
+            <div class="change-card" style="--change-color: #2563EB">
+              <div class="change-card__icon">🔄</div>
+              <div class="change-card__body">
+                <div class="change-card__title">Виды сведений ЕРКНМ</div>
+                <div class="change-card__desc">Перестройка КМ/ПМ по 3 видам надзора; интеграция ПМ → ЕРКНМ</div>
+              </div>
+            </div>
+            <div class="change-card" style="--change-color: #2563EB">
+              <div class="change-card__icon">🔗</div>
+              <div class="change-card__body">
+                <div class="change-card__title">Интеграция в процессы</div>
+                <div class="change-card__desc">ЕРВК → в КМ, ФГИС РОТ → требования в актах, досудебка → ЕРКНМ</div>
+              </div>
+            </div>
+            <div class="change-card" style="--change-color: #7C3AED">
+              <div class="change-card__icon">⚖️</div>
+              <div class="change-card__body">
+                <div class="change-card__title">Досудебное обжалование</div>
+                <div class="change-card__desc">Изменение решений и перезапуск процессов в определённых точках</div>
+              </div>
+            </div>
+            <div class="change-card" style="--change-color: #059669">
+              <div class="change-card__icon">🔍</div>
+              <div class="change-card__body">
+                <div class="change-card__title">Модернизация КНМ</div>
+                <div class="change-card__desc">Рейдовый осмотр, выездное обследование, мониторинг соблюдения</div>
+              </div>
+            </div>
+            <div class="change-card" style="--change-color: #D97706">
+              <div class="change-card__icon">🔙</div>
+              <div class="change-card__body">
+                <div class="change-card__title">Гибкие возвраты</div>
+                <div class="change-card__desc">Возврат на предыдущие точки процесса без создания нового КНМ</div>
+              </div>
+            </div>
+            <div class="change-card" style="--change-color: #DC2626">
+              <div class="change-card__icon">⏱️</div>
+              <div class="change-card__body">
+                <div class="change-card__title">Мониторинг сроков</div>
+                <div class="change-card__desc">Выявление «брошенных» процессов, контроль сроков на каждом этапе</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 вида контроля: КМ и ПМ (после TO-BE) -->
+        <h4 class="bl-blue-3 print-break mt-5" style="margin: 24px 0 12px; padding-left: 12px">3 вида контроля: контрольные и профилактические мероприятия</h4>
         <p class="text-base lh-normal mb-3">
           АСУ КНД уже работает в масштабе 63 ГИТ + Крым и Севастополь по 3 видам контроля.
           Для каждого вида — свой набор контрольных (КМ) и профилактических (ПМ) мероприятий:
@@ -1989,162 +2242,6 @@
               <li>Мониторинг кадрового обеспечения и состояния зданий</li>
               <li>Интеграция с независимой оценкой качества (bus.gov.ru)</li>
               <li>3 индикатора риска — автоматизация расчёта</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- AS-IS детально (Направление 1) -->
-        <div class="cb cb--asis mt-5">
-          <h4 class="cb__label">Как сейчас (AS-IS) — Направление 1</h4>
-          <p class="text-base lh-normal" style="margin: 0 0 12px 0">АСУ КНД реализовала требования 248-ФЗ и интегрирована с федеральной инфраструктурой КНД:</p>
-
-          <div class="grid-2 gap-3 mt-3">
-            <div class="p-3 bg-blue-50 rounded-8">
-              <div class="fw-600 tc-blue text-sm" style="margin-bottom: 6px">✓ Реализовано</div>
-              <ul class="text-sm lh-relaxed" style="margin: 0; padding-left: 18px; color: var(--gray-700)">
-                <li><strong>Цифровые документы:</strong> решения о КМ/ПМ, акты, предписания — в электронном виде</li>
-                <li><strong>ЕРКНМ:</strong> размещение КНМ через СМЭВ 3 (переход на ВС 7.2.1 — 2П 2026)</li>
-                <li><strong>ЕРВК:</strong> добавление объектов контроля через вид сведений (в отдельном реестре)</li>
-                <li><strong>ПМ в АСУ КНД:</strong> профилактический визит, предостережение, консультирование</li>
-                <li><strong>Калькулятор рисков:</strong> автоматический, из АСУ КНД встроен на сайт Роструда</li>
-                <li><strong>Отчётность:</strong> ежедневные отчёты, анализ эффективности — через отчётный блок</li>
-              </ul>
-            </div>
-
-            <div class="p-3 bg-amber-50 rounded-8">
-              <div class="fw-600 tc-amber text-sm" style="margin-bottom: 6px">✋ Требуют модернизации</div>
-              <ul class="text-sm lh-relaxed" style="margin: 0; padding-left: 18px; color: var(--gray-700)">
-                <li><strong>п. 2.1.1 — виды сведений:</strong> нужно подключиться к видам сведений ЕРКНМ, перестроить процессы КМ и ПМ по 3 видам надзора</li>
-                <li><strong>Интеграция в процессы:</strong> ЕРВК (объекты контроля → в процессы КМ для редактирования), ФГИС РОТ (привязка требований в решениях и актах), ПМ → ЕРКНМ</li>
-                <li><strong>Досудебное обжалование:</strong> должно изменять решения и перезапускать процессы, а не только фиксировать факт рассмотрения</li>
-                <li><strong>КНМ без взаимодействия:</strong> рейдовый осмотр, выездное обследование, мониторинг — кардинальная модернизация (по труду)</li>
-                <li><strong>Гибкие возвраты</strong> на предыдущие этапы — нет реализации</li>
-                <li><strong>Мониторинг сроков</strong> и «брошенных» процессов — отсутствует</li>
-              </ul>
-            </div>
-          </div>
-
-          <p class="callout-warning mt-4 text-sm" style="margin-bottom: 0">
-            <strong>Итог:</strong> АСУ КНД реализовала 248-ФЗ — 65 процессов, цифровые документы, жизненный цикл КНМ. Но <strong>новые требования</strong> (п. 2.1.1 — виды сведений, Концепция 3745-р — динамические риски) и <strong>недостаточная глубина интеграции</strong> (ЕРВК, ФГИС РОТ, досудебка в процессах) требуют модернизации КМ и ПМ по всем 3 видам надзора.
-          </p>
-        </div>
-
-        <!-- ПРОБЛЕМА детально (Направление 1) -->
-        <div class="cb cb--problem mt-5">
-          <h4 class="cb__label">Проблема — Направление 1</h4>
-          <p class="cb__lead text-md lh-normal" style="margin: 0 0 16px">248-ФЗ реализован, но <strong>процессы КМ и ПМ</strong> требуют глубокой модернизации — новые нормативные требования (п. 2.1.1, 3745-р) и недостаточная интеграция с федеральными ГИС:</p>
-
-          <div class="grid-2 gap-3">
-            <div>
-              <div class="fw-600 tc-rose text-sm" style="margin-bottom: 8px">Недостаточная глубина интеграции</div>
-              <ul class="text-sm lh-relaxed" style="margin: 0; padding-left: 18px; color: var(--gray-700)">
-                <li><strong>п. 2.1.1:</strong> нужно подключиться к видам сведений ЕРКНМ, перестроить процессы КМ и ПМ по 3 видам надзора</li>
-                <li><strong>ЕРВК:</strong> объекты контроля — в отдельном реестре, не интегрированы в процессы КМ для редактирования и уточнения</li>
-                <li><strong>ФГИС РОТ:</strong> требования в решениях и актах не привязаны к реестру обязательных требований</li>
-                <li><strong>Досудебка:</strong> не изменяет решения и не перезапускает процессы в определённых точках</li>
-                <li><strong>ПМ:</strong> нет интеграции с ЕРКНМ; результаты досудебного обжалования не размещаются в ЕРКНМ</li>
-              </ul>
-            </div>
-
-            <div>
-              <div class="fw-600 tc-rose text-sm" style="margin-bottom: 8px">Процессы требуют модернизации</div>
-              <ul class="text-sm lh-relaxed" style="margin: 0; padding-left: 18px; color: var(--gray-700)">
-                <li><strong>Рейдовый осмотр, выездное обследование, мониторинг</strong> — кардинальная модернизация (по труду)</li>
-                <li><strong>Гибкие возвраты</strong> на предыдущие этапы — не реализованы</li>
-                <li><strong>Мониторинг сроков</strong> и «брошенных» процессов — отсутствует</li>
-                <li>Создание проверки: <strong>40 минут</strong> вручную</li>
-                <li>Ручной сбор данных ФНС (НПД, 6-НДФЛ) через платформу внешней поставки → ручное распределение по инспекциям</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="mt-4 bg-rose-50 rounded-8 p-4" style="border: 1px solid #FECDD3; margin-bottom: 0">
-            <div class="fw-700 tc-rose text-sm" style="margin-bottom: 12px">Масштаб проблемы</div>
-            <div class="d-flex gap-3" style="align-items: center; justify-content: center; flex-wrap: wrap">
-              <div style="text-align: center; min-width: 80px">
-                <div class="fw-800 tc-rose" style="font-size: 28px; line-height: 1">65</div>
-                <div class="text-xs tc-muted" style="margin-top: 2px">процессов КНД</div>
-              </div>
-              <div class="fw-700 tc-rose" style="font-size: 20px">×</div>
-              <div style="text-align: center; min-width: 80px">
-                <div class="fw-800 tc-rose" style="font-size: 28px; line-height: 1">3</div>
-                <div class="text-xs tc-muted" style="margin-top: 2px">вида контроля</div>
-              </div>
-              <div class="fw-700 tc-rose" style="font-size: 20px">×</div>
-              <div style="text-align: center; min-width: 80px">
-                <div class="fw-800 tc-rose" style="font-size: 28px; line-height: 1">63<span style="font-size: 16px">+2</span></div>
-                <div class="text-xs tc-muted" style="margin-top: 2px">ГИТ</div>
-              </div>
-              <div class="fw-700 tc-rose" style="font-size: 20px">=</div>
-              <div style="text-align: center; background: #FEE2E2; padding: 10px 20px; border-radius: 10px; min-width: 140px">
-                <div class="fw-800 tc-rose" style="font-size: 28px; line-height: 1">>12 000</div>
-                <div class="text-xs tc-rose fw-600" style="margin-top: 4px">экземпляров процессов/год требуют модернизации</div>
-              </div>
-            </div>
-            <p class="text-xs tc-muted" style="margin: 10px 0 0; text-align: center">Виды сведений ЕРКНМ, интеграция ЕРВК/ФГИС РОТ в процессы, досудебное обжалование, мониторинг сроков</p>
-          </div>
-        </div>
-
-        <!-- TO-BE детально (Направление 1) -->
-        <div class="cb cb--tobe print-break mt-5">
-          <h4 class="cb__label">Как надо (TO-BE) — Направление 1</h4>
-          <p class="cb__lead text-md lh-normal" style="margin: 0 0 16px"><strong>Сквозной цифровой контур КНД</strong> — полная автоматизация жизненного цикла контрольных и профилактических мероприятий по всем 3 видам надзора</p>
-
-          <div class="process-stages mb-4">
-            <div class="process-stage">
-              <div class="stage-number">1</div>
-              <div class="stage-content">
-                <div class="stage-title">Инициация</div>
-                <div class="stage-desc">Автоматическое срабатывание по индикаторам риска или формирование плана КНМ</div>
-              </div>
-            </div>
-            <div class="stage-arrow">→</div>
-
-            <div class="process-stage">
-              <div class="stage-number">2</div>
-              <div class="stage-content">
-                <div class="stage-title">Заведение КНМ</div>
-                <div class="stage-desc">Создание проверки: 40 мин → <strong>3 мин</strong>. Автоматический сбор данных (ФНС, СФР, ЕГРЮЛ)</div>
-              </div>
-            </div>
-            <div class="stage-arrow">→</div>
-
-            <div class="process-stage">
-              <div class="stage-number">3</div>
-              <div class="stage-content">
-                <div class="stage-title">Проведение</div>
-                <div class="stage-desc">Фиксация в МП «Инспектор». Автоконтроль сроков, уведомления</div>
-              </div>
-            </div>
-            <div class="stage-arrow">→</div>
-
-            <div class="process-stage">
-              <div class="stage-number">4</div>
-              <div class="stage-content">
-                <div class="stage-title">Завершение</div>
-                <div class="stage-desc">Автоматическое размещение в ЕРКНМ. Контроль качества пакета в Генпрокуратуру</div>
-              </div>
-            </div>
-            <div class="stage-arrow">→</div>
-
-            <div class="process-stage">
-              <div class="stage-number">5</div>
-              <div class="stage-content">
-                <div class="stage-title">Принуждение</div>
-                <div class="stage-desc">Автоматическое привлечение к ответственности. Интеграция с АИС УБР</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="callout-info text-sm" style="margin-top: 16px">
-            <strong>Ключевые изменения:</strong>
-            <ul style="margin: 8px 0 0; padding-left: 20px">
-              <li><strong>Виды сведений ЕРКНМ (п. 2.1.1):</strong> перестройка процессов КМ и ПМ по 3 видам надзора для работы через виды сведений; интеграция ПМ → ЕРКНМ</li>
-              <li><strong>Глубокая интеграция в процессы:</strong> ЕРВК (объекты контроля → в КМ для редактирования), ФГИС РОТ (привязка требований в решениях и актах), досудебка → ЕРКНМ</li>
-              <li><strong>Досудебное обжалование:</strong> изменение принятых решений и перезапуск процессов в определённых точках</li>
-              <li><strong>Модернизация КНМ:</strong> рейдовый осмотр, выездное обследование, мониторинг соблюдения — кардинальное обновление</li>
-              <li><strong>Гибкие возвраты:</strong> инспектор может вернуться на предыдущие точки процесса без создания нового КНМ</li>
-              <li><strong>Мониторинг сроков:</strong> выявление «брошенных» процессов, автоматический контроль сроков на каждом этапе</li>
             </ul>
           </div>
         </div>
@@ -2252,101 +2349,78 @@
           </div>
         </section>
 
-        <!-- AS-IS детально (Направление 2) -->
-        <div class="cb cb--asis mt-5">
+        <!-- AS-IS детально (Направление 2) — по стадиям -->
+        <div class="cb cb--asis print-break mt-5">
+          <hr style="border: none; border-top: 1px solid var(--border); margin: 0 0 16px 0">
           <h4 class="cb__label">Как сейчас (AS-IS) — Направление 2</h4>
-          <p class="text-base lh-normal" style="margin: 0 0 12px 0"><strong>13 индикаторов риска</strong> по трём видам контроля (9 — Вид 1, 1 — Вид 2, 3 — Вид 3). Срабатывания: >3 600/год.</p>
+          <p class="text-base lh-normal" style="margin: 0 0 4px 0"><strong>13 индикаторов риска</strong> по трём видам контроля (9 — Вид 1, 1 — Вид 2, 3 — Вид 3). Срабатывания: >3 600/год.</p>
 
-          <div class="grid-2 gap-3 mt-3">
-            <div class="p-3 bg-amber-50 rounded-8">
-              <div class="fw-600 tc-amber text-sm" style="margin-bottom: 6px">Ручная обработка индикаторов</div>
-              <ul class="text-sm lh-relaxed" style="margin: 0; padding-left: 18px; color: var(--gray-700)">
-                <li><strong>11 из 13 индикаторов</strong> обрабатываются вручную</li>
-                <li>Ручная загрузка файлов из ФНС, СФР, ФГИС СОУТ</li>
-                <li>Ручной анализ данных в Excel</li>
-                <li>Ручное формирование списков для проверок</li>
-                <li>1 индикатор автоматизирован (ждёт запуска), 1 — полуавтоматический (✋⚡)</li>
-              </ul>
+          <div class="lifecycle" style="margin-top: 12px">
+            <div class="lifecycle__stage" style="--stage-color: #D97706">
+              <span class="lifecycle__icon">✋</span>
+              <div class="lifecycle__num">1</div>
+              <div class="lifecycle__title">Сбор данных</div>
+              <div class="lifecycle__desc">Ручная загрузка файлов из ФНС, СФР, ФГИС СОУТ. Данные ФНС — через платформу внешней поставки (файловый обмен)</div>
             </div>
-
-            <div class="p-3 bg-rose-50 rounded-8">
-              <div class="fw-600 tc-rose text-sm" style="margin-bottom: 6px">Нет управленческого контроля</div>
-              <ul class="text-sm lh-relaxed" style="margin: 0; padding-left: 18px; color: var(--gray-700)">
-                <li>Нет дашбордов для <strong>руководителей ГИТ</strong> (операционный уровень)</li>
-                <li>Нет дашбордов для <strong>ЦА Роструда</strong> (управленческий уровень)</li>
-                <li>Отчёты в Excel — ручная консолидация по 63 ГИТ + Крым и Севастополь</li>
-                <li>Нет мониторинга срабатываний в режиме реального времени</li>
-              </ul>
+            <div class="lifecycle__stage" style="--stage-color: #D97706">
+              <span class="lifecycle__icon">✋</span>
+              <div class="lifecycle__num">2</div>
+              <div class="lifecycle__title">Выявление срабатывания</div>
+              <div class="lifecycle__desc">Ручной анализ в Excel: сопоставление работодателей, расчёт критериев. 11 из 13 индикаторов — вручную</div>
+            </div>
+            <div class="lifecycle__stage" style="--stage-color: #DC2626">
+              <span class="lifecycle__icon">✋</span>
+              <div class="lifecycle__num">3</div>
+              <div class="lifecycle__title">Инициализация КМ</div>
+              <div class="lifecycle__desc">Ручная рассылка списков в 63 ГИТ + Крым и Севастополь. ГИТ вручную заводят КНМ в ЕРКНМ</div>
+            </div>
+            <div class="lifecycle__stage" style="--stage-color: #DC2626">
+              <span class="lifecycle__icon">✋</span>
+              <div class="lifecycle__num">4</div>
+              <div class="lifecycle__title">Контроль и мониторинг</div>
+              <div class="lifecycle__desc">Нет дашбордов для ГИТ и ЦА Роструда. Отчёты в Excel — ручная консолидация. Нет мониторинга в реальном времени</div>
             </div>
           </div>
+          <div style="margin: 12px 0 0; height: 4px; border-radius: 2px; background: linear-gradient(to right, #D97706, #D97706, #DC2626, #DC2626)"></div>
 
           <p class="callout-warning mt-4 text-sm" style="margin-bottom: 0">
-            <strong>Итог:</strong> процесс от срабатывания индикатора до размещения КНМ в ЕРКНМ разорван. Нет автоматизации, нет управленческого контроля.
+            <strong>Итог:</strong> процесс от срабатывания индикатора до размещения КНМ в ЕРКНМ разорван. >3 600 срабатываний/год × 65 ГИТ = ручная обработка. Более 200 инспекторов тратят время на обработку индикаторов вместо проведения проверок.
           </p>
         </div>
 
-        <!-- ПРОБЛЕМА детально (Направление 2) -->
-        <div class="cb cb--problem mt-5">
-          <h4 class="cb__label">Проблема — Направление 2</h4>
-          <p class="cb__lead text-md lh-normal" style="margin: 0 0 16px"><strong>11 из 13 индикаторов</strong> обрабатываются вручную. Нет сквозного контроля от индикатора до исполнения КНМ:</p>
-
-          <div class="grid-2 gap-3">
-            <div>
-              <div class="fw-600 tc-rose text-sm" style="margin-bottom: 8px">Ручная обработка данных</div>
-              <ul class="text-sm lh-relaxed" style="margin: 0; padding-left: 18px; color: var(--gray-700)">
-                <li>Инспекторы ЦА Роструда вручную загружают файлы из СМЭВ (ФНС, СФР)</li>
-                <li>Ручной анализ в Excel: сопоставление работодателей, расчёт критериев</li>
-                <li>Ручная рассылка списков в 63 ГИТ + Крым и Севастополь через email/SharePoint</li>
-                <li>ГИТ вручную заводят КНМ в АСУ КНД и размещают в ЕРКНМ</li>
-              </ul>
-            </div>
-
-            <div>
-              <div class="fw-600 tc-rose text-sm" style="margin-bottom: 8px">Нет управленческих инструментов</div>
-              <ul class="text-sm lh-relaxed" style="margin: 0; padding-left: 18px; color: var(--gray-700)">
-                <li>Руководители ГИТ не видят статус обработки индикаторов в реальном времени</li>
-                <li>ЦА Роструда не имеет аналитики: сколько индикаторов сработало, какая динамика</li>
-                <li>Нет контроля исполнения: КНМ размещены, проведены, результаты</li>
-                <li>Невозможно оценить эффективность индикаторов (точность, результативность)</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="metric-card mt-4 bg-rose-50 bl-rose" style="margin-bottom: 0">
-            <div class="metric-row">
-              <span class="metric-row__label tc-rose">Масштаб проблемы:</span>
-              <span class="metric-row__value fw-700 tc-rose">>3 600 срабатываний/год × 63 ГИТ + Крым и Севастополь = ручная обработка</span>
-            </div>
-            <p class="metric-hint" style="margin: 8px 0 0 0">Более 200 инспекторов ЦА Роструда и ГИТ тратят время на ручную обработку индикаторов вместо проведения проверок</p>
-          </div>
-        </div>
-
-        <!-- TO-BE детально (Направление 2) -->
+        <!-- TO-BE детально (Направление 2) — по стадиям -->
         <div class="cb cb--tobe print-break mt-5">
+          <hr style="border: none; border-top: 1px solid var(--border); margin: 0 0 16px 0">
           <h4 class="cb__label">Как надо (TO-BE) — Направление 2</h4>
-          <p class="cb__lead text-md lh-normal" style="margin: 0 0 16px"><strong>Автоматизация 11 индикаторов</strong> + дашборды для всех уровней управления + сквозной контроль от срабатывания до исполнения</p>
+          <p class="text-base lh-normal" style="margin: 0 0 4px 0"><strong>Автоматизация 11 индикаторов</strong> + дашборды для всех уровней управления + сквозной контроль</p>
 
-          <div class="grid-2 gap-3">
-            <div class="p-3 bg-green-50 rounded-8">
-              <div class="fw-600 tc-green text-sm" style="margin-bottom: 8px">Автоматизация индикаторов и категорий рисков</div>
-              <ul class="text-sm lh-relaxed" style="margin: 0; padding-left: 18px; color: var(--gray-700)">
-                <li><strong>Автоматический сбор данных</strong> через СМЭВ (ФНС, СФР, ФГИС СОУТ)</li>
-                <li><strong>Автоматический расчёт</strong> критериев срабатывания по каждому индикатору</li>
-                <li><strong>Динамический перерасчёт категорий рисков</strong> по расписанию (раз в месяц/квартал вместо раз в год, 2026)</li>
-                <li><strong>Автоматическое размещение КНМ</strong> в ЕРКНМ по сработавшим индикаторам</li>
-              </ul>
+          <div class="lifecycle" style="margin-top: 12px">
+            <div class="lifecycle__stage" style="--stage-color: #059669">
+              <span class="lifecycle__icon">⚡</span>
+              <div class="lifecycle__num">1</div>
+              <div class="lifecycle__title">Сбор данных</div>
+              <div class="lifecycle__desc">Автоматический сбор через СМЭВ (ФНС, СФР, ФГИС СОУТ). Данные поступают по расписанию без участия оператора</div>
             </div>
-
-            <div class="p-3 bg-blue-50 rounded-8">
-              <div class="fw-600 tc-blue text-sm" style="margin-bottom: 8px">Дашборды и управленческий контроль</div>
-              <ul class="text-sm lh-relaxed" style="margin: 0; padding-left: 18px; color: var(--gray-700)">
-                <li><strong>Дашборд для ГИТ</strong> (операционный): срабатывания, статусы КНМ, сроки</li>
-                <li><strong>Дашборд для ЦА Роструда</strong> (управленческий): аналитика, динамика, эффективность</li>
-                <li><strong>ЛК руководителей ГИТ</strong> для мониторинга индикаторов своего региона</li>
-                <li><strong>Сквозной контроль:</strong> от индикатора → КНМ → проведение → результат</li>
-              </ul>
+            <div class="lifecycle__stage" style="--stage-color: #059669">
+              <span class="lifecycle__icon">⚡</span>
+              <div class="lifecycle__num">2</div>
+              <div class="lifecycle__title">Выявление срабатывания</div>
+              <div class="lifecycle__desc">Автоматический расчёт критериев по каждому индикатору. Динамический перерасчёт категорий рисков (раз в месяц/квартал)</div>
+            </div>
+            <div class="lifecycle__stage" style="--stage-color: #2563EB">
+              <span class="lifecycle__icon">⚡</span>
+              <div class="lifecycle__num">3</div>
+              <div class="lifecycle__title">Инициализация КМ</div>
+              <div class="lifecycle__desc">Автоматическое размещение КНМ в ЕРКНМ по сработавшим индикаторам. Автораспределение по ГИТ</div>
+            </div>
+            <div class="lifecycle__stage" style="--stage-color: #2563EB">
+              <span class="lifecycle__icon">⚡</span>
+              <div class="lifecycle__num">4</div>
+              <div class="lifecycle__title">Контроль и мониторинг</div>
+              <div class="lifecycle__desc">Дашборды для ГИТ и ЦА Роструда. Сквозной контроль: индикатор → КНМ → проведение → результат</div>
             </div>
           </div>
+          <div style="margin: 12px 0 0; height: 4px; border-radius: 2px; background: linear-gradient(to right, #059669, #059669, #2563EB, #2563EB)"></div>
 
         </div>
 
@@ -2417,11 +2491,7 @@
             <p class="muted small mb-1">13 индикаторов (9 — Вид 1, 1 — Вид 2, 3 — Вид 3) · действуют до 31.12.2026 ·>3 600 срабатываний</p>
             <p class="muted small mb-3">1 автоматизирован (ждёт запуска) · 1 полуавтоматический · 11 ручных — автоматизация через СМЭВ предстоит</p>
 
-            <details class="rounded-8 mb-4 border-gray">
-              <summary class="tc-accent text-base fw-600 bg-sky-50 rounded-8 cursor-pointer" style="padding: 12px 16px; user-select: none">
-                Детализация: 13 индикаторов риска по видам контроля
-              </summary>
-              <div class="p-5">
+            <!-- 13 индикаторов по видам контроля -->
 
             <!-- Вид 1: Трудовое законодательство -->
             <h4 class="print-break bl-blue-3 mb-3" style="padding-left: 12px">Вид 1. Соблюдение трудового законодательства <span class="muted small">(9 индикаторов)</span></h4>
@@ -2577,9 +2647,6 @@
             <div class="note-box">
               <strong>Интеграция с Право.ру</strong> (планируется): автоматическое получение сведений о банкротстве → запуск автоматического расчёта индикатора №4
             </div>
-          </div><!-- /padding p-5 -->
-        </details><!-- /Детализация индикаторов -->
-
         <!-- Перспективы автоматизации -->
         <h4 class="print-break bl-green" style="margin: 24px 0 12px; padding-left: 12px">Перспективы автоматизации индикаторов</h4>
 
@@ -2637,231 +2704,92 @@
         <div class="note-box mt-4 bg-amber-50" style="border-color: var(--amber)">
           <strong style="color: var(--amber);">Важно:</strong> Разработать для сотрудников ЦА Роструда <strong>модуль отслеживания отработки</strong> руководителями ГИТ сработавших индикаторов
         </div>
-          </div>
-        </details>
+        <!-- Детальные карточки индикаторов (Направление 2) -->
+        <h4 class="print-break bl-green mt-5" style="padding-left: 12px; margin-bottom: 16px">Детальные карточки индикаторов</h4>
 
-
-      </div><!-- /Вызов 1 -->
-      <!-- ═══════════════════════════════════════════════════════════════ -->
-      <!-- ДЕТАЛЬНЫЕ КАРТОЧКИ ИНДИКАТОРОВ (Направление 2) — ВНЕ Вызова 1  -->
-      <!-- ═══════════════════════════════════════════════════════════════ -->
-
-      <h3 class="print-break mt-8 tc-navy fw-800 text-xl" style="margin-bottom: 20px; padding-left: 4px; border-left: 4px solid var(--green-600)">Детальные карточки индикаторов (Направление 2)</h3>
-      <p class="text-base tc-muted lh-normal" style="margin: 0 0 24px">Подробные карточки по каждому из приоритетных индикаторов риска: процессы AS-IS и TO-BE, схемы автоматизации, источники данных через СМЭВ</p>
-
-      <!-- Автоматизация первого индикатора риска -->
-      <div class="card print-break">
+      <!-- Индикатор №1 (трудовые отношения): подмена трудовых отношений договорами ГПХ -->
+      <div class="card print-break" data-slide-group="ind-gph1">
         <div class="card__head">
-          <h3>Индикатор №1 (трудовые отношения). Подмена трудовых отношений договорами ГПХ</h3>
+          <h3>Индикатор №1 (трудовые отношения). Подмена трудовых отношений договорами ГПХ — текущий процесс</h3>
           <div style="display: flex; gap: 8px; flex-wrap: wrap">
             <span class="tag green">Направление 2 · Индикаторы риска</span>
-            <span class="tag blue">Приоритетная автоматизация</span>
-          </div>
-        </div>
-        <p class="muted small mt-2 mb-4">Сейчас индикатор рассчитывается вручную. Схема показывает, как автоматизировать получение данных через СМЭВ</p>
-
-        <div class="overflow-auto">
-          <svg viewBox="0 0 1000 480" xmlns="http://www.w3.org/2000/svg" class="svg-diagram svg-diagram--sm" font-family="Inter, system-ui, sans-serif">
-            <defs>
-              <filter id="ri-glow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur in="SourceGraphic" stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-            </defs>
-
-            <!-- Заголовок индикатора -->
-            <rect x="150" y="10" width="700" height="55" rx="12" fill="#0F172A"/>
-            <text x="500" y="32" text-anchor="middle" fill="white" font-size="13" font-weight="700">Индикатор №1: Подмена трудовых отношений самозанятыми</text>
-            <text x="500" y="50" text-anchor="middle" fill="#93C5FD" font-size="10">Работодатель взаимодействует с &#8805;35 лицами на НПД, каждый получает>35 тыс. &#8381;/мес.,>3 мес., доля дохода &#8805;75%</text>
-
-            <!-- Шаг 1: ФНС — источник данных -->
-            <rect x="30" y="100" width="200" height="70" rx="12" fill="#DC2626"/>
-            <text x="130" y="128" text-anchor="middle" fill="white" font-size="14" font-weight="700">ФНС</text>
-            <text x="130" y="143" text-anchor="middle" fill="white" font-size="10" opacity="0.85">Реестр НПД</text>
-            <text x="130" y="156" text-anchor="middle" fill="white" font-size="8" opacity="0.65">(налог на проф. доход)</text>
-            <text x="130" y="168" text-anchor="middle" fill="white" font-size="9" opacity="0.7">данные о самозанятых</text>
-
-            <!-- Стрелка ФНС → Платформа -->
-            <path id="ri-p1" d="M230,135 L350,135" stroke="#E2E8F0" stroke-width="2" fill="none"/>
-            <polygon points="342,131 350,135 342,139" fill="#60A5FA"/>
-            <circle r="3.5" fill="#DC2626" filter="url(#ri-glow)"><animateMotion dur="1s" repeatCount="indefinite"><mpath href="#ri-p1"/></animateMotion></circle>
-
-            <!-- Шаг 2: Платформа внешней поставки данных ФНС -->
-            <rect x="350" y="95" width="160" height="80" rx="12" fill="#1E293B"/>
-            <text x="430" y="120" text-anchor="middle" fill="white" font-size="11" font-weight="700">Платформа</text>
-            <text x="430" y="135" text-anchor="middle" fill="#93C5FD" font-size="10">внешней поставки</text>
-            <text x="430" y="150" text-anchor="middle" fill="#93C5FD" font-size="10">данных ФНС</text>
-            <text x="430" y="165" text-anchor="middle" fill="#FCD34D" font-size="8">файловый обмен</text>
-
-            <!-- Стрелка Платформа → АСУ КНД -->
-            <path id="ri-p2" d="M510,135 L620,135" stroke="#E2E8F0" stroke-width="2" fill="none"/>
-            <polygon points="612,131 620,135 612,139" fill="#2563EB"/>
-            <circle r="3.5" fill="#60A5FA" filter="url(#ri-glow)"><animateMotion dur="1s" repeatCount="indefinite" begin="0.3s"><mpath href="#ri-p2"/></animateMotion></circle>
-
-            <!-- Шаг 3: АСУ КНД -->
-            <rect x="620" y="90" width="350" height="90" rx="12" fill="rgba(37,99,235,0.06)" stroke="#2563EB" stroke-width="2"/>
-            <text x="795" y="118" text-anchor="middle" fill="#0F172A" font-size="14" font-weight="700">АСУ КНД</text>
-            <text x="795" y="138" text-anchor="middle" fill="#2563EB" font-size="11" font-weight="600">Автоматический расчёт индикатора</text>
-            <text x="795" y="158" text-anchor="middle" fill="#64748B" font-size="10">Алгоритм проверки 4 условий</text>
-            <text x="795" y="172" text-anchor="middle" fill="#94A3B8" font-size="9">без участия инспектора</text>
-
-            <!-- Стрелка вниз от АСУ КНД к блоку условий -->
-            <path d="M795,180 L795,210" stroke="#2563EB" stroke-width="1.5" fill="none"/>
-            <polygon points="791,204 795,212 799,204" fill="#2563EB"/>
-
-            <!-- Блок алгоритма: 4 условия -->
-            <rect x="300" y="215" width="670" height="130" rx="12" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1.5"/>
-            <text x="635" y="238" text-anchor="middle" fill="#1D4ED8" font-size="12" font-weight="700">Алгоритм: проверка 4 условий (все одновременно)</text>
-
-            <rect x="315" y="250" width="150" height="45" rx="8" fill="white" stroke="#BFDBFE"/>
-            <text x="390" y="266" text-anchor="middle" fill="#1D4ED8" font-size="10" font-weight="600">&#8805;35 лиц на НПД</text>
-            <text x="390" y="279" text-anchor="middle" fill="#64748B" font-size="8">(налог на проф. доход)</text>
-            <text x="390" y="291" text-anchor="middle" fill="#64748B" font-size="9">у одного заказчика</text>
-
-            <rect x="478" y="250" width="150" height="45" rx="8" fill="white" stroke="#BFDBFE"/>
-            <text x="553" y="270" text-anchor="middle" fill="#1D4ED8" font-size="10" font-weight="600">>35 тыс. &#8381;/мес.</text>
-            <text x="553" y="285" text-anchor="middle" fill="#64748B" font-size="9">каждому исполнителю</text>
-
-            <rect x="641" y="250" width="150" height="45" rx="8" fill="white" stroke="#BFDBFE"/>
-            <text x="716" y="270" text-anchor="middle" fill="#1D4ED8" font-size="10" font-weight="600">>3 мес.</text>
-            <text x="716" y="285" text-anchor="middle" fill="#64748B" font-size="9">сотрудничества</text>
-
-            <rect x="804" y="250" width="150" height="45" rx="8" fill="white" stroke="#BFDBFE"/>
-            <text x="879" y="270" text-anchor="middle" fill="#1D4ED8" font-size="10" font-weight="600">&#8805;75% дохода</text>
-            <text x="879" y="285" text-anchor="middle" fill="#64748B" font-size="9">от одного заказчика</text>
-
-            <text x="635" y="330" text-anchor="middle" fill="#64748B" font-size="10">Если все 4 условия выполнены → индикатор сработал</text>
-
-            <!-- Стрелка вниз от алгоритма к результатам -->
-            <path d="M500,345 L500,375" stroke="#2563EB" stroke-width="1.5" fill="none"/>
-            <polygon points="496,369 500,377 504,369" fill="#2563EB"/>
-            <path d="M770,345 L770,375" stroke="#F43F5E" stroke-width="1.5" fill="none"/>
-            <polygon points="766,369 770,377 774,369" fill="#F43F5E"/>
-
-            <!-- Результат: Сработал -->
-            <rect x="580" y="378" width="380" height="55" rx="12" fill="#FEF2F2" stroke="#FECACA"/>
-            <text x="770" y="402" text-anchor="middle" fill="#DC2626" font-size="13" font-weight="700">Индикатор сработал</text>
-            <text x="770" y="420" text-anchor="middle" fill="#991B1B" font-size="10">→ Автоматическое формирование задания на проверку</text>
-
-            <!-- Результат: Не сработал -->
-            <rect x="300" y="378" width="260" height="55" rx="12" fill="#ECFDF5" stroke="#A7F3D0"/>
-            <text x="430" y="402" text-anchor="middle" fill="#065F46" font-size="13" font-weight="700">Норма</text>
-            <text x="430" y="420" text-anchor="middle" fill="#047857" font-size="10">Условия не выполнены → нет действий</text>
-
-            <!-- Снизу: эффект -->
-            <rect x="300" y="450" width="660" height="25" rx="6" fill="rgba(37,99,235,0.04)"/>
-            <text x="630" y="467" text-anchor="middle" fill="#2563EB" font-size="10" font-weight="600">Эффект: вместо ручного анализа инспектором → автоматический мониторинг всех работодателей в режиме реального времени</text>
-          </svg>
-        </div>
-
-        <div class="grid--2 grid mt-4">
-          <div>
-            <h4>Сейчас (ручной режим)</h4>
-            <ul class="bullets text-base">
-              <li>Инспектор обращается к платформе внешней поставки данных ФНС и забирает файл</li>
-              <li>Файл кассируется, данные распределяются по инспекциям вручную</li>
-              <li>Проверяется ограниченное количество организаций</li>
-              <li>Срок: от нескольких дней до недель на один кейс</li>
-            </ul>
-          </div>
-          <div>
-            <h4>После автоматизации (цель)</h4>
-            <ul class="bullets text-base">
-              <li>АСУ КНД автоматически получает данные ФНС через платформу внешней поставки данных</li>
-              <li>Алгоритм проверяет все 4 условия по каждому работодателю</li>
-              <li>Сплошной мониторинг — все организации, не выборочно</li>
-              <li>Срок: автоматический расчёт, без участия инспектора</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="note-box mt-3">
-          <strong>Требуется:</strong> настройка регулярного информационного обмена с ФНС через платформу внешней поставки данных (получение агрегированных данных по НПД, файловый обмен). Бюджет: в рамках развития АСУ КНД (90 млн ₽, 2026)
-        </div>
-          </div><!-- /challenge1-details-content -->
-        </details>
-      </div>
-
-
-      <!-- Индикатор №7 (ОТ): измерения СОУТ в разных субъектах РФ -->
-      <div class="card print-break mt-6" data-slide-group="ind-sout7">
-        <div class="card__head">
-          <h3>Индикатор №7 (охрана труда). Выявление фиктивной СОУТ — текущий процесс</h3>
-          <div style="display: flex; gap: 8px; flex-wrap: wrap">
-            <span class="tag green">Направление 2 · Индикаторы риска</span>
-            <span class="tag blue">ФГИС СОУТ · ручной режим</span>
+            <span class="tag blue">Платформа ФНС · ручной режим</span>
           </div>
         </div>
         <p class="indicator-slide__subtitle">
-          Срабатывание: за 6 месяцев по одной организации, проводящей СОУТ, выявлено <strong>2 и более фактов</strong>, когда одно лицо и/или одно средство измерения выполняло измерения у работодателей в разных субъектах РФ в течение суток
-          (исключая субъекты с общей административной границей).
+          Срабатывание: работодатель взаимодействует с <strong>&#8805;35 лицами</strong> на НПД, каждый получает <strong>&gt;35 тыс. &#8381;/мес.</strong>,
+          <strong>&gt;3 мес.</strong>, доля дохода <strong>&#8805;75%</strong> от одного заказчика.
         </p>
 
         <div class="manual-badges">
-          <span class="manual-badge">✋ ФГИС СОУТ проверяется вручную</span>
-          <span class="manual-badge">✋ Подсчёт фактов за 6 мес. вручную</span>
-          <span class="manual-badge">✋ Пакет в прокуратуру готовится вручную</span>
+          <span class="manual-badge">✋ Файл ФНС загружается инспектором вручную</span>
+          <span class="manual-badge">✋ Данные распределяются по инспекциям вручную</span>
+          <span class="manual-badge">✋ Выборочная проверка ограниченного числа организаций</span>
         </div>
 
         <!-- SVG-схема процесса AS-IS -->
         <div class="overflow-auto" style="margin: 16px 0">
           <svg viewBox="0 0 940 200" xmlns="http://www.w3.org/2000/svg" class="svg-diagram svg-diagram--md" font-family="Inter, system-ui, sans-serif">
             <defs>
-              <linearGradient id="sout7-sys" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#EFF6FF"/><stop offset="100%" stop-color="#DBEAFE"/></linearGradient>
-              <linearGradient id="sout7-manual" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FFF7ED"/><stop offset="100%" stop-color="#FFEDD5"/></linearGradient>
-              <linearGradient id="sout7-result" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ECFDF5"/><stop offset="100%" stop-color="#D1FAE5"/></linearGradient>
+              <linearGradient id="i1-sys" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#EFF6FF"/><stop offset="100%" stop-color="#DBEAFE"/></linearGradient>
+              <linearGradient id="i1-manual" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FFF7ED"/><stop offset="100%" stop-color="#FFEDD5"/></linearGradient>
+              <linearGradient id="i1-result" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ECFDF5"/><stop offset="100%" stop-color="#D1FAE5"/></linearGradient>
+              <marker id="i1-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#D97706"/></marker>
+              <marker id="i1-arr-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#059669"/></marker>
+              <marker id="i1-arr-gr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#94A3B8"/></marker>
             </defs>
             <!-- Заголовок -->
             <text x="470" y="18" text-anchor="middle" font-size="11" font-weight="700" fill="#64748B" letter-spacing="0.06em">ПОРЯДОК ДЕЙСТВИЙ ИНСПЕКТОРА (AS-IS)</text>
-            <!-- Шаг 1: ФГИС СОУТ -->
-            <rect x="10" y="38" width="150" height="72" rx="10" fill="url(#sout7-sys)" stroke="#93C5FD" stroke-width="1.5"/>
-            <text x="85" y="58" text-anchor="middle" fill="#1E40AF" font-size="11" font-weight="700">ФГИС СОУТ</text>
-            <text x="85" y="74" text-anchor="middle" fill="#475569" font-size="9">2 раздела:</text>
-            <text x="85" y="87" text-anchor="middle" fill="#475569" font-size="8">1) измерения лицом</text>
-            <text x="85" y="99" text-anchor="middle" fill="#475569" font-size="8">2) измерения прибором</text>
+            <!-- Шаг 1: ФНС -->
+            <rect x="10" y="38" width="140" height="72" rx="10" fill="url(#i1-sys)" stroke="#93C5FD" stroke-width="1.5"/>
+            <text x="80" y="58" text-anchor="middle" fill="#1E40AF" font-size="11" font-weight="700">ФНС</text>
+            <text x="80" y="74" text-anchor="middle" fill="#475569" font-size="9">Реестр НПД</text>
+            <text x="80" y="87" text-anchor="middle" fill="#475569" font-size="8">(налог на проф. доход)</text>
+            <text x="80" y="99" text-anchor="middle" fill="#475569" font-size="8">данные о самозанятых</text>
             <!-- Стрелка 1→2 -->
-            <path d="M160,74 L185,74" stroke="#D97706" stroke-width="2" fill="none" marker-end="url(#sout7-arr)"/>
-            <defs><marker id="sout7-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#D97706"/></marker></defs>
-            <!-- Шаг 2: Проверка границ -->
-            <rect x="190" y="38" width="150" height="72" rx="10" fill="url(#sout7-manual)" stroke="#F59E0B" stroke-width="1.5"/>
-            <text x="265" y="55" text-anchor="middle" fill="#92400E" font-size="10" font-weight="700">✋ Проверка границ</text>
-            <text x="265" y="70" text-anchor="middle" fill="#78350F" font-size="9">Есть ли общая</text>
-            <text x="265" y="83" text-anchor="middle" fill="#78350F" font-size="9">административная</text>
-            <text x="265" y="96" text-anchor="middle" fill="#78350F" font-size="9">граница субъектов?</text>
+            <path d="M150,74 L175,74" stroke="#D97706" stroke-width="2" fill="none" marker-end="url(#i1-arr)"/>
+            <!-- Шаг 2: Платформа внешней поставки данных -->
+            <rect x="180" y="38" width="150" height="72" rx="10" fill="#1E293B"/>
+            <text x="255" y="55" text-anchor="middle" fill="white" font-size="10" font-weight="700">Платформа</text>
+            <text x="255" y="70" text-anchor="middle" fill="#93C5FD" font-size="9">внешней поставки</text>
+            <text x="255" y="83" text-anchor="middle" fill="#93C5FD" font-size="9">данных ФНС</text>
+            <text x="255" y="96" text-anchor="middle" fill="#FCD34D" font-size="8">файловый обмен</text>
             <!-- Стрелка 2→3 -->
-            <path d="M340,74 L365,74" stroke="#D97706" stroke-width="2" fill="none" marker-end="url(#sout7-arr)"/>
-            <!-- Шаг 3: Агрегация -->
-            <rect x="370" y="38" width="150" height="72" rx="10" fill="url(#sout7-manual)" stroke="#F59E0B" stroke-width="1.5"/>
-            <text x="445" y="55" text-anchor="middle" fill="#92400E" font-size="10" font-weight="700">✋ Агрегация 6 мес.</text>
-            <text x="445" y="70" text-anchor="middle" fill="#78350F" font-size="9">Подсчёт фактов</text>
-            <text x="445" y="83" text-anchor="middle" fill="#78350F" font-size="9">по организации СОУТ</text>
-            <!-- Стрелка 3→4 (ромб) -->
-            <path d="M520,74 L555,74" stroke="#D97706" stroke-width="2" fill="none" marker-end="url(#sout7-arr)"/>
-            <!-- Шаг 4: Ромб решения -->
-            <polygon points="600,38 640,74 600,110 560,74" fill="#FEF3C7" stroke="#F59E0B" stroke-width="1.5"/>
-            <text x="600" y="71" text-anchor="middle" fill="#92400E" font-size="10" font-weight="700">2+</text>
-            <text x="600" y="83" text-anchor="middle" fill="#92400E" font-size="9">фактов?</text>
-            <!-- Стрелка 4→5 (Да) -->
-            <path d="M640,74 L670,74" stroke="#059669" stroke-width="2" fill="none" marker-end="url(#sout7-arr-g)"/>
-            <defs><marker id="sout7-arr-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#059669"/></marker></defs>
-            <text x="655" y="65" text-anchor="middle" fill="#059669" font-size="9" font-weight="600">Да</text>
-            <!-- Шаг 5: Пакет в прокуратуру -->
-            <rect x="675" y="38" width="140" height="72" rx="10" fill="url(#sout7-manual)" stroke="#F59E0B" stroke-width="1.5"/>
-            <text x="745" y="55" text-anchor="middle" fill="#92400E" font-size="10" font-weight="700">✋ Пакет</text>
-            <text x="745" y="70" text-anchor="middle" fill="#78350F" font-size="9">Подготовка</text>
-            <text x="745" y="83" text-anchor="middle" fill="#78350F" font-size="9">материалов</text>
-            <text x="745" y="96" text-anchor="middle" fill="#78350F" font-size="9">в прокуратуру</text>
-            <!-- Стрелка 5→6 -->
-            <path d="M815,74 L840,74" stroke="#059669" stroke-width="2" fill="none" marker-end="url(#sout7-arr-g)"/>
+            <path d="M330,74 L360,74" stroke="#D97706" stroke-width="2" fill="none" marker-end="url(#i1-arr)"/>
+            <!-- Шаг 3: Загрузка файла -->
+            <rect x="365" y="38" width="145" height="72" rx="10" fill="url(#i1-manual)" stroke="#F59E0B" stroke-width="1.5"/>
+            <text x="437" y="55" text-anchor="middle" fill="#92400E" font-size="10" font-weight="700">✋ Загрузка файла</text>
+            <text x="437" y="70" text-anchor="middle" fill="#78350F" font-size="9">Инспектор обращается</text>
+            <text x="437" y="83" text-anchor="middle" fill="#78350F" font-size="9">к платформе ФНС,</text>
+            <text x="437" y="96" text-anchor="middle" fill="#78350F" font-size="9">забирает файл</text>
+            <!-- Стрелка 3→4 -->
+            <path d="M510,74 L540,74" stroke="#D97706" stroke-width="2" fill="none" marker-end="url(#i1-arr)"/>
+            <!-- Шаг 4: Распределение и анализ -->
+            <rect x="545" y="38" width="150" height="72" rx="10" fill="url(#i1-manual)" stroke="#F59E0B" stroke-width="1.5"/>
+            <text x="620" y="55" text-anchor="middle" fill="#92400E" font-size="10" font-weight="700">✋ Распределение</text>
+            <text x="620" y="70" text-anchor="middle" fill="#78350F" font-size="9">Кассирование файла,</text>
+            <text x="620" y="83" text-anchor="middle" fill="#78350F" font-size="9">распределение по ГИТ,</text>
+            <text x="620" y="96" text-anchor="middle" fill="#78350F" font-size="9">анализ выборочно</text>
+            <!-- Стрелка 4→5 (ромб) -->
+            <path d="M695,74 L725,74" stroke="#D97706" stroke-width="2" fill="none" marker-end="url(#i1-arr)"/>
+            <!-- Шаг 5: Ромб решения -->
+            <polygon points="770,38 810,74 770,110 730,74" fill="#FEF3C7" stroke="#F59E0B" stroke-width="1.5"/>
+            <text x="770" y="71" text-anchor="middle" fill="#92400E" font-size="10" font-weight="700">4</text>
+            <text x="770" y="83" text-anchor="middle" fill="#92400E" font-size="9">условия?</text>
+            <!-- Стрелка 5→6 (Да) -->
+            <path d="M810,74 L840,74" stroke="#059669" stroke-width="2" fill="none" marker-end="url(#i1-arr-g)"/>
+            <text x="825" y="65" text-anchor="middle" fill="#059669" font-size="9" font-weight="600">Да</text>
             <!-- Шаг 6: КНМ -->
-            <rect x="845" y="44" width="85" height="60" rx="10" fill="url(#sout7-result)" stroke="#10B981" stroke-width="2"/>
+            <rect x="845" y="44" width="85" height="60" rx="10" fill="url(#i1-result)" stroke="#10B981" stroke-width="2"/>
             <text x="887" y="72" text-anchor="middle" fill="#065F46" font-size="12" font-weight="700">КНМ</text>
-            <text x="887" y="87" text-anchor="middle" fill="#065F46" font-size="9">согласование</text>
+            <text x="887" y="87" text-anchor="middle" fill="#065F46" font-size="9">проверка</text>
             <!-- Нет → цикл -->
-            <path d="M600,110 L600,140 L85,140 L85,110" stroke="#94A3B8" stroke-width="1.5" fill="none" stroke-dasharray="5,3" marker-end="url(#sout7-arr-gr)"/>
-            <defs><marker id="sout7-arr-gr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#94A3B8"/></marker></defs>
-            <text x="615" y="122" text-anchor="start" fill="#94A3B8" font-size="9" font-weight="600">Нет</text>
-            <text x="340" y="155" text-anchor="middle" fill="#94A3B8" font-size="9">Нет → продолжает мониторинг</text>
+            <path d="M770,110 L770,140 L80,140 L80,110" stroke="#94A3B8" stroke-width="1.5" fill="none" stroke-dasharray="5,3" marker-end="url(#i1-arr-gr)"/>
+            <text x="785" y="122" text-anchor="start" fill="#94A3B8" font-size="9" font-weight="600">Нет</text>
+            <text x="420" y="155" text-anchor="middle" fill="#94A3B8" font-size="9">Нет → продолжает мониторинг</text>
             <!-- Ограничения -->
             <rect x="10" y="170" width="920" height="24" rx="6" fill="#FEF2F2" stroke="#FECACA" stroke-width="1"/>
-            <text x="470" y="186" text-anchor="middle" fill="#991B1B" font-size="9">Ограничения: ФГИС СОУТ не определяет пограничные субъекты · нет накопительного анализа · нет маршрутизации до прокуратуры · высокая трудоёмкость</text>
+            <text x="470" y="186" text-anchor="middle" fill="#991B1B" font-size="9">Ограничения: охват ограничен выборкой · нет сплошного мониторинга · срок обработки от нескольких дней до недель · нет автоматической маршрутизации</text>
           </svg>
         </div>
 
@@ -2870,86 +2798,94 @@
         </p>
       </div>
 
-      <!-- Индикатор №7 TO-BE: автоматизированный процесс -->
-      <div class="card print-break mt-6 bl-green" data-slide-group="ind-sout7">
+      <!-- Индикатор №1 TO-BE: автоматизированный процесс -->
+      <div class="card print-break mt-6 bl-green" data-slide-group="ind-gph1">
         <div class="card__head">
-          <h3>Индикатор №7 (охрана труда). Выявление фиктивной СОУТ — целевой процесс</h3>
+          <h3>Индикатор №1 (трудовые отношения). Подмена трудовых отношений договорами ГПХ — целевой процесс</h3>
           <div style="display: flex; gap: 8px; flex-wrap: wrap">
             <span class="tag green">Направление 2 · Индикаторы риска</span>
             <span class="tag green">TO-BE · автоматический режим</span>
           </div>
         </div>
         <p class="muted small mt-2 mb-4">
-          Автоматическое получение данных из ФГИС СОУТ, определение пограничных субъектов, накопительный анализ и маршрутизация в ЕРКНМ
+          Автоматическое получение данных ФНС, расчёт всех 4 условий по каждому работодателю, сплошной мониторинг и маршрутизация в ЕРКНМ
         </p>
 
         <div class="overflow-auto" style="margin: 16px 0">
           <svg viewBox="0 0 940 340" xmlns="http://www.w3.org/2000/svg" class="svg-diagram svg-diagram--md" font-family="Inter, system-ui, sans-serif">
             <defs>
-              <linearGradient id="s7t-src" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#EFF6FF"/><stop offset="100%" stop-color="#DBEAFE"/></linearGradient>
-              <linearGradient id="s7t-auto" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#F0FDF4"/><stop offset="100%" stop-color="#DCFCE7"/></linearGradient>
-              <linearGradient id="s7t-asu" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#EEF2FF"/><stop offset="100%" stop-color="#E0E7FF"/></linearGradient>
-              <linearGradient id="s7t-result" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ECFDF5"/><stop offset="100%" stop-color="#D1FAE5"/></linearGradient>
-              <marker id="s7t-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2563EB"/></marker>
-              <marker id="s7t-arr-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#059669"/></marker>
+              <linearGradient id="i1t-src" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#EFF6FF"/><stop offset="100%" stop-color="#DBEAFE"/></linearGradient>
+              <linearGradient id="i1t-auto" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#F0FDF4"/><stop offset="100%" stop-color="#DCFCE7"/></linearGradient>
+              <linearGradient id="i1t-asu" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#EEF2FF"/><stop offset="100%" stop-color="#E0E7FF"/></linearGradient>
+              <linearGradient id="i1t-result" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ECFDF5"/><stop offset="100%" stop-color="#D1FAE5"/></linearGradient>
+              <marker id="i1t-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2563EB"/></marker>
+              <marker id="i1t-arr-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#059669"/></marker>
             </defs>
 
             <!-- Заголовок -->
             <text x="470" y="18" text-anchor="middle" font-size="12" font-weight="700" fill="#059669" letter-spacing="0.06em">ЦЕЛЕВОЙ ПРОЦЕСС (TO-BE) — АВТОМАТИЧЕСКИЙ</text>
 
-            <!-- Источник: ФГИС СОУТ -->
-            <rect x="10" y="38" width="160" height="80" rx="12" fill="url(#s7t-src)" stroke="#93C5FD" stroke-width="1.5"/>
-            <text x="90" y="60" text-anchor="middle" fill="#1E40AF" font-size="12" font-weight="700">ФГИС СОУТ</text>
-            <text x="90" y="76" text-anchor="middle" fill="#475569" font-size="9">Данные об измерениях,</text>
-            <text x="90" y="89" text-anchor="middle" fill="#475569" font-size="9">экспертах, приборах,</text>
-            <text x="90" y="102" text-anchor="middle" fill="#475569" font-size="9">субъектах РФ</text>
+            <!-- Источник: ФНС -->
+            <rect x="10" y="38" width="140" height="80" rx="12" fill="url(#i1t-src)" stroke="#93C5FD" stroke-width="1.5"/>
+            <text x="80" y="60" text-anchor="middle" fill="#1E40AF" font-size="12" font-weight="700">ФНС</text>
+            <text x="80" y="76" text-anchor="middle" fill="#475569" font-size="9">Реестр НПД,</text>
+            <text x="80" y="89" text-anchor="middle" fill="#475569" font-size="9">данные о самозанятых</text>
+            <text x="80" y="102" text-anchor="middle" fill="#475569" font-size="9">и их заказчиках</text>
 
-            <!-- Стрелка ФГИС → АСУ КНД -->
-            <path d="M170,78 L220,78" stroke="#2563EB" stroke-width="2" fill="none" marker-end="url(#s7t-arr)"/>
-            <text x="195" y="72" text-anchor="middle" fill="#2563EB" font-size="8" font-weight="600">API</text>
+            <!-- Стрелка ФНС → Платформа -->
+            <path d="M150,78 L175,78" stroke="#2563EB" stroke-width="2" fill="none" marker-end="url(#i1t-arr)"/>
+
+            <!-- Платформа внешней поставки -->
+            <rect x="180" y="45" width="55" height="66" rx="8" fill="#1E293B"/>
+            <text x="207" y="72" text-anchor="middle" fill="#93C5FD" font-size="8" font-weight="600">Платф.</text>
+            <text x="207" y="84" text-anchor="middle" fill="#FCD34D" font-size="7">ФНС</text>
+            <text x="207" y="95" text-anchor="middle" fill="#93C5FD" font-size="7">авто</text>
+
+            <!-- Стрелка Платформа → АСУ КНД -->
+            <path d="M235,78 L260,78" stroke="#2563EB" stroke-width="2" fill="none" marker-end="url(#i1t-arr)"/>
 
             <!-- АСУ КНД — большой блок автоматической обработки -->
-            <rect x="225" y="30" width="470" height="170" rx="14" fill="url(#s7t-asu)" stroke="#818CF8" stroke-width="2"/>
-            <text x="460" y="52" text-anchor="middle" fill="#4338CA" font-size="13" font-weight="700">АСУ КНД — модуль автоматического расчёта индикатора</text>
+            <rect x="265" y="30" width="430" height="170" rx="14" fill="url(#i1t-asu)" stroke="#818CF8" stroke-width="2"/>
+            <text x="480" y="52" text-anchor="middle" fill="#4338CA" font-size="13" font-weight="700">АСУ КНД — модуль автоматического расчёта индикатора</text>
 
-            <!-- Подшаг 1: Геопривязка -->
-            <rect x="240" y="65" width="130" height="55" rx="8" fill="url(#s7t-auto)" stroke="#86EFAC" stroke-width="1"/>
-            <text x="305" y="82" text-anchor="middle" fill="#166534" font-size="10" font-weight="700">⚡ Геопривязка</text>
-            <text x="305" y="95" text-anchor="middle" fill="#15803D" font-size="8">Определение субъекта</text>
-            <text x="305" y="107" text-anchor="middle" fill="#15803D" font-size="8">по адресу РМ</text>
-
-            <!-- → -->
-            <path d="M370,92 L385,92" stroke="#059669" stroke-width="1.5" fill="none" marker-end="url(#s7t-arr-g)"/>
-
-            <!-- Подшаг 2: Проверка границ -->
-            <rect x="390" y="65" width="130" height="55" rx="8" fill="url(#s7t-auto)" stroke="#86EFAC" stroke-width="1"/>
-            <text x="455" y="82" text-anchor="middle" fill="#166534" font-size="10" font-weight="700">⚡ Границы</text>
-            <text x="455" y="95" text-anchor="middle" fill="#15803D" font-size="8">Авто-исключение</text>
-            <text x="455" y="107" text-anchor="middle" fill="#15803D" font-size="8">пограничных субъектов</text>
+            <!-- Подшаг 1: Получение данных -->
+            <rect x="280" y="65" width="125" height="55" rx="8" fill="url(#i1t-auto)" stroke="#86EFAC" stroke-width="1"/>
+            <text x="342" y="82" text-anchor="middle" fill="#166534" font-size="10" font-weight="700">⚡ Получение</text>
+            <text x="342" y="95" text-anchor="middle" fill="#15803D" font-size="8">Авто-загрузка данных</text>
+            <text x="342" y="107" text-anchor="middle" fill="#15803D" font-size="8">с платформы ФНС</text>
 
             <!-- → -->
-            <path d="M520,92 L535,92" stroke="#059669" stroke-width="1.5" fill="none" marker-end="url(#s7t-arr-g)"/>
+            <path d="M405,92 L420,92" stroke="#059669" stroke-width="1.5" fill="none" marker-end="url(#i1t-arr-g)"/>
 
-            <!-- Подшаг 3: Скользящее окно -->
-            <rect x="540" y="65" width="140" height="55" rx="8" fill="url(#s7t-auto)" stroke="#86EFAC" stroke-width="1"/>
-            <text x="610" y="82" text-anchor="middle" fill="#166534" font-size="10" font-weight="700">⚡ Агрегация</text>
-            <text x="610" y="95" text-anchor="middle" fill="#15803D" font-size="8">Скользящее окно 6 мес.</text>
-            <text x="610" y="107" text-anchor="middle" fill="#15803D" font-size="8">по каждой орг-ции СОУТ</text>
+            <!-- Подшаг 2: Расчёт условий -->
+            <rect x="425" y="65" width="125" height="55" rx="8" fill="url(#i1t-auto)" stroke="#86EFAC" stroke-width="1"/>
+            <text x="487" y="82" text-anchor="middle" fill="#166534" font-size="10" font-weight="700">⚡ Расчёт</text>
+            <text x="487" y="95" text-anchor="middle" fill="#15803D" font-size="8">Проверка 4 условий</text>
+            <text x="487" y="107" text-anchor="middle" fill="#15803D" font-size="8">по каждому работодателю</text>
+
+            <!-- → -->
+            <path d="M550,92 L565,92" stroke="#059669" stroke-width="1.5" fill="none" marker-end="url(#i1t-arr-g)"/>
+
+            <!-- Подшаг 3: Мониторинг -->
+            <rect x="570" y="65" width="110" height="55" rx="8" fill="url(#i1t-auto)" stroke="#86EFAC" stroke-width="1"/>
+            <text x="625" y="82" text-anchor="middle" fill="#166534" font-size="10" font-weight="700">⚡ Мониторинг</text>
+            <text x="625" y="95" text-anchor="middle" fill="#15803D" font-size="8">Сплошной охват</text>
+            <text x="625" y="107" text-anchor="middle" fill="#15803D" font-size="8">все организации</text>
 
             <!-- Стрелка вниз к ромбу -->
-            <path d="M460,120 L460,140" stroke="#059669" stroke-width="1.5" fill="none"/>
+            <path d="M480,120 L480,140" stroke="#059669" stroke-width="1.5" fill="none"/>
 
-            <!-- Ромб: ≥2 фактов? -->
-            <polygon points="460,140 500,165 460,190 420,165" fill="#DCFCE7" stroke="#22C55E" stroke-width="1.5"/>
-            <text x="460" y="162" text-anchor="middle" fill="#166534" font-size="10" font-weight="700">≥2</text>
-            <text x="460" y="174" text-anchor="middle" fill="#166534" font-size="9">фактов?</text>
+            <!-- Ромб: 4 условия? -->
+            <polygon points="480,140 520,165 480,190 440,165" fill="#DCFCE7" stroke="#22C55E" stroke-width="1.5"/>
+            <text x="480" y="162" text-anchor="middle" fill="#166534" font-size="10" font-weight="700">4</text>
+            <text x="480" y="174" text-anchor="middle" fill="#166534" font-size="9">условия?</text>
 
             <!-- Да → ЕРКНМ -->
-            <path d="M500,165 L700,165" stroke="#059669" stroke-width="2" fill="none" marker-end="url(#s7t-arr-g)"/>
-            <text x="600" y="158" text-anchor="middle" fill="#059669" font-size="9" font-weight="600">Да → авто</text>
+            <path d="M520,165 L700,165" stroke="#059669" stroke-width="2" fill="none" marker-end="url(#i1t-arr-g)"/>
+            <text x="610" y="158" text-anchor="middle" fill="#059669" font-size="9" font-weight="600">Да → авто</text>
 
             <!-- ЕРКНМ -->
-            <rect x="705" y="38" width="220" height="80" rx="12" fill="url(#s7t-result)" stroke="#10B981" stroke-width="2"/>
+            <rect x="705" y="38" width="220" height="80" rx="12" fill="url(#i1t-result)" stroke="#10B981" stroke-width="2"/>
             <text x="815" y="60" text-anchor="middle" fill="#065F46" font-size="12" font-weight="700">ЕРКНМ</text>
             <text x="815" y="76" text-anchor="middle" fill="#047857" font-size="10">Авто-размещение КНМ</text>
             <text x="815" y="91" text-anchor="middle" fill="#047857" font-size="9">по индикатору</text>
@@ -2961,21 +2897,21 @@
             <text x="815" y="165" text-anchor="middle" fill="#78350F" font-size="9">Уведомление + контроль отработки</text>
 
             <!-- Нет → мониторинг -->
-            <path d="M460,190 L460,210" stroke="#94A3B8" stroke-width="1.5" fill="none" stroke-dasharray="5,3"/>
-            <text x="460" y="222" text-anchor="middle" fill="#94A3B8" font-size="9">Нет → продолжает автоматический мониторинг</text>
+            <path d="M480,190 L480,210" stroke="#94A3B8" stroke-width="1.5" fill="none" stroke-dasharray="5,3"/>
+            <text x="480" y="222" text-anchor="middle" fill="#94A3B8" font-size="9">Нет → продолжает автоматический мониторинг</text>
 
             <!-- Блок эффектов -->
             <rect x="10" y="245" width="920" height="90" rx="10" fill="#F0FDF4" stroke="#BBF7D0" stroke-width="1.5"/>
             <text x="470" y="264" text-anchor="middle" fill="#166534" font-size="11" font-weight="700">ЭФФЕКТЫ АВТОМАТИЗАЦИИ</text>
 
             <text x="60" y="284" fill="#15803D" font-size="10" font-weight="600">⚡ Сплошной мониторинг</text>
-            <text x="60" y="298" fill="#047857" font-size="9">все организации СОУТ, не выборочно</text>
+            <text x="60" y="298" fill="#047857" font-size="9">все работодатели, не выборочно</text>
 
-            <text x="290" y="284" fill="#15803D" font-size="10" font-weight="600">⚡ Авто-определение границ</text>
-            <text x="290" y="298" fill="#047857" font-size="9">справочник пограничных субъектов</text>
+            <text x="290" y="284" fill="#15803D" font-size="10" font-weight="600">⚡ Авто-расчёт условий</text>
+            <text x="290" y="298" fill="#047857" font-size="9">4 условия по каждому работодателю</text>
 
-            <text x="545" y="284" fill="#15803D" font-size="10" font-weight="600">⚡ Скользящий подсчёт</text>
-            <text x="545" y="298" fill="#047857" font-size="9">автоматически за 6 мес.</text>
+            <text x="545" y="284" fill="#15803D" font-size="10" font-weight="600">⚡ Без участия инспектора</text>
+            <text x="545" y="298" fill="#047857" font-size="9">полностью автоматический расчёт</text>
 
             <text x="750" y="284" fill="#15803D" font-size="10" font-weight="600">⚡ Авто-маршрутизация</text>
             <text x="750" y="298" fill="#047857" font-size="9">→ ЕРКНМ → прокуратура</text>
@@ -2985,7 +2921,7 @@
         </div>
 
         <div class="note-box mt-3">
-          <strong>Требуется:</strong> интеграция АСУ КНД с ФГИС СОУТ (СМЭВ 3 или API), разработка модуля геопривязки субъектов РФ с учётом административных границ, модуль накопительного анализа (скользящее окно 6 мес.)
+          <strong>Требуется:</strong> настройка регулярного информационного обмена с ФНС через платформу внешней поставки данных (получение агрегированных данных по НПД, файловый обмен). Бюджет: в рамках развития АСУ КНД (90 млн ₽, 2026)
         </div>
       </div>
 
@@ -3265,7 +3201,217 @@
         </div>
       </div>
 
-      <!-- Индикатор (ОТ): увеличение количества НС с легкими последствиями -->
+      <!-- Индикатор №7 (ОТ): измерения СОУТ в разных субъектах РФ -->
+      <div class="card print-break mt-6" data-slide-group="ind-sout7">
+        <div class="card__head">
+          <h3>Индикатор №7 (охрана труда). Выявление фиктивной СОУТ — текущий процесс</h3>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap">
+            <span class="tag green">Направление 2 · Индикаторы риска</span>
+            <span class="tag blue">ФГИС СОУТ · ручной режим</span>
+          </div>
+        </div>
+        <p class="indicator-slide__subtitle">
+          Срабатывание: за 6 месяцев по одной организации, проводящей СОУТ, выявлено <strong>2 и более фактов</strong>, когда одно лицо и/или одно средство измерения выполняло измерения у работодателей в разных субъектах РФ в течение суток
+          (исключая субъекты с общей административной границей).
+        </p>
+
+        <div class="manual-badges">
+          <span class="manual-badge">✋ ФГИС СОУТ проверяется вручную</span>
+          <span class="manual-badge">✋ Подсчёт фактов за 6 мес. вручную</span>
+          <span class="manual-badge">✋ Пакет в прокуратуру готовится вручную</span>
+        </div>
+
+        <!-- SVG-схема процесса AS-IS -->
+        <div class="overflow-auto" style="margin: 16px 0">
+          <svg viewBox="0 0 940 200" xmlns="http://www.w3.org/2000/svg" class="svg-diagram svg-diagram--md" font-family="Inter, system-ui, sans-serif">
+            <defs>
+              <linearGradient id="sout7-sys" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#EFF6FF"/><stop offset="100%" stop-color="#DBEAFE"/></linearGradient>
+              <linearGradient id="sout7-manual" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FFF7ED"/><stop offset="100%" stop-color="#FFEDD5"/></linearGradient>
+              <linearGradient id="sout7-result" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ECFDF5"/><stop offset="100%" stop-color="#D1FAE5"/></linearGradient>
+            </defs>
+            <!-- Заголовок -->
+            <text x="470" y="18" text-anchor="middle" font-size="11" font-weight="700" fill="#64748B" letter-spacing="0.06em">ПОРЯДОК ДЕЙСТВИЙ ИНСПЕКТОРА (AS-IS)</text>
+            <!-- Шаг 1: ФГИС СОУТ -->
+            <rect x="10" y="38" width="150" height="72" rx="10" fill="url(#sout7-sys)" stroke="#93C5FD" stroke-width="1.5"/>
+            <text x="85" y="58" text-anchor="middle" fill="#1E40AF" font-size="11" font-weight="700">ФГИС СОУТ</text>
+            <text x="85" y="74" text-anchor="middle" fill="#475569" font-size="9">2 раздела:</text>
+            <text x="85" y="87" text-anchor="middle" fill="#475569" font-size="8">1) измерения лицом</text>
+            <text x="85" y="99" text-anchor="middle" fill="#475569" font-size="8">2) измерения прибором</text>
+            <!-- Стрелка 1→2 -->
+            <path d="M160,74 L185,74" stroke="#D97706" stroke-width="2" fill="none" marker-end="url(#sout7-arr)"/>
+            <defs><marker id="sout7-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#D97706"/></marker></defs>
+            <!-- Шаг 2: Проверка границ -->
+            <rect x="190" y="38" width="150" height="72" rx="10" fill="url(#sout7-manual)" stroke="#F59E0B" stroke-width="1.5"/>
+            <text x="265" y="55" text-anchor="middle" fill="#92400E" font-size="10" font-weight="700">✋ Проверка границ</text>
+            <text x="265" y="70" text-anchor="middle" fill="#78350F" font-size="9">Есть ли общая</text>
+            <text x="265" y="83" text-anchor="middle" fill="#78350F" font-size="9">административная</text>
+            <text x="265" y="96" text-anchor="middle" fill="#78350F" font-size="9">граница субъектов?</text>
+            <!-- Стрелка 2→3 -->
+            <path d="M340,74 L365,74" stroke="#D97706" stroke-width="2" fill="none" marker-end="url(#sout7-arr)"/>
+            <!-- Шаг 3: Агрегация -->
+            <rect x="370" y="38" width="150" height="72" rx="10" fill="url(#sout7-manual)" stroke="#F59E0B" stroke-width="1.5"/>
+            <text x="445" y="55" text-anchor="middle" fill="#92400E" font-size="10" font-weight="700">✋ Агрегация 6 мес.</text>
+            <text x="445" y="70" text-anchor="middle" fill="#78350F" font-size="9">Подсчёт фактов</text>
+            <text x="445" y="83" text-anchor="middle" fill="#78350F" font-size="9">по организации СОУТ</text>
+            <!-- Стрелка 3→4 (ромб) -->
+            <path d="M520,74 L555,74" stroke="#D97706" stroke-width="2" fill="none" marker-end="url(#sout7-arr)"/>
+            <!-- Шаг 4: Ромб решения -->
+            <polygon points="600,38 640,74 600,110 560,74" fill="#FEF3C7" stroke="#F59E0B" stroke-width="1.5"/>
+            <text x="600" y="71" text-anchor="middle" fill="#92400E" font-size="10" font-weight="700">2+</text>
+            <text x="600" y="83" text-anchor="middle" fill="#92400E" font-size="9">фактов?</text>
+            <!-- Стрелка 4→5 (Да) -->
+            <path d="M640,74 L670,74" stroke="#059669" stroke-width="2" fill="none" marker-end="url(#sout7-arr-g)"/>
+            <defs><marker id="sout7-arr-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#059669"/></marker></defs>
+            <text x="655" y="65" text-anchor="middle" fill="#059669" font-size="9" font-weight="600">Да</text>
+            <!-- Шаг 5: Пакет в прокуратуру -->
+            <rect x="675" y="38" width="140" height="72" rx="10" fill="url(#sout7-manual)" stroke="#F59E0B" stroke-width="1.5"/>
+            <text x="745" y="55" text-anchor="middle" fill="#92400E" font-size="10" font-weight="700">✋ Пакет</text>
+            <text x="745" y="70" text-anchor="middle" fill="#78350F" font-size="9">Подготовка</text>
+            <text x="745" y="83" text-anchor="middle" fill="#78350F" font-size="9">материалов</text>
+            <text x="745" y="96" text-anchor="middle" fill="#78350F" font-size="9">в прокуратуру</text>
+            <!-- Стрелка 5→6 -->
+            <path d="M815,74 L840,74" stroke="#059669" stroke-width="2" fill="none" marker-end="url(#sout7-arr-g)"/>
+            <!-- Шаг 6: КНМ -->
+            <rect x="845" y="44" width="85" height="60" rx="10" fill="url(#sout7-result)" stroke="#10B981" stroke-width="2"/>
+            <text x="887" y="72" text-anchor="middle" fill="#065F46" font-size="12" font-weight="700">КНМ</text>
+            <text x="887" y="87" text-anchor="middle" fill="#065F46" font-size="9">согласование</text>
+            <!-- Нет → цикл -->
+            <path d="M600,110 L600,140 L85,140 L85,110" stroke="#94A3B8" stroke-width="1.5" fill="none" stroke-dasharray="5,3" marker-end="url(#sout7-arr-gr)"/>
+            <defs><marker id="sout7-arr-gr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#94A3B8"/></marker></defs>
+            <text x="615" y="122" text-anchor="start" fill="#94A3B8" font-size="9" font-weight="600">Нет</text>
+            <text x="340" y="155" text-anchor="middle" fill="#94A3B8" font-size="9">Нет → продолжает мониторинг</text>
+            <!-- Ограничения -->
+            <rect x="10" y="170" width="920" height="24" rx="6" fill="#FEF2F2" stroke="#FECACA" stroke-width="1"/>
+            <text x="470" y="186" text-anchor="middle" fill="#991B1B" font-size="9">Ограничения: ФГИС СОУТ не определяет пограничные субъекты · нет накопительного анализа · нет маршрутизации до прокуратуры · высокая трудоёмкость</text>
+          </svg>
+        </div>
+
+        <p class="manual-note">
+          <strong>Результат при срабатывании:</strong> инициирование процедуры согласования контрольного (надзорного) мероприятия в органах прокуратуры.
+        </p>
+      </div>
+
+      <!-- Индикатор №7 TO-BE: автоматизированный процесс -->
+      <div class="card print-break mt-6 bl-green" data-slide-group="ind-sout7">
+        <div class="card__head">
+          <h3>Индикатор №7 (охрана труда). Выявление фиктивной СОУТ — целевой процесс</h3>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap">
+            <span class="tag green">Направление 2 · Индикаторы риска</span>
+            <span class="tag green">TO-BE · автоматический режим</span>
+          </div>
+        </div>
+        <p class="muted small mt-2 mb-4">
+          Автоматическое получение данных из ФГИС СОУТ, определение пограничных субъектов, накопительный анализ и маршрутизация в ЕРКНМ
+        </p>
+
+        <div class="overflow-auto" style="margin: 16px 0">
+          <svg viewBox="0 0 940 340" xmlns="http://www.w3.org/2000/svg" class="svg-diagram svg-diagram--md" font-family="Inter, system-ui, sans-serif">
+            <defs>
+              <linearGradient id="s7t-src" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#EFF6FF"/><stop offset="100%" stop-color="#DBEAFE"/></linearGradient>
+              <linearGradient id="s7t-auto" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#F0FDF4"/><stop offset="100%" stop-color="#DCFCE7"/></linearGradient>
+              <linearGradient id="s7t-asu" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#EEF2FF"/><stop offset="100%" stop-color="#E0E7FF"/></linearGradient>
+              <linearGradient id="s7t-result" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ECFDF5"/><stop offset="100%" stop-color="#D1FAE5"/></linearGradient>
+              <marker id="s7t-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2563EB"/></marker>
+              <marker id="s7t-arr-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#059669"/></marker>
+            </defs>
+
+            <!-- Заголовок -->
+            <text x="470" y="18" text-anchor="middle" font-size="12" font-weight="700" fill="#059669" letter-spacing="0.06em">ЦЕЛЕВОЙ ПРОЦЕСС (TO-BE) — АВТОМАТИЧЕСКИЙ</text>
+
+            <!-- Источник: ФГИС СОУТ -->
+            <rect x="10" y="38" width="160" height="80" rx="12" fill="url(#s7t-src)" stroke="#93C5FD" stroke-width="1.5"/>
+            <text x="90" y="60" text-anchor="middle" fill="#1E40AF" font-size="12" font-weight="700">ФГИС СОУТ</text>
+            <text x="90" y="76" text-anchor="middle" fill="#475569" font-size="9">Данные об измерениях,</text>
+            <text x="90" y="89" text-anchor="middle" fill="#475569" font-size="9">экспертах, приборах,</text>
+            <text x="90" y="102" text-anchor="middle" fill="#475569" font-size="9">субъектах РФ</text>
+
+            <!-- Стрелка ФГИС → АСУ КНД -->
+            <path d="M170,78 L220,78" stroke="#2563EB" stroke-width="2" fill="none" marker-end="url(#s7t-arr)"/>
+            <text x="195" y="72" text-anchor="middle" fill="#2563EB" font-size="8" font-weight="600">API</text>
+
+            <!-- АСУ КНД — большой блок автоматической обработки -->
+            <rect x="225" y="30" width="470" height="170" rx="14" fill="url(#s7t-asu)" stroke="#818CF8" stroke-width="2"/>
+            <text x="460" y="52" text-anchor="middle" fill="#4338CA" font-size="13" font-weight="700">АСУ КНД — модуль автоматического расчёта индикатора</text>
+
+            <!-- Подшаг 1: Геопривязка -->
+            <rect x="240" y="65" width="130" height="55" rx="8" fill="url(#s7t-auto)" stroke="#86EFAC" stroke-width="1"/>
+            <text x="305" y="82" text-anchor="middle" fill="#166534" font-size="10" font-weight="700">⚡ Геопривязка</text>
+            <text x="305" y="95" text-anchor="middle" fill="#15803D" font-size="8">Определение субъекта</text>
+            <text x="305" y="107" text-anchor="middle" fill="#15803D" font-size="8">по адресу РМ</text>
+
+            <!-- → -->
+            <path d="M370,92 L385,92" stroke="#059669" stroke-width="1.5" fill="none" marker-end="url(#s7t-arr-g)"/>
+
+            <!-- Подшаг 2: Проверка границ -->
+            <rect x="390" y="65" width="130" height="55" rx="8" fill="url(#s7t-auto)" stroke="#86EFAC" stroke-width="1"/>
+            <text x="455" y="82" text-anchor="middle" fill="#166534" font-size="10" font-weight="700">⚡ Границы</text>
+            <text x="455" y="95" text-anchor="middle" fill="#15803D" font-size="8">Авто-исключение</text>
+            <text x="455" y="107" text-anchor="middle" fill="#15803D" font-size="8">пограничных субъектов</text>
+
+            <!-- → -->
+            <path d="M520,92 L535,92" stroke="#059669" stroke-width="1.5" fill="none" marker-end="url(#s7t-arr-g)"/>
+
+            <!-- Подшаг 3: Скользящее окно -->
+            <rect x="540" y="65" width="140" height="55" rx="8" fill="url(#s7t-auto)" stroke="#86EFAC" stroke-width="1"/>
+            <text x="610" y="82" text-anchor="middle" fill="#166534" font-size="10" font-weight="700">⚡ Агрегация</text>
+            <text x="610" y="95" text-anchor="middle" fill="#15803D" font-size="8">Скользящее окно 6 мес.</text>
+            <text x="610" y="107" text-anchor="middle" fill="#15803D" font-size="8">по каждой орг-ции СОУТ</text>
+
+            <!-- Стрелка вниз к ромбу -->
+            <path d="M460,120 L460,140" stroke="#059669" stroke-width="1.5" fill="none"/>
+
+            <!-- Ромб: ≥2 фактов? -->
+            <polygon points="460,140 500,165 460,190 420,165" fill="#DCFCE7" stroke="#22C55E" stroke-width="1.5"/>
+            <text x="460" y="162" text-anchor="middle" fill="#166534" font-size="10" font-weight="700">≥2</text>
+            <text x="460" y="174" text-anchor="middle" fill="#166534" font-size="9">фактов?</text>
+
+            <!-- Да → ЕРКНМ -->
+            <path d="M500,165 L700,165" stroke="#059669" stroke-width="2" fill="none" marker-end="url(#s7t-arr-g)"/>
+            <text x="600" y="158" text-anchor="middle" fill="#059669" font-size="9" font-weight="600">Да → авто</text>
+
+            <!-- ЕРКНМ -->
+            <rect x="705" y="38" width="220" height="80" rx="12" fill="url(#s7t-result)" stroke="#10B981" stroke-width="2"/>
+            <text x="815" y="60" text-anchor="middle" fill="#065F46" font-size="12" font-weight="700">ЕРКНМ</text>
+            <text x="815" y="76" text-anchor="middle" fill="#047857" font-size="10">Авто-размещение КНМ</text>
+            <text x="815" y="91" text-anchor="middle" fill="#047857" font-size="9">по индикатору</text>
+            <text x="815" y="105" text-anchor="middle" fill="#047857" font-size="9">→ согласование с прокуратурой</text>
+
+            <!-- ЛК руководителя -->
+            <rect x="705" y="130" width="220" height="55" rx="10" fill="#FEF3C7" stroke="#FBBF24" stroke-width="1.5"/>
+            <text x="815" y="150" text-anchor="middle" fill="#92400E" font-size="10" font-weight="700">ЛК руководителя ГИТ</text>
+            <text x="815" y="165" text-anchor="middle" fill="#78350F" font-size="9">Уведомление + контроль отработки</text>
+
+            <!-- Нет → мониторинг -->
+            <path d="M460,190 L460,210" stroke="#94A3B8" stroke-width="1.5" fill="none" stroke-dasharray="5,3"/>
+            <text x="460" y="222" text-anchor="middle" fill="#94A3B8" font-size="9">Нет → продолжает автоматический мониторинг</text>
+
+            <!-- Блок эффектов -->
+            <rect x="10" y="245" width="920" height="90" rx="10" fill="#F0FDF4" stroke="#BBF7D0" stroke-width="1.5"/>
+            <text x="470" y="264" text-anchor="middle" fill="#166534" font-size="11" font-weight="700">ЭФФЕКТЫ АВТОМАТИЗАЦИИ</text>
+
+            <text x="60" y="284" fill="#15803D" font-size="10" font-weight="600">⚡ Сплошной мониторинг</text>
+            <text x="60" y="298" fill="#047857" font-size="9">все организации СОУТ, не выборочно</text>
+
+            <text x="290" y="284" fill="#15803D" font-size="10" font-weight="600">⚡ Авто-определение границ</text>
+            <text x="290" y="298" fill="#047857" font-size="9">справочник пограничных субъектов</text>
+
+            <text x="545" y="284" fill="#15803D" font-size="10" font-weight="600">⚡ Скользящий подсчёт</text>
+            <text x="545" y="298" fill="#047857" font-size="9">автоматически за 6 мес.</text>
+
+            <text x="750" y="284" fill="#15803D" font-size="10" font-weight="600">⚡ Авто-маршрутизация</text>
+            <text x="750" y="298" fill="#047857" font-size="9">→ ЕРКНМ → прокуратура</text>
+
+            <text x="470" y="326" text-anchor="middle" fill="#166534" font-size="10" font-weight="600">Инспектор не участвует в расчёте индикатора. Результат автоматически направляется в ЛК руководителя ГИТ и в ЕРКНМ</text>
+          </svg>
+        </div>
+
+        <div class="note-box mt-3">
+          <strong>Требуется:</strong> интеграция АСУ КНД с ФГИС СОУТ (СМЭВ 3 или API), разработка модуля геопривязки субъектов РФ с учётом административных границ, модуль накопительного анализа (скользящее окно 6 мес.)
+        </div>
+      </div>
+
+
+      <!-- Индикатор №8 (ОТ): увеличение количества НС с легкими последствиями -->
       <div class="card print-break mt-6" data-slide-group="ind-lt">
         <div class="card__head">
           <h3>Индикатор №8 (охрана труда). Рост лёгкого производственного травматизма — текущий процесс</h3>
@@ -3470,7 +3616,7 @@
         </div>
       </div>
 
-      <!-- Индикатор (Соц): снижение количества специалистов на 1 получателя -->
+      <!-- Индикатор №11 (Соц): снижение количества специалистов на 1 получателя -->
       <div class="card print-break mt-6" data-slide-group="ind-soc1">
         <div class="card__head">
           <h3>Индикатор №11 (социальное обслуживание). Сокращение персонала — текущий процесс</h3>
@@ -3563,7 +3709,7 @@
         </p>
       </div>
 
-      <!-- Индикатор (Соц) 1 TO-BE: снижение специалистов — после автоматизации -->
+      <!-- Индикатор №11 TO-BE: снижение специалистов — после автоматизации -->
       <div class="card print-break mt-6 bl-green" data-slide-group="ind-soc1">
         <div class="card__head">
           <h3>Индикатор №11 (социальное обслуживание). Сокращение персонала — целевой процесс</h3>
@@ -3682,10 +3828,10 @@
         </div>
       </div>
 
-      <!-- Индикатор (Соц): аварийное / ветхое здание -->
+      <!-- Индикатор №12 (Соц): аварийное / ветхое здание -->
       <div class="card print-break mt-6" data-slide-group="ind-soc2">
         <div class="card__head">
-          <h3>Индикатор (Соц): признание здания ветхим или аварийным</h3>
+          <h3>Индикатор №12 (социальное обслуживание). Признание здания ветхим или аварийным — текущий процесс</h3>
           <span class="tag blue">Форма №1-соцобслуживание · ручной режим</span>
         </div>
         <p class="indicator-slide__subtitle">
@@ -3764,10 +3910,10 @@
         </p>
       </div>
 
-      <!-- Индикатор (Соц) 2 TO-BE: аварийное здание — после автоматизации -->
+      <!-- Индикатор №12 TO-BE: аварийное здание — после автоматизации -->
       <div class="card print-break mt-6 bl-green" data-slide-group="ind-soc2">
         <div class="card__head">
-          <h3>Индикатор (Соц): аварийное здание — после автоматизации</h3>
+          <h3>Индикатор №12 (социальное обслуживание). Признание здания ветхим или аварийным — целевой процесс</h3>
           <span class="tag green">TO-BE · автоматический режим</span>
         </div>
         <p class="muted small mt-2 mb-4">
@@ -3882,10 +4028,10 @@
         </div>
       </div>
 
-      <!-- Индикатор (Соц): низкая оценка качества условий оказания социальных услуг -->
+      <!-- Индикатор №13 (Соц): низкая оценка качества условий оказания социальных услуг -->
       <div class="card print-break mt-6" data-slide-group="ind-soc3">
         <div class="card__head">
-          <h3>Индикатор (Соц): низкая оценка качества условий оказания социальных услуг</h3>
+          <h3>Индикатор №13 (социальное обслуживание). Низкая оценка качества условий оказания социальных услуг — текущий процесс</h3>
           <span class="tag blue">bus.gov.ru · ручной режим</span>
         </div>
         <p class="indicator-slide__subtitle">
@@ -3968,10 +4114,10 @@
         </p>
       </div>
 
-      <!-- Индикатор (Соц) 3 TO-BE: низкая оценка качества — после автоматизации -->
+      <!-- Индикатор №13 TO-BE: низкая оценка качества — после автоматизации -->
       <div class="card print-break mt-6 bl-green" data-slide-group="ind-soc3">
         <div class="card__head">
-          <h3>Индикатор (Соц): низкая оценка качества — после автоматизации</h3>
+          <h3>Индикатор №13 (социальное обслуживание). Низкая оценка качества — целевой процесс</h3>
           <span class="tag green">TO-BE · автоматический режим</span>
         </div>
         <p class="muted small mt-2 mb-4">
@@ -4086,10 +4232,15 @@
         </div>
       </div>
 
+          </div>
+        </details>
+
+      </div><!-- /Вызов 1 -->
+
       <!-- Вызов 2: ст. 15.33.2 -->
       <div id="proj-1533" class="card project-card print-break mt-6">
         <div class="card__head">
-          <h3>Вызов 2. Автоматическое привлечение к ответственности по ст. 15.33.2</h3>
+          <h3>2. Автоматическое привлечение к ответственности по ст. 15.33.2</h3>
           <span class="tag green">+2,5 млрд ₽/год в бюджет</span>
         </div>
         <div class="systems">
@@ -4389,7 +4540,7 @@
       <!-- Вызов 3: Расследование НС -->
       <div id="proj-ns" class="card project-card print-break mt-5">
         <div class="card__head">
-          <h3>Вызов 3. Единый процесс расследования несчастных случаев</h3>
+          <h3>3. Единый процесс расследования несчастных случаев</h3>
           <span class="tag amber tc-white" style="background: #F59E0B">Новый сквозной процесс</span>
         </div>
         <div class="systems">
@@ -4487,93 +4638,316 @@
         </div>
       </div>
 
-      <!-- Вызов 4: КТС (кратко) -->
-      <div id="proj-kts" class="card project-card print-break mt-5">
-        <div class="card__head">
-          <h3>Вызов 4. Противодействие хищениям через фиктивные КТС</h3>
-          <span class="tag green">Предотвращение>2 млрд ₽</span>
-        </div>
-        <div class="systems">
-          <span class="system-badge">ЕЦП РвР</span>
-          <span class="system-badge">АСУ КНД</span>
-        </div>
-        <p class="muted small mt-3">📋 Детали — на отдельной встрече</p>
-
-        <!-- ПРОБЛЕМА -->
-        <div class="cb cb--problem">
-          <h4 class="cb__label">Проблема</h4>
-          <p class="text-base mt-0">Мошеннические схемы с фиктивными удостоверениями КТС. Ущерб>2 млрд ₽. Бумажный формат не позволяет верифицировать.</p>
-        </div>
-
-        <!-- РЕШЕНИЕ + ЭФФЕКТ -->
-        <div class="cb cb--tobe">
-          <h4 class="cb__label">Решение</h4>
-          <p class="text-base mt-0">Единый электронный реестр удостоверений КТС + электронное взаимодействие + автоконтроль.</p>
-          <p class="text-sm" style="margin: 8px 0 0"><strong>Сроки:</strong> 2026 — законопроект · 2027 — ввод · 2028 — пром. эксплуатация</p>
-        </div>
-
-        <!-- ЭФФЕКТ -->
-        <div class="cb cb--effect">
-          <h4 class="cb__label">Эффект</h4>
-          <p class="text-base fw-600 mt-0" style="color: #1D4ED8">Предотвращение ущерба>2 млрд ₽</p>
-        </div>
-      </div>
-
-      <!-- Дополнительно: ИИ -->
+      <!-- Вызов 8: ИИ в контрольно-надзорной деятельности -->
       <div id="proj-ai" class="card project-card print-break mt-5">
         <div class="card__head">
-          <h3>Дополнительно. ИИ и ЭКДО</h3>
+          <h3>4. Искусственный интеллект в контрольно-надзорной деятельности</h3>
           <span class="tag blue">226 млн ₽ · 2027-2028</span>
         </div>
         <div class="systems">
           <span class="system-badge">АСУ КНД</span>
-          <span class="system-badge">ЭКДО</span>
-        </div>
-        <p class="muted small mt-3">📋 Детали — на отдельной встрече</p>
-
-        <div class="gap-4" style="display: grid; grid-template-columns: 1fr 1fr; margin: 16px 0">
-          <!-- ИИ -->
-          <div class="bg-sky-50 rounded-8 p-5" style="border: 1px solid #BAE6FD">
-            <div class="text-sm fw-700 mb-2" style="color: #0369A1">🤖 ИИ-модули (59 + 167 млн)</div>
-            <ul class="text-base mt-0" style="padding-left: 18px; color: #0C4A6E">
-              <li>Риск-профиль работодателя</li>
-              <li>ИИ-помощник инспектора</li>
-              <li>Единое рабочее место</li>
-            </ul>
-          </div>
-          <!-- ЭКДО -->
-          <div class="rounded-8 p-5" style="background: #F0FDF4; border: 1px solid #BBF7D0">
-            <div class="text-sm fw-700 mb-2" style="color: #166534">📄 ЭКДО → АСУ КНД</div>
-            <ul class="text-base mt-0" style="padding-left: 18px; color: #14532D">
-              <li>Проактивный контроль</li>
-              <li>Индикатор по инструктажам (проект ФЗ)</li>
-              <li>Интеграция план 2027</li>
-            </ul>
-          </div>
+          <span class="system-badge">ГосТех</span>
         </div>
 
-        <div class="grid--2 grid">
-          <div>
-            <h4>Что даёт</h4>
-            <ul class="bullets">
-              <li><strong>Риск-профиль (ML):</strong> автоматическое ранжирование работодателей по вероятности нарушений. Инспектор фокусируется на высокорисковых — рост результативности проверок</li>
-              <li><strong>Помощник (RAG):</strong> ответы на правовые вопросы за ≤60 сек вместо ручного поиска по НПА. Снижение времени подготовки решений</li>
-              <li><strong>Измеримый эффект:</strong> точная оценка экономии в человеко-часах — задача пилота 2026</li>
-            </ul>
-          </div>
-          <div>
-            <div class="effect-box">
-              <div class="effect-box__label">Инвестиции</div>
-              <div class="effect-box__value">59 млн ₽ <span class="text-md">(2027)</span><br>167 млн ₽ <span class="text-md">(2028)</span></div>
-            </div>
-            <div class="timeline mt-4">
-              <div class="timeline__title">Этапы</div>
-              <div class="timeline__stages">
-                <div class="stage"><div class="stage__bar blue w-full">2026: пилот в ГИТ, GPU — ГосТех</div></div>
-                <div class="stage"><div class="stage__bar blue w-full">2027: 1-я очередь (59 млн ₽)</div></div>
-                <div class="stage"><div class="stage__bar green w-full">2028: масштаб на все ГИТ (167 млн ₽)</div></div>
+        <!-- AS-IS: результаты 2025 (общий слайд) -->
+        <div class="cb cb--asis">
+          <h4 class="cb__label">Как сейчас (результаты 2025 года)</h4>
+          <p class="cb__lead">В рамках ГК № 18-юр от 30.05.2025 разработаны и апробированы <strong>два прототипа ИИ-решений</strong>, подтвердившие техническую реализуемость применения ИИ в КНД.</p>
+
+          <div class="grid--2 grid mt-4 gap-4">
+            <div class="p-4 bg-blue-50 rounded-8" style="border: 1px solid #BFDBFE">
+              <div class="text-sm fw-700 tc-accent mb-1">Прототип 1: Интеллектуальный ассистент инспектора</div>
+              <div class="text-xs tc-muted">Первый в практике ФОИВ интеллектуальный помощник: мгновенный доступ к НПА и данным АСУ КНД</div>
+              <div class="stat-row mt-3" style="flex-wrap: wrap; gap: 8px">
+                <div class="stat"><div class="stat__num blue">94,2%</div><div class="stat__label">точность</div></div>
+                <div class="stat"><div class="stat__num blue">208</div><div class="stat__label">документов</div></div>
+                <div class="stat"><div class="stat__num">2,4 млн</div><div class="stat__label">дел АСУ КНД</div></div>
+                <div class="stat"><div class="stat__num">&le;60 с</div><div class="stat__label">отклик</div></div>
               </div>
             </div>
+            <div class="p-4 bg-blue-50 rounded-8" style="border: 1px solid #BFDBFE">
+              <div class="text-sm fw-700 tc-accent mb-1">Прототип 2: ML-подсистема индикаторов риска</div>
+              <div class="text-xs tc-muted">Первая в Роструде аналитическая модель прогнозирования вероятности нарушений</div>
+              <div class="stat-row mt-3" style="flex-wrap: wrap; gap: 8px">
+                <div class="stat"><div class="stat__num blue">0,76</div><div class="stat__label">ROC-AUC</div></div>
+                <div class="stat"><div class="stat__num blue">35,2%</div><div class="stat__label">точность</div></div>
+                <div class="stat"><div class="stat__num">166</div><div class="stat__label">признаков</div></div>
+                <div class="stat"><div class="stat__num">43 млн</div><div class="stat__label">записей</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Прототип 1: Ассистент инспектора (отдельный слайд) -->
+        <div class="cb cb--asis print-break">
+          <h4 class="cb__label">Прототип 1: Интеллектуальный ассистент инспектора</h4>
+          <p class="cb__lead">Первый в практике ФОИВ интеллектуальный помощник для сотрудников контрольно-надзорного органа: мгновенный доступ к НПА и данным АСУ КНД с автоматическим цитированием источников.</p>
+          <div class="stat-row mt-4" style="flex-wrap: wrap; gap: 8px">
+            <div class="stat">
+              <div class="stat__num blue">94,2%</div>
+              <div class="stat__label">точность ответов</div>
+            </div>
+            <div class="stat">
+              <div class="stat__num blue">208</div>
+              <div class="stat__label">документов (29 НПА, 110 записок, 69 регламентов)</div>
+            </div>
+            <div class="stat">
+              <div class="stat__num">2,4 млн</div>
+              <div class="stat__label">дел АСУ КНД (370 тыс. КНД, 1,9 млн АД, 97 тыс. НС)</div>
+            </div>
+            <div class="stat">
+              <div class="stat__num">&le;60 с</div>
+              <div class="stat__label">время отклика</div>
+            </div>
+          </div>
+          <ul class="text-xs mt-3" style="padding-left: 16px; line-height: 1.7; color: var(--text-muted)">
+            <li>Поиск по НПА с точным цитированием статей и пунктов</li>
+            <li>Табличные срезы данных из АСУ КНД (защищённые предустановленные запросы)</li>
+            <li>8 ролей с территориальной изоляцией по 85 субъектам РФ</li>
+            <li>Прозрачность: каждый ответ содержит ссылки на источники</li>
+          </ul>
+          <p class="text-2xs tc-muted mt-2">Qwen3-8B-AWQ &middot; Qdrant (HNSW) &middot; e5-large-instruct &middot; реплика БД АСУ КНД (только чтение)</p>
+          <img class="zoomable mt-3 rounded-8" style="width: 100%; max-height: 400px; object-fit: contain; object-position: top"
+               src="img/asu8.png"
+               alt="Интеллектуальный ассистент инспектора в АСУ КНД"
+               data-caption="AI Ассистент: чат-интерфейс с доступом к БД АСУ КНД (2,4 млн дел) и 208 документам. Точность 94,2%. Прототип 2025 г.">
+        </div>
+
+        <!-- Прототип 1: Проблема + TO-BE (отдельный слайд) -->
+        <div class="print-break">
+          <div class="cb cb--problem">
+            <h4 class="cb__label">Прототип 1: Проблема</h4>
+            <ul class="text-sm mt-2" style="padding-left: 20px; line-height: 1.8">
+              <li><strong>Пилотный масштаб:</strong> прототип ограничен 100 одновременными пользователями &mdash; для тиражирования на 65 ГИТ (1000+ инспекторов) необходимы промышленные GPU-мощности</li>
+              <li><strong>GPU-мощности запрошены у Минэкономразвития</strong> через платформу ГосТех &mdash; ответа не получено</li>
+              <li><strong>Без GPU невозможно:</strong> масштабировать LLM-инференс, обеспечить отклик &le;60 с при одновременной работе сотен пользователей, запустить дообучение на новых данных</li>
+            </ul>
+          </div>
+
+          <div class="cb cb--tobe mt-3">
+            <h4 class="cb__label">Прототип 1: Как надо (TO-BE)</h4>
+            <ul class="text-sm mt-2" style="padding-left: 20px; line-height: 1.8">
+              <li>Пилот в <strong>3&ndash;5 ГИТ</strong> субъектов РФ (2026)</li>
+              <li>Автоматическая подготовка ответов на обращения граждан</li>
+              <li>Автоматическое формирование справок и проектов документов из АСУ КНД</li>
+              <li>Масштабирование до <strong>500+ пользователей</strong> (2027), затем <strong>1000+</strong> (2028)</li>
+            </ul>
+            <div class="callout-warning mt-3">
+              <strong>Вычислительные мощности:</strong> GPU-ресурсы запрошены у Минэкономразвития (ГосТех) &mdash; ответа не поступало. Альтернатива &mdash; создание собственного GPU/TPU-кластера на базе решений из Единого реестра российской радиоэлектронной продукции (Минпромторг) и Единого реестра российского ПО (Минцифры), например технологий Ivi Technologies.
+            </div>
+          </div>
+        </div>
+
+        <!-- Прототип 2: ML-индикаторы (отдельный слайд) -->
+        <div class="cb cb--asis print-break">
+          <h4 class="cb__label">Прототип 2: ML-подсистема индикаторов риска</h4>
+          <p class="cb__lead">Первая в Роструде аналитическая модель для прогнозирования вероятности нарушений трудового законодательства и формирования динамического риск-профиля работодателей.</p>
+          <div class="stat-row mt-4" style="flex-wrap: wrap; gap: 8px">
+            <div class="stat">
+              <div class="stat__num blue">0,76</div>
+              <div class="stat__label">ROC-AUC (на 52% лучше случайного)</div>
+            </div>
+            <div class="stat">
+              <div class="stat__num blue">35,2%</div>
+              <div class="stat__label">точность в группе высокого риска (3,5&times; выше)</div>
+            </div>
+            <div class="stat">
+              <div class="stat__num">166</div>
+              <div class="stat__label">аналитических признаков</div>
+            </div>
+            <div class="stat">
+              <div class="stat__num">43 млн</div>
+              <div class="stat__label">проанализированных записей</div>
+            </div>
+          </div>
+          <div class="text-xs mt-3 tc-muted" style="line-height: 1.7">
+            <strong>8 источников данных АСУ КНД:</strong> реестры организаций (ОКВЭД), материалы КНМ, административные взыскания, обращения граждан, задолженность по зарплате, травматизм и НС, показатели РОП, сведения СФР (ЭТК).
+          </div>
+          <ul class="text-xs mt-2" style="padding-left: 16px; line-height: 1.7; color: var(--text-muted)">
+            <li>REST API для получения оценки риска по ИНН</li>
+            <li>Визуальная форма с детализацией по всем факторам</li>
+            <li>Интеграция в паспорт организации АСУ КНД</li>
+            <li>Интерпретируемость: ключевые факторы, повлиявшие на оценку</li>
+          </ul>
+          <p class="text-2xs tc-muted mt-2">Обучающая выборка: 500 тыс. записей &middot; 200+ тыс. уникальных организаций</p>
+          <img class="zoomable mt-3 rounded-8" style="width: 100%; max-height: 400px; object-fit: contain; object-position: top"
+               src="img/asu9.png"
+               alt="Страница анализа риска нарушений по хозяйствующему субъекту"
+               data-caption="ML-подсистема: «Анализ риска нарушений по хозяйствующему субъекту» (РЖД — 100% риск, 992 нарушения, 549 обращений). Прототип 2025 г.">
+        </div>
+
+        <!-- Прототип 2: Проблема (отдельный слайд) -->
+        <div class="cb cb--problem print-break">
+          <h4 class="cb__label">Прототип 2: Проблема</h4>
+          <ul class="text-sm mt-2" style="padding-left: 20px; line-height: 1.8">
+            <li><strong>Нормативный барьер (248-ФЗ, ст. 61.1, п. 1.1):</strong> результаты ML-модели не могут служить основанием для планирования КНМ &mdash; индикаторы риска должны быть закреплены в НПА, прозрачны и проверяемы для работодателя</li>
+            <li><strong>Только внутренние данные:</strong> модель обучена исключительно на данных АСУ КНД; внешние источники (ФНС, СФР, Минздрав) не подключены &mdash; снижает точность прогнозов</li>
+            <li><strong>GPU-мощности запрошены у Минэкономразвития</strong> через платформу ГосТех &mdash; ответа не получено. Без GPU невозможно переобучение на расширенных данных и масштабирование модели</li>
+          </ul>
+        </div>
+
+        <!-- Прототип 2: TO-BE (flow-схема, уровни, внешние данные, план 2026) -->
+        <div class="cb cb--tobe print-break">
+          <h4 class="cb__label">Прототип 2: Как надо (TO-BE)</h4>
+          <p class="cb__lead">Механизм доказательного формирования индикаторов риска: ML выявляет закономерности &rarr; эксперты формализуют &rarr; Минтруд закрепляет в НПА &rarr; АСУ КНД мониторирует. Обратная связь: результаты КНМ дообучают модель.</p>
+
+          <!-- 4-шаговая flow-схема -->
+          <div class="mt-4 p-4 bg-gray-50 rounded-8">
+            <div class="text-xs fw-700 mb-3" style="color: var(--navy)">Четырёхэтапный цикл формирования индикаторов</div>
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; text-align: center">
+              <div class="p-3 rounded-8" style="background: var(--blue-50); border: 2px solid var(--accent)">
+                <div class="text-xs fw-700 tc-accent">1. Выявление</div>
+                <div class="text-2xs tc-muted mt-1">ML-модель анализирует данные, выявляет закономерности, ранжирует признаки</div>
+                <div class="text-2xs fw-600 mt-1" style="color: var(--navy)">Аналитическая подсистема</div>
+              </div>
+              <div class="p-3 rounded-8" style="background: var(--amber-50); border: 2px solid var(--amber)">
+                <div class="text-xs fw-700 tc-amber">2. Экспертиза</div>
+                <div class="text-2xs tc-muted mt-1">Оценка обоснованности, формулирование индикатора, подготовка обоснования для НПА</div>
+                <div class="text-2xs fw-600 mt-1" style="color: var(--navy)">Экспертный совет Роструда</div>
+              </div>
+              <div class="p-3 rounded-8" style="background: #FEF3C7; border: 2px solid #F59E0B">
+                <div class="text-xs fw-700" style="color: #92400E">3. НПА</div>
+                <div class="text-2xs tc-muted mt-1">Проект изменений в Приказ №1037, публичное обсуждение, утверждение</div>
+                <div class="text-2xs fw-600 mt-1" style="color: var(--navy)">Минтруд России</div>
+              </div>
+              <div class="p-3 rounded-8" style="background: #ECFDF5; border: 2px solid var(--emerald)">
+                <div class="text-xs fw-700" style="color: #065F46">4. Мониторинг</div>
+                <div class="text-2xs tc-muted mt-1">Интеграция в РОП, настройка расчёта, запуск мониторинга, сбор обратной связи</div>
+                <div class="text-2xs fw-600 mt-1" style="color: var(--navy)">АСУ КНД</div>
+              </div>
+            </div>
+            <div class="text-2xs tc-muted mt-2" style="text-align: center">&#x21BB; Результаты КНМ по индикатору используются для дообучения модели и выявления новых закономерностей</div>
+          </div>
+
+          <!-- Трёхуровневая система индикаторов -->
+          <div class="mt-4" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px">
+            <div class="bg-blue-50 rounded-8 p-4" style="border: 1px solid #BFDBFE">
+              <div class="text-xs fw-700 tc-accent mb-1">Уровень 1 &mdash; Утверждённые</div>
+              <div class="text-2xs tc-muted">Приказ Минтруда. Основание для планирования КНМ</div>
+            </div>
+            <div class="bg-amber-50 rounded-8 p-4" style="border: 1px solid #FDE68A">
+              <div class="text-xs fw-700 tc-amber mb-1">Уровень 2 &mdash; Сигнальные</div>
+              <div class="text-2xs tc-muted">Внутренний регламент Роструда. Приоритизация внутри плана КНМ</div>
+            </div>
+            <div class="bg-gray-50 rounded-8 p-4" style="border: 1px solid var(--border)">
+              <div class="text-xs fw-700 tc-muted mb-1">Уровень 3 &mdash; Экспериментальные</div>
+              <div class="text-2xs tc-muted">ML-кандидаты. Тестирование в &laquo;песочнице&raquo; перед переходом на Уровень 2</div>
+            </div>
+          </div>
+
+          <!-- Подключение внешних источников данных -->
+          <div class="callout-info mt-4">
+            <p class="text-sm fw-600 mt-0 mb-2">Подключение внешних источников данных (2026&ndash;2027)</p>
+            <div class="grid--2 grid gap-3">
+              <div>
+                <p class="text-xs fw-600 mt-0 mb-1" style="color: #DC2626">Высокий приоритет</p>
+                <ul class="text-xs mt-0" style="padding-left: 16px; line-height: 1.6">
+                  <li><strong>СФР (СМЭВ):</strong> сведения по ЭТК, численность работников</li>
+                  <li><strong>ФНС (СМЭВ):</strong> задолженность, налоговая отчётность</li>
+                  <li><strong>СФР + Минздрав:</strong> данные о лёгких несчастных случаях</li>
+                </ul>
+              </div>
+              <div>
+                <p class="text-xs fw-600 mt-0 mb-1" style="color: var(--amber)">Средний приоритет</p>
+                <ul class="text-xs mt-0" style="padding-left: 16px; line-height: 1.6">
+                  <li><strong>ФНС:</strong> результаты аналитических моделей (без первичных данных)</li>
+                  <li><strong>Федресурс:</strong> процедуры банкротства</li>
+                  <li><strong>Картотека арбитражных дел:</strong> трудовые споры</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- План развития 2026 -->
+          <div class="callout-info mt-4">
+            <p class="text-sm fw-600 mt-0 mb-2">План развития на 2026 год</p>
+            <div class="grid--2 grid gap-3">
+              <div>
+                <p class="text-xs fw-600 mt-0 mb-1">Ассистент инспектора</p>
+                <ul class="text-xs mt-0" style="padding-left: 16px; line-height: 1.6">
+                  <li>Пилот в 3&ndash;5 ГИТ субъектов РФ</li>
+                  <li>Автоматическая подготовка ответов на обращения</li>
+                  <li>Автоматическое формирование справок из АСУ КНД</li>
+                  <li>Генерация проектов документов (предостережения, акты)</li>
+                  <li>Подготовка ТЗ для масштабирования на 1000+ пользователей</li>
+                </ul>
+              </div>
+              <div>
+                <p class="text-xs fw-600 mt-0 mb-1">ML-риск-профиль</p>
+                <ul class="text-xs mt-0" style="padding-left: 16px; line-height: 1.6">
+                  <li>Пилотирование на выборке работодателей в нескольких регионах</li>
+                  <li>Тестирование градиентного бустинга (CatBoost, XGBoost)</li>
+                  <li>Запуск механизма доказательного формирования ИР</li>
+                  <li>Проработка протоколов обмена с ФНС, СФР, Минздрав</li>
+                  <li>Подготовка ТЗ для промышленного внедрения с 2027</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout-warning mt-4">
+            <strong>Вычислительные мощности:</strong> GPU-ресурсы запрошены у Минэкономразвития (ГосТех) &mdash; ответа не поступало. Альтернатива &mdash; создание собственного GPU/TPU-кластера на базе решений из Единого реестра российской радиоэлектронной продукции (Минпромторг) и Единого реестра российского ПО (Минцифры), например технологий Ivi Technologies.
+          </div>
+        </div>
+
+        <!-- ЭФФЕКТ -->
+        <div class="cb cb--effect print-break">
+          <h4 class="cb__label">Эффект</h4>
+          <div class="cb__metrics cb__metrics--4">
+            <div class="cb__metric">
+              <div class="cb__metric-value">0,76 &rarr; 0,80</div>
+              <div class="cb__metric-label">рост ROC-AUC модели к 2028</div>
+            </div>
+            <div class="cb__metric">
+              <div class="cb__metric-value">35% &rarr; 40%</div>
+              <div class="cb__metric-label">точность отбора высокорисковых</div>
+            </div>
+            <div class="cb__metric">
+              <div class="cb__metric-value">500+</div>
+              <div class="cb__metric-label">пользователей ассистента к 2027</div>
+            </div>
+            <div class="cb__metric">
+              <div class="cb__metric-value">&minus;0,5 ч</div>
+              <div class="cb__metric-label">на подготовку каждого КНМ</div>
+            </div>
+          </div>
+
+          <div class="grid--2 grid mt-4 gap-4">
+            <div>
+              <p class="text-xs fw-600 mt-0 mb-2">Целевые показатели к 2027</p>
+              <ul class="text-xs mt-0" style="padding-left: 16px; line-height: 1.7">
+                <li>Промышленное внедрение ассистента для <strong>500+ пользователей</strong></li>
+                <li>Охват риск-мониторингом <strong>5 млн работодателей</strong></li>
+                <li><strong>&ge;30% КНМ</strong> в пилотных ГИТ планируется с применением ИИ</li>
+                <li><strong>3&ndash;5 новых индикаторов</strong> риска предложены для включения в НПА</li>
+                <li>Подключены внешние источники данных СФР и ФНС через СМЭВ</li>
+              </ul>
+            </div>
+            <div>
+              <p class="text-xs fw-600 mt-0 mb-2">К 2028 году (при обеспечении финансирования)</p>
+              <ul class="text-xs mt-0" style="padding-left: 16px; line-height: 1.7">
+                <li>Промышленная эксплуатация для <strong>1000+ пользователей</strong></li>
+                <li>Охват <strong>10 млн работодателей</strong></li>
+                <li>ROC-AUC &ge; 0,80</li>
+                <li>Выявляемость нарушений выше на <strong>25%</strong></li>
+                <li>Снижение нагрузки на добросовестных работодателей</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Необходимые условия -->
+          <div class="note-box mt-4">
+            <strong>Необходимые условия:</strong> вычислительные мощности ГосТех (ожидает подтверждения Минэкономразвития), финансирование промышленного внедрения с 2027, согласование межведомственного обмена с ФНС/СФР/Минздрав
+          </div>
+        </div>
+
+        <!-- Таймлайн -->
+        <div class="timeline mt-4">
+          <div class="timeline__title">Этапы реализации</div>
+          <div class="timeline__stages">
+            <div class="stage"><div class="stage__bar blue w-full">2026: пилот в 3&ndash;5 ГИТ, GPU &mdash; ГосТех, механизм доказательных ИР</div></div>
+            <div class="stage"><div class="stage__bar blue w-full">2027: промышленное внедрение ассистента, подключение ФНС+СФР (59 млн ₽)</div></div>
+            <div class="stage"><div class="stage__bar green w-full">2028: масштаб на все ГИТ, ROC-AUC &ge; 0,80, 10 млн работодателей (167 млн ₽)</div></div>
           </div>
         </div>
       </div>
@@ -4712,7 +5086,7 @@
 
         <!-- Направление 2 -->
         <div class="print-break mt-5 p-5 rounded-sm" style="border: 2px solid #f59e0b; position: relative">
-            <div class="text-xs fw-700 tc-white rounded-sm" style="position: absolute; top: -10px; left: 16px; background: #f59e0b; padding: 2px 12px">Направление 2 — оценка достоверности</div>
+            <div class="text-xs fw-700 tc-white rounded-sm" style="position: absolute; top: -10px; left: 16px; background: #f59e0b; padding: 2px 12px; z-index: 2">Направление 2 — оценка достоверности</div>
             <h4 class="mt-2 tc-navy">Автоматическая верификация обращений по 248-ФЗ</h4>
             <p class="small mt-2">При начале КМ по обращению гражданина есть этап <strong>оценки достоверности сведений</strong>. Сейчас — ручной запрос. Предлагается: АСУ КНД автоматически направляет запрос работодателю через платформу → данные подтверждают или опровергают нарушение.</p>
 
@@ -4768,86 +5142,6 @@
               <div class="text-xs tc-navy">Масштабирование<br><span style="color: var(--gray-500);">новые типы данных, проактивные индикаторы, снижение категорий риска</span></div>
             </div>
           </div>
-        </div>
-      </div>
-
-      <!-- Animated Platform Diagram -->
-      <div class="card print-break mt-5" style="padding: 20px 28px">
-        <h3 class="mb-1">Как работает платформа доверенной передачи данных</h3>
-        <p class="muted small mb-4">Интерактивная схема потоков данных. Наведите на источник для подсветки потока</p>
-        <div class="overflow-auto">
-          <svg id="platformDiagram" viewBox="0 0 1000 280" xmlns="http://www.w3.org/2000/svg" class="svg-diagram svg-diagram--md" font-family="Inter, system-ui, sans-serif">
-            <style>.src-group,.flow-path,.flow-dot{transition:opacity 0.3s ease}.src-group{cursor:pointer}</style>
-            <defs>
-              <filter id="pd-glow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur in="SourceGraphic" stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-              <linearGradient id="pd-gw" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1E293B"/><stop offset="100%" stop-color="#0F172A"/></linearGradient>
-            </defs>
-            <!-- Column headers -->
-            <text x="80" y="18" text-anchor="middle" font-size="10" font-weight="700" fill="#64748B" letter-spacing="1">ДАННЫЕ РАБОТОДАТЕЛЯ</text>
-            <text x="335" y="18" text-anchor="middle" font-size="10" font-weight="700" fill="#64748B" letter-spacing="1">ШЛЮЗ</text>
-            <text x="570" y="18" text-anchor="middle" font-size="10" font-weight="700" fill="#64748B" letter-spacing="1">ПЛАТФОРМА</text>
-            <text x="867" y="18" text-anchor="middle" font-size="10" font-weight="700" fill="#64748B" letter-spacing="1">АСУ КНД</text>
-            <!-- Source nodes -->
-            <g class="src-group" data-idx="1"><rect x="5" y="35" width="150" height="40" rx="8" fill="#0F172A"/><text x="80" y="53" text-anchor="middle" fill="white" font-size="12" font-weight="600">ЭКДО</text><text x="80" y="68" text-anchor="middle" fill="white" font-size="9" opacity="0.75">кадровые документы</text></g>
-            <g class="src-group" data-idx="2"><rect x="5" y="83" width="150" height="40" rx="8" fill="#2563EB"/><text x="80" y="101" text-anchor="middle" fill="white" font-size="12" font-weight="600">Телеметрия ОТ</text><text x="80" y="116" text-anchor="middle" fill="white" font-size="9" opacity="0.75">датчики, СИЗ, SCADA</text></g>
-            <g class="src-group" data-idx="3"><rect x="5" y="131" width="150" height="40" rx="8" fill="#3B82F6"/><text x="80" y="149" text-anchor="middle" fill="white" font-size="12" font-weight="600">СКУД / Табели</text><text x="80" y="164" text-anchor="middle" fill="white" font-size="9" opacity="0.75">рабочее время</text></g>
-            <g class="src-group" data-idx="4"><rect x="5" y="179" width="150" height="40" rx="8" fill="#475569"/><text x="80" y="197" text-anchor="middle" fill="white" font-size="12" font-weight="600">Зарплатные данные</text><text x="80" y="212" text-anchor="middle" fill="white" font-size="9" opacity="0.75">начисления, выплаты</text></g>
-            <g class="src-group" data-idx="5"><rect x="5" y="227" width="150" height="40" rx="8" fill="#1E293B"/><text x="80" y="245" text-anchor="middle" fill="white" font-size="12" font-weight="600">Инструктажи</text><text x="80" y="260" text-anchor="middle" fill="white" font-size="9" opacity="0.75">ОТ, пожарная безоп.</text></g>
-            <!-- Connection paths: Source → Gateway -->
-            <path id="pd-p1" d="M155,55 C215,55 215,151 265,151" stroke="#E2E8F0" stroke-width="1.5" fill="none" class="flow-path" data-idx="1"/>
-            <path id="pd-p2" d="M155,103 C215,103 215,151 265,151" stroke="#E2E8F0" stroke-width="1.5" fill="none" class="flow-path" data-idx="2"/>
-            <path id="pd-p3" d="M155,151 L265,151" stroke="#E2E8F0" stroke-width="1.5" fill="none" class="flow-path" data-idx="3"/>
-            <path id="pd-p4" d="M155,199 C215,199 215,151 265,151" stroke="#E2E8F0" stroke-width="1.5" fill="none" class="flow-path" data-idx="4"/>
-            <path id="pd-p5" d="M155,247 C215,247 215,151 265,151" stroke="#E2E8F0" stroke-width="1.5" fill="none" class="flow-path" data-idx="5"/>
-            <!-- Gateway -->
-            <rect x="265" y="35" width="140" height="232" rx="12" fill="url(#pd-gw)"/>
-            <text x="335" y="125" text-anchor="middle" fill="white" font-size="14" font-weight="700">Гейтвей</text>
-            <text x="335" y="148" text-anchor="middle" fill="#93C5FD" font-size="10">обезличивание</text>
-            <text x="335" y="162" text-anchor="middle" fill="#93C5FD" font-size="10">на площадке</text>
-            <rect x="290" y="182" width="90" height="20" rx="10" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/><text x="335" y="196" text-anchor="middle" fill="#60A5FA" font-size="9" font-weight="600">контейнер / ВМ</text>
-            <rect x="290" y="212" width="90" height="20" rx="10" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/><text x="335" y="226" text-anchor="middle" fill="#60A5FA" font-size="9" font-weight="600">КЭП подпись</text>
-            <!-- Gateway → Channel -->
-            <path id="pd-p6" d="M405,151 L495,151" stroke="#E2E8F0" stroke-width="2" fill="none" class="flow-path"/>
-            <!-- Channel -->
-            <rect x="495" y="101" width="150" height="100" rx="12" fill="#EFF6FF" stroke="#2563EB" stroke-width="2"/>
-            <text x="570" y="136" text-anchor="middle" fill="#0F172A" font-size="13" font-weight="700">Работа</text>
-            <text x="570" y="152" text-anchor="middle" fill="#0F172A" font-size="13" font-weight="700">в России</text>
-            <text x="570" y="170" text-anchor="middle" fill="#64748B" font-size="10">API платформы</text>
-            <text x="570" y="184" text-anchor="middle" fill="#64748B" font-size="10">mTLS + КЭП</text>
-            <!-- Channel → АСУ КНД -->
-            <path id="pd-p7" d="M645,151 L740,151" stroke="#E2E8F0" stroke-width="2" fill="none" class="flow-path"/>
-            <!-- АСУ КНД -->
-            <rect x="740" y="35" width="255" height="232" rx="12" fill="rgba(37,99,235,0.04)" stroke="#2563EB" stroke-width="2"><animate attributeName="stroke-opacity" values="0.5;1;0.5" dur="3s" repeatCount="indefinite"/></rect>
-            <text x="867" y="55" text-anchor="middle" fill="#0F172A" font-size="13" font-weight="700">АСУ КНД</text>
-            <rect x="755" y="68" width="225" height="34" rx="6" fill="#EFF6FF" stroke="#BFDBFE"/><text x="867" y="89" text-anchor="middle" fill="#1D4ED8" font-size="11" font-weight="600">1. Валидация данных</text>
-            <polygon points="862,108 867,116 872,108" fill="#93C5FD"/>
-            <rect x="755" y="118" width="225" height="34" rx="6" fill="#EFF6FF" stroke="#BFDBFE"/><text x="867" y="139" text-anchor="middle" fill="#1D4ED8" font-size="11" font-weight="600">2. Нормализация</text>
-            <polygon points="862,158 867,166 872,158" fill="#93C5FD"/>
-            <rect x="755" y="168" width="225" height="34" rx="6" fill="#EFF6FF" stroke="#BFDBFE"/><text x="867" y="189" text-anchor="middle" fill="#1D4ED8" font-size="11" font-weight="600">3. Витрина показателей</text>
-            <polygon points="862,208 867,216 872,208" fill="#A7F3D0"/>
-            <rect x="755" y="218" width="225" height="34" rx="6" fill="#ECFDF5" stroke="#A7F3D0"/><text x="867" y="239" text-anchor="middle" fill="#065F46" font-size="11" font-weight="700">4. Индикаторы риска</text>
-            <rect x="753" y="216" width="229" height="38" rx="8" fill="none" stroke="#10B981" stroke-width="1.5"><animate attributeName="opacity" values="0.1;0.5;0.1" dur="2s" repeatCount="indefinite"/></rect>
-            <!-- Animated dots: Source → Gateway -->
-            <circle r="4" fill="#0F172A" filter="url(#pd-glow)" class="flow-dot" data-idx="1"><animateMotion dur="2.5s" repeatCount="indefinite"><mpath href="#pd-p1"/></animateMotion></circle>
-            <circle r="3" fill="#0F172A" opacity="0.5" class="flow-dot" data-idx="1"><animateMotion dur="2.5s" repeatCount="indefinite" begin="1.2s"><mpath href="#pd-p1"/></animateMotion></circle>
-            <circle r="4" fill="#2563EB" filter="url(#pd-glow)" class="flow-dot" data-idx="2"><animateMotion dur="2.2s" repeatCount="indefinite" begin="0.3s"><mpath href="#pd-p2"/></animateMotion></circle>
-            <circle r="3" fill="#2563EB" opacity="0.5" class="flow-dot" data-idx="2"><animateMotion dur="2.2s" repeatCount="indefinite" begin="1.4s"><mpath href="#pd-p2"/></animateMotion></circle>
-            <circle r="4" fill="#3B82F6" filter="url(#pd-glow)" class="flow-dot" data-idx="3"><animateMotion dur="1.8s" repeatCount="indefinite" begin="0.5s"><mpath href="#pd-p3"/></animateMotion></circle>
-            <circle r="3" fill="#3B82F6" opacity="0.5" class="flow-dot" data-idx="3"><animateMotion dur="1.8s" repeatCount="indefinite" begin="1.3s"><mpath href="#pd-p3"/></animateMotion></circle>
-            <circle r="4" fill="#475569" filter="url(#pd-glow)" class="flow-dot" data-idx="4"><animateMotion dur="2.2s" repeatCount="indefinite" begin="0.7s"><mpath href="#pd-p4"/></animateMotion></circle>
-            <circle r="3" fill="#475569" opacity="0.5" class="flow-dot" data-idx="4"><animateMotion dur="2.2s" repeatCount="indefinite" begin="1.6s"><mpath href="#pd-p4"/></animateMotion></circle>
-            <circle r="4" fill="#1E293B" filter="url(#pd-glow)" class="flow-dot" data-idx="5"><animateMotion dur="2.5s" repeatCount="indefinite" begin="0.9s"><mpath href="#pd-p5"/></animateMotion></circle>
-            <circle r="3" fill="#1E293B" opacity="0.5" class="flow-dot" data-idx="5"><animateMotion dur="2.5s" repeatCount="indefinite" begin="1.8s"><mpath href="#pd-p5"/></animateMotion></circle>
-            <!-- Animated dots: Gateway → Channel → АСУ КНД -->
-            <circle r="5" fill="#2563EB" filter="url(#pd-glow)"><animateMotion dur="1.2s" repeatCount="indefinite"><mpath href="#pd-p6"/></animateMotion></circle>
-            <circle r="4" fill="#1E40AF" filter="url(#pd-glow)"><animateMotion dur="1.2s" repeatCount="indefinite" begin="0.4s"><mpath href="#pd-p6"/></animateMotion></circle>
-            <circle r="4" fill="#60A5FA" filter="url(#pd-glow)"><animateMotion dur="1.2s" repeatCount="indefinite" begin="0.8s"><mpath href="#pd-p6"/></animateMotion></circle>
-            <circle r="5" fill="#2563EB" filter="url(#pd-glow)"><animateMotion dur="1.2s" repeatCount="indefinite" begin="0.15s"><mpath href="#pd-p7"/></animateMotion></circle>
-            <circle r="4" fill="#1E40AF" filter="url(#pd-glow)"><animateMotion dur="1.2s" repeatCount="indefinite" begin="0.55s"><mpath href="#pd-p7"/></animateMotion></circle>
-            <circle r="4" fill="#60A5FA" filter="url(#pd-glow)"><animateMotion dur="1.2s" repeatCount="indefinite" begin="0.95s"><mpath href="#pd-p7"/></animateMotion></circle>
-            <!-- Instructions -->
-            <text x="500" y="275" text-anchor="middle" font-size="9" fill="#94A3B8">наведите на источник данных для подсветки потока · двойной клик для паузы анимации</text>
-          </svg>
         </div>
       </div>
 
@@ -4927,7 +5221,7 @@
       <!-- Вызовы для ОИ.рф (TODO) -->
       <div id="proj-oi-challenges" class="card project-card print-break mt-5">
         <div class="card__head">
-          <h3>Развитие Онлайн-инспекции: устойчивость и современность фронт-офиса</h3>
+          <h3>6. Развитие Онлайн-инспекции: устойчивость и современность фронт-офиса</h3>
           <span class="tag tc-white bg-blue-600">Бюджет требует проработки</span>
         </div>
         <div class="systems">
@@ -5308,28 +5602,11 @@
 
           <!-- Таймлайн -->
           <div class="timeline mt-5">
-            <h5 class="text-base fw-700 mb-4">Этапы реализации</h5>
+            <div class="timeline__title">Этапы реализации</div>
             <div class="timeline__stages">
-              <div class="stage">
-                <div class="stage__year tc-red fw-700">2026</div>
-                <div class="stage__label">Устранение критических рисков</div>
-                <div class="stage__bar" style="background: #EF4444; width: 30%"></div>
-                <div class="stage__desc text-xs mt-2">ЕСИА, импортозамещение backend, МП авторизация</div>
-              </div>
-
-              <div class="stage">
-                <div class="stage__year tc-blue fw-700">2027</div>
-                <div class="stage__label">Модернизация сервисов</div>
-                <div class="stage__bar" style="background: #3B82F6; width: 35%"></div>
-                <div class="stage__desc text-xs mt-2">ИИ, калькуляторы, мессенджеры, ЛК, маршрутизатор МСП</div>
-              </div>
-
-              <div class="stage">
-                <div class="stage__year tc-green fw-700">2028</div>
-                <div class="stage__label">Масштабирование</div>
-                <div class="stage__bar" style="background: #10B981; width: 35%"></div>
-                <div class="stage__desc text-xs mt-2">ЭДО, профсоюзы, СВО, профриск, импортозамещение МП</div>
-              </div>
+              <div class="stage"><div class="stage__bar red" style="width: 30%;">2026: Устранение рисков (ЕСИА, импортозамещение, МП)</div></div>
+              <div class="stage"><div class="stage__bar blue" style="width: 35%; margin-left: 30%;">2027: Модернизация сервисов (ИИ, калькуляторы, ЛК)</div></div>
+              <div class="stage"><div class="stage__bar green" style="width: 35%; margin-left: 55%;">2028: Масштабирование (ЭДО, профсоюзы, профриск)</div></div>
             </div>
           </div>
         </div>
@@ -5338,27 +5615,196 @@
       <!-- Вызовы для АИС УБР (TODO) -->
       <div id="proj-ubr-challenges" class="card project-card print-break mt-5" style="border-left: 4px solid #F59E0B">
         <div class="card__head">
-          <h3>Вызовы для АИС УБР — развитие финансового контура</h3>
-          <span class="tag tc-white" style="background: #F59E0B">Требует проработки</span>
+          <h3>7. Развитие АИС УБР — финансовый контур</h3>
+          <span class="tag tc-white" style="background: #F59E0B">546 млн ₽ · 2026-2029</span>
         </div>
         <div class="systems">
           <span class="system-badge">АИС УБР</span>
+          <span class="system-badge">ГИС ГМП</span>
+          <span class="system-badge">ГИИС ЭБ</span>
+          <span class="system-badge">ЕИП НСУД</span>
         </div>
-        <div class="mt-4 bg-amber-50 rounded-8 p-5" style="border: 2px dashed #F59E0B">
-          <p class="tc-amber text-base fw-700" style="margin: 0 0 8px">TODO: направления развития АИС УБР</p>
-          <ul class="text-base mt-0" style="padding-left: 20px; line-height: 1.7; color: #78350F">
-            <li><strong>Учёт имущества</strong> — полноценный учёт зданий, сооружений, земельных участков, автотранспорта ГИТ</li>
-            <li><strong>ИИ и аналитика</strong> — прогнозирование поступлений, аномалии в квитировании</li>
-            <li><strong>Развитие мониторинга</strong> — экономические показатели ГИТ, качество финансового менеджмента</li>
-          </ul>
-          <p class="tc-amber text-xs" style="margin: 12px 0 0; font-style: italic">Формат: AS-IS → ПРОБЛЕМА → TO-BE → ЭФФЕКТ. Подготовить после согласования направлений.</p>
+
+        <p class="text-sm mt-4 lh-relaxed">5 проектов развития системы управления финансово-хозяйственной деятельностью Роструда и 65 ГИТ. Общий объём: <strong>424 млн ₽</strong> разработка + <strong>122 млн ₽</strong> сопровождение.</p>
+
+        <!-- ═══ Компактная сетка 5 проектов ═══ -->
+        <div class="mt-4" style="display: grid; grid-template-columns: 1fr; gap: 12px">
+
+          <!-- 7.1 -->
+          <div class="p-3 rounded-8" style="background: #FFFBEB; border-left: 4px solid #F59E0B">
+            <div class="d-flex items-center justify-between mb-2" style="flex-wrap: wrap; gap: 6px">
+              <strong class="text-sm" style="color: #92400E">7.1. Тиражирование пилотного проекта Минфина (администрирование доходов)</strong>
+              <span style="display: flex; gap: 4px; flex-shrink: 0">
+                <span class="tag tc-white" style="background: #F59E0B; font-size: 10px">16,1 млн ₽</span>
+                <span class="tag" style="font-size: 10px; background: #D1FAE5; color: #065F46">ВПЦТ 2026</span>
+              </span>
+            </div>
+            <p class="text-xs lh-relaxed" style="margin: 0"><strong>Проблема:</strong> протоколы ГИТ возвращаются мировыми судьями из-за отсутствия УИН — присвоение УИН вручную через администратора ГИС ГМП.
+            <strong>Решение:</strong> интеграция с региональными сегментами ГИС ГМП — автоматическое формирование УИН. <strong>Эффект:</strong> неотвратимость наказания, повышение платёжной дисциплины.</p>
+          </div>
+
+          <!-- 7.2 -->
+          <div class="p-3 rounded-8" style="background: #FFFBEB; border-left: 4px solid #F59E0B">
+            <div class="d-flex items-center justify-between mb-2" style="flex-wrap: wrap; gap: 6px">
+              <strong class="text-sm" style="color: #92400E">7.2. Управление дебиторской задолженностью</strong>
+              <span style="display: flex; gap: 4px; flex-shrink: 0">
+                <span class="tag tc-white" style="background: #F59E0B; font-size: 10px">60 млн ₽</span>
+                <span class="tag" style="font-size: 10px; background: #FEE2E2; color: #991B1B">Доп. финансирование 2027</span>
+              </span>
+            </div>
+            <p class="text-xs lh-relaxed" style="margin: 0"><strong>Проблема:</strong> администратор доходов вручную контролирует сроки просроченной задолженности, нет системных мер предупреждения.
+            <strong>Решение:</strong> автоматический контроль перехода задолженности в статус просроченной, автоматизация регламента работы с должниками, сверка с данными ФК и Минфина.
+            <strong>Эффект:</strong> системное снижение просроченной ДЗ, контроль в разрезе первичных документов.</p>
+          </div>
+
+          <!-- 7.3 -->
+          <div class="p-3 rounded-8" style="background: #FFFBEB; border-left: 4px solid #F59E0B">
+            <div class="d-flex items-center justify-between mb-2" style="flex-wrap: wrap; gap: 6px">
+              <strong class="text-sm" style="color: #92400E">7.3. Внутренний финансовый контроль и мониторинг</strong>
+              <span style="display: flex; gap: 4px; flex-shrink: 0">
+                <span class="tag tc-white" style="background: #F59E0B; font-size: 10px">52 млн ₽</span>
+                <span class="tag" style="font-size: 10px; background: #D1FAE5; color: #065F46">ВПЦТ 2027</span>
+              </span>
+            </div>
+            <p class="text-xs lh-relaxed" style="margin: 0"><strong>Проблема:</strong> контрольные мероприятия в ГИТ выполняются вручную — планирование, проведение, документирование, анализ показателей из разных источников.
+            <strong>Решение:</strong> интеграция финансовых показателей из ФК, Минфина, ФНС через НСУД (СМЭВ 4.0), автоматизация планирования контрольных мероприятий с учётом рисков.
+            <strong>Эффект:</strong> сокращение сроков проверок, снижение ручных операций, повышение прозрачности.</p>
+          </div>
+
+          <!-- 7.4 -->
+          <div class="p-3 rounded-8" style="background: #FFFBEB; border-left: 4px solid #F59E0B">
+            <div class="d-flex items-center justify-between mb-2" style="flex-wrap: wrap; gap: 6px">
+              <strong class="text-sm" style="color: #92400E">7.4. Предпроектное обследование: ИИ при прогнозировании доходов и расходов</strong>
+              <span style="display: flex; gap: 4px; flex-shrink: 0">
+                <span class="tag tc-white" style="background: #F59E0B; font-size: 10px">18 млн ₽</span>
+                <span class="tag" style="font-size: 10px; background: #FEE2E2; color: #991B1B">Доп. финансирование 2027</span>
+              </span>
+            </div>
+            <p class="text-xs lh-relaxed" style="margin: 0">Анализ возможностей ИИ для прогнозирования поступлений доходов, выявления аномалий в квитировании платежей, оптимизации расходной части бюджета ГИТ и ЦА Роструда.</p>
+          </div>
+
+          <!-- 7.5 -->
+          <div class="p-3 rounded-8" style="background: #FFFBEB; border-left: 4px solid #F59E0B">
+            <div class="d-flex items-center justify-between mb-2" style="flex-wrap: wrap; gap: 6px">
+              <strong class="text-sm" style="color: #92400E">7.5. Интерактивные паспорта объектов имущества</strong>
+              <span style="display: flex; gap: 4px; flex-shrink: 0">
+                <span class="tag tc-white" style="background: #F59E0B; font-size: 10px">264 млн ₽</span>
+                <span class="tag" style="font-size: 10px; background: #FEE2E2; color: #991B1B">Доп. финансирование 2028-2029</span>
+              </span>
+            </div>
+            <p class="text-xs lh-relaxed" style="margin: 0"><strong>Проблема:</strong> нет «полной картины» по имуществу ГИТ — затраты, состояние, соответствие законодательству (пандус, ОСАГО и пр.).
+            <strong>Решение:</strong> интерактивные паспорта с фото, документацией, схемами; интеграция с НСПД и госресурсами через СМЭВ 4.0.
+            <strong>Эффект:</strong> оперативная информация, качественное планирование расходов, контроль кадастровой стоимости.</p>
+          </div>
+
+        </div>
+
+        <!-- ═══ Сводная таблица финансирования ═══ -->
+        <div class="print-break mt-5" style="border-top: 3px solid #F59E0B; padding-top: 20px">
+          <h4 class="mb-3 tc-amber fw-700">Финансирование АИС УБР (разработка + сопровождение)</h4>
+          <div class="overflow-auto">
+            <table class="data-table text-xs">
+              <thead>
+                <tr>
+                  <th>Состав работ</th>
+                  <th>Период</th>
+                  <th style="text-align: right">Стоимость (руб.)</th>
+                  <th>Статус</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Тиражирование пилотного проекта Минфина по 20.25 КоАП РФ</td>
+                  <td>2026</td>
+                  <td class="amount">16 094 200</td>
+                  <td style="color: #065F46">ВПЦТ</td>
+                </tr>
+                <tr>
+                  <td>Управление дебиторской задолженностью</td>
+                  <td>2027</td>
+                  <td class="amount">60 000 000</td>
+                  <td style="color: #991B1B">Доп. финансирование</td>
+                </tr>
+                <tr>
+                  <td>Автоматизация ведомственной отчётности</td>
+                  <td>2027</td>
+                  <td class="amount">7 500 000</td>
+                  <td style="color: #065F46">ВПЦТ</td>
+                </tr>
+                <tr>
+                  <td>Развитие аналитической подсистемы РКР</td>
+                  <td>2027</td>
+                  <td class="amount">6 000 000</td>
+                  <td style="color: #065F46">ВПЦТ</td>
+                </tr>
+                <tr>
+                  <td>Внутренний финансовый контроль и мониторинг</td>
+                  <td>2027</td>
+                  <td class="amount">52 000 000</td>
+                  <td style="color: #065F46">ВПЦТ</td>
+                </tr>
+                <tr>
+                  <td>ИИ при прогнозировании доходов и расходов</td>
+                  <td>2027</td>
+                  <td class="amount">18 000 000</td>
+                  <td style="color: #991B1B">Доп. финансирование</td>
+                </tr>
+                <tr>
+                  <td>Интерактивные паспорта имущества (этап 1)</td>
+                  <td>2028</td>
+                  <td class="amount">123 000 000</td>
+                  <td style="color: #991B1B">Доп. финансирование</td>
+                </tr>
+                <tr>
+                  <td>Интерактивные паспорта имущества (этап 2)</td>
+                  <td>2029</td>
+                  <td class="amount">141 000 000</td>
+                  <td style="color: #991B1B">Доп. финансирование</td>
+                </tr>
+                <tr class="total-row">
+                  <td><strong>Итого разработка:</strong></td>
+                  <td></td>
+                  <td class="amount"><strong>423 594 200</strong></td>
+                  <td></td>
+                </tr>
+                <tr style="background: #FEF9C3">
+                  <td>Сопровождение и эксплуатация</td>
+                  <td>2026</td>
+                  <td class="amount">30 720 920</td>
+                  <td style="color: #065F46">ВПЦТ</td>
+                </tr>
+                <tr style="background: #FEF9C3">
+                  <td>Сопровождение и эксплуатация</td>
+                  <td>2027</td>
+                  <td class="amount">33 939 760</td>
+                  <td style="color: #991B1B">Доп. финансирование</td>
+                </tr>
+                <tr style="background: #FEF9C3">
+                  <td>Сопровождение и эксплуатация</td>
+                  <td>2028</td>
+                  <td class="amount">57 839 760</td>
+                  <td style="color: #991B1B">Доп. финансирование</td>
+                </tr>
+                <tr class="total-row">
+                  <td><strong>Итого сопровождение:</strong></td>
+                  <td></td>
+                  <td class="amount"><strong>122 500 440</strong></td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="callout-warning mt-4">
+            <strong>Общий объём:</strong> 546 млн ₽ (424 млн разработка + 122 млн сопровождение). Включено в ВПЦТ: 112 млн ₽. Требует дополнительного финансирования: <strong>434 млн ₽</strong>.
+          </div>
         </div>
       </div>
 
       <!-- Проект 5: Нелегальная занятость (законодательство) -->
       <div id="proj-illegal" class="card project-card print-break mt-5">
         <div class="card__head">
-          <h3>6. Борьба с нелегальной занятостью: законодательные изменения</h3>
+          <h3>8. Борьба с нелегальной занятостью: законодательные изменения</h3>
           <span class="tag">2026-2027</span>
         </div>
         <div class="systems">
@@ -5388,7 +5834,7 @@
       <!-- Проект 6: Риск-ориентированный подход -->
       <div id="proj-risk" class="card project-card print-break mt-5">
         <div class="card__head">
-          <h3>7. Развитие риск-ориентированного подхода</h3>
+          <h3>9. Развитие риск-ориентированного подхода</h3>
           <span class="tag">2026-2027</span>
         </div>
         <div class="systems">
@@ -5403,6 +5849,39 @@
           <li>Интеграция с сервисом Право.ру (индикатор банкротства)</li>
         </ul>
       </div>
+
+      <!-- Вызов 7: КТС (кратко) -->
+      <div id="proj-kts" class="card project-card print-break mt-5">
+        <div class="card__head">
+          <h3>10. Противодействие хищениям через фиктивные КТС</h3>
+          <span class="tag green">Предотвращение>2 млрд ₽</span>
+        </div>
+        <div class="systems">
+          <span class="system-badge">ЕЦП РвР</span>
+          <span class="system-badge">АСУ КНД</span>
+        </div>
+        <p class="muted small mt-3">📋 Детали — на отдельной встрече</p>
+
+        <!-- ПРОБЛЕМА -->
+        <div class="cb cb--problem">
+          <h4 class="cb__label">Проблема</h4>
+          <p class="text-base mt-0">Мошеннические схемы с фиктивными удостоверениями КТС. Ущерб>2 млрд ₽. Бумажный формат не позволяет верифицировать.</p>
+        </div>
+
+        <!-- РЕШЕНИЕ + ЭФФЕКТ -->
+        <div class="cb cb--tobe">
+          <h4 class="cb__label">Решение</h4>
+          <p class="text-base mt-0">Единый электронный реестр удостоверений КТС + электронное взаимодействие + автоконтроль.</p>
+          <p class="text-sm" style="margin: 8px 0 0"><strong>Сроки:</strong> 2026 — законопроект · 2027 — ввод · 2028 — пром. эксплуатация</p>
+        </div>
+
+        <!-- ЭФФЕКТ -->
+        <div class="cb cb--effect">
+          <h4 class="cb__label">Эффект</h4>
+          <p class="text-base fw-600 mt-0" style="color: #1D4ED8">Предотвращение ущерба>2 млрд ₽</p>
+        </div>
+      </div>
+
     </section>
 
     <!-- ===== 4. БЮДЖЕТ ===== -->
@@ -5461,10 +5940,64 @@
         </table>
       </div>
 
+      <!-- АИС УБР: отдельная таблица финансирования -->
+      <div class="card overflow-auto mt-4 bl-amber print-break">
+        <h4 class="mb-3 tc-amber fw-700">Развитие АИС УБР</h4>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Проект</th>
+              <th>Сумма</th>
+              <th>Годы</th>
+              <th>Статус</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Тиражирование пилота Минфина</td>
+              <td class="amount">16,1 млн ₽</td>
+              <td>2026</td>
+              <td style="color: #065F46">ВПЦТ 2026</td>
+            </tr>
+            <tr>
+              <td>Управление дебиторской задолженностью</td>
+              <td class="amount">60 млн ₽</td>
+              <td>2027</td>
+              <td style="color: #991B1B">Требует доп. финансирования</td>
+            </tr>
+            <tr>
+              <td>Внутренний финансовый контроль + отчётность + РКР</td>
+              <td class="amount">65,5 млн ₽</td>
+              <td>2027</td>
+              <td style="color: #065F46">ВПЦТ 2027</td>
+            </tr>
+            <tr>
+              <td>Предпроектное обследование ИИ</td>
+              <td class="amount">18 млн ₽</td>
+              <td>2027</td>
+              <td style="color: #991B1B">Требует доп. финансирования</td>
+            </tr>
+            <tr>
+              <td>Интерактивные паспорта имущества (2 этапа)</td>
+              <td class="amount">264 млн ₽</td>
+              <td>2028-2029</td>
+              <td style="color: #991B1B">Требует доп. финансирования</td>
+            </tr>
+            <tr class="total-row">
+              <td><strong>Итого разработка АИС УБР</strong></td>
+              <td class="amount"><strong>424 млн ₽</strong></td>
+              <td>2026-2029</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="small muted mt-2">Техническое сопровождение: 122,5 млн ₽ (30,7 млн в 2026 + 33,9 млн в 2027 + 57,8 млн в 2028). Общий объём АИС УБР: <strong>546 млн ₽</strong>.</p>
+      </div>
+
       <div class="summary-box">
-        <div class="summary-box__value">826 млн ₽</div>
-        <div class="summary-box__label">Общий объём финансирования проектов ЦТ (включая импортозамещение)</div>
-        <div class="summary-box__hint">Из них 210 млн ₽ → возврат +2,5 млрд ₽/год (ROI ~12x) · 300 млн ₽ — импортозамещение</div>
+        <div class="summary-box__value">826 + 546 = 1 372 млн ₽</div>
+        <div class="summary-box__label">Общий объём финансирования проектов ЦТ (АСУ КНД/ОИ + АИС УБР + импортозамещение)</div>
+        <div class="summary-box__hint">826 млн — АСУ КНД/ОИ/ИИ/15.33.2 · 424 млн — разработка АИС УБР · 122 млн — техподдержка АИС УБР · 210 млн → возврат +2,5 млрд ₽/год (ROI ~12x)</div>
       </div>
 
       <!-- Перспектива по годам -->
@@ -5509,6 +6042,20 @@
               <td class="amount">—</td>
               <td class="amount">—</td>
             </tr>
+            <tr style="background: #FFFBEB">
+              <td class="tc-amber fw-600">АИС УБР: разработка</td>
+              <td class="amount">143,5 млн</td>
+              <td class="amount">123 млн</td>
+              <td class="amount">141 млн</td>
+              <td class="amount">—</td>
+            </tr>
+            <tr style="background: #FFFBEB">
+              <td class="tc-amber fw-600">АИС УБР: техподдержка</td>
+              <td class="amount">33,9 млн</td>
+              <td class="amount">57,8 млн</td>
+              <td class="amount">—</td>
+              <td class="amount">—</td>
+            </tr>
             <tr>
               <td>Импортозамещение</td>
               <td class="amount bg-amber-50">TODO</td>
@@ -5518,18 +6065,18 @@
             </tr>
             <tr class="total-row">
               <td><strong>Итого по году</strong></td>
-              <td class="amount"><strong>243+ млн</strong></td>
-              <td class="amount"><strong>193+ млн</strong></td>
-              <td class="amount bg-amber-50"><strong>TODO</strong></td>
+              <td class="amount"><strong>420+ млн</strong></td>
+              <td class="amount"><strong>374+ млн</strong></td>
+              <td class="amount"><strong>141+ млн</strong></td>
               <td class="amount bg-amber-50"><strong>TODO</strong></td>
             </tr>
           </tbody>
         </table>
-        <p class="small muted mt-2">Суммы импортозамещения по годам требуют утверждения. Общая оценка: 300 млн ₽ на 2027-2030.</p>
+        <p class="small muted mt-2">Суммы импортозамещения по годам требуют утверждения (300 млн ₽ на 2027-2030). АИС УБР 2026: пилот Минфина 16,1 млн + техподдержка 30,7 млн (не в таблице — уже в ВПЦТ 2026).</p>
       </div>
 
       <!-- Дорожная карта -->
-      <h3 class="print-break" style="margin-top: 40px;">Дорожная карта 2026-2028</h3>
+      <h3 class="print-break" style="margin-top: 40px;">Дорожная карта 2026-2029</h3>
       <div class="timeline__line" style="margin: 30px 0;"></div>
 
       <div class="roadmap">
@@ -5556,6 +6103,7 @@
             <div class="roadmap__task blue">Ввод КТС + реестр удостоверений</div>
             <div class="roadmap__task blue">ЭКДО → АСУ КНД (интеграция)</div>
             <div class="roadmap__task blue">МП «Инспектор»</div>
+            <div class="roadmap__task" style="background: rgba(245,158,11,0.15); color: #92400E">АИС УБР: ДЗ + ВФК + ИИ-обследование (143,5 млн ₽)</div>
           </div>
         </div>
         <div class="roadmap__year">
@@ -5566,6 +6114,15 @@
             <div class="roadmap__task blue">Единое рабочее место инспектора</div>
             <div class="roadmap__task blue">КТС: пром. эксплуатация</div>
             <div class="roadmap__task blue">Автоматизация 15.33.2: запуск</div>
+            <div class="roadmap__task" style="background: rgba(245,158,11,0.15); color: #92400E">АИС УБР: паспорта имущества — 1-я очередь (123 млн ₽)</div>
+          </div>
+        </div>
+        <div class="roadmap__year">
+          <div class="roadmap__dot"></div>
+          <h4>2029</h4>
+          <div class="roadmap__tasks">
+            <div class="roadmap__task" style="background: rgba(245,158,11,0.15); color: #92400E">АИС УБР: паспорта имущества — 2-я очередь (141 млн ₽)</div>
+            <div class="roadmap__task blue">Импортозамещение (продолжение)</div>
           </div>
         </div>
       </div>
@@ -6000,10 +6557,46 @@
           <div class="d-flex flex-col gap-2">
             <div class="text-sm bg-gray-50 rounded-8 d-flex items-center justify-between p-3">
               <div>
-                <strong>Тиражирование пилота Минфина</strong> — межведомственное взаимодействие ГИТ ↔ ГУРБ ↔ мировые судьи, синхронность ГИС ГМП
-                <div class="text-xs mt-1" style="color: var(--gray-500)">Август — поставка ПО → Ноябрь — приёмочные испытания</div>
+                <strong>Тиражирование пилота Минфина</strong> — автоматическое формирование УИН, интеграция с региональными сегментами ГИС ГМП
+                <div class="text-xs mt-1" style="color: var(--gray-500)">Межведомственное взаимодействие ГИТ ↔ ГУРБ ↔ мировые судьи</div>
               </div>
-              <span class="text-2xs fw-700 tc-white rounded-sm nowrap bg-green ml-2" style="padding: 2px 8px">12 018 600 руб.</span>
+              <span class="text-2xs fw-700 tc-white rounded-sm nowrap bg-green ml-2" style="padding: 2px 8px">16 094 200 руб.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2027 -->
+        <div class="mt-5">
+          <div class="d-flex items-center gap-2 mb-3">
+            <span class="text-sm fw-700 tc-white rounded-sm" style="background: #D97706; padding: 3px 10px">2027</span>
+            <span class="text-base fw-600 tc-navy">План</span>
+          </div>
+          <div class="d-flex flex-col gap-2">
+            <div class="text-sm bg-gray-50 rounded-8 d-flex items-center justify-between p-3">
+              <div><strong>Управление дебиторской задолженностью</strong> — автоматизация контроля жизненного цикла задолженности</div>
+              <span class="text-2xs fw-700 tc-white rounded-sm nowrap ml-2" style="background: #E11D48; padding: 2px 8px">60 млн — доп. финансирование</span>
+            </div>
+            <div class="text-sm bg-gray-50 rounded-8 d-flex items-center justify-between p-3">
+              <div><strong>Внутренний финансовый контроль</strong> — интеграция с ФК, Минфин, НСУД; автоматизация контрольных мероприятий</div>
+              <span class="text-2xs fw-700 tc-white rounded-sm nowrap bg-green ml-2" style="padding: 2px 8px">52 млн — ВПЦТ</span>
+            </div>
+            <div class="text-sm bg-gray-50 rounded-8 d-flex items-center justify-between p-3">
+              <div><strong>Предпроектное обследование ИИ</strong> — прогнозирование доходов и расходов ГИТ и ЦА</div>
+              <span class="text-2xs fw-700 tc-white rounded-sm nowrap ml-2" style="background: #E11D48; padding: 2px 8px">18 млн — доп. финансирование</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2028-2029 -->
+        <div class="mt-5">
+          <div class="d-flex items-center gap-2 mb-3">
+            <span class="text-sm fw-700 tc-white rounded-sm" style="background: #B45309; padding: 3px 10px">2028-2029</span>
+            <span class="text-base fw-600 tc-navy">План</span>
+          </div>
+          <div class="d-flex flex-col gap-2">
+            <div class="text-sm bg-gray-50 rounded-8 d-flex items-center justify-between p-3">
+              <div><strong>Интерактивные паспорта имущества</strong> — фотоматериалы, схемы, интеграция с НСПД и СМЭВ 4.0</div>
+              <span class="text-2xs fw-700 tc-white rounded-sm nowrap ml-2" style="background: #E11D48; padding: 2px 8px">264 млн — доп. финансирование</span>
             </div>
           </div>
         </div>

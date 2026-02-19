@@ -648,8 +648,13 @@ ul.checks li::before {
 }
 
 .stage__bar {
-  height: 8px;
-  border-radius: 4px;
+  min-height: 8px;
+  border-radius: 6px;
+  padding: 5px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.4;
+  white-space: nowrap;
   transition: width 0.3s ease;
 }
 
@@ -674,6 +679,12 @@ ul.checks li::before {
   background: #ECFDF5;
   color: #047857;
   border: 1px solid #A7F3D0;
+}
+
+.stage__bar.red {
+  background: #FEE2E2;
+  color: #DC2626;
+  border: 1px solid #FECACA;
 }
 
 /* ===== COMPLETED ===== */
@@ -2718,6 +2729,146 @@ details[open] > summary::before {
   line-height: 1.45;
 }
 
+/* ── Lifecycle v2: цветовые стадии + шевроны ── */
+.lifecycle {
+  display: flex;
+  gap: 0;
+  margin: 16px 0 0;
+}
+.lifecycle__stage {
+  flex: 1;
+  position: relative;
+  padding: 14px 12px 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--stage-color, var(--accent));
+  border-radius: var(--radius-sm);
+  margin-right: 26px;
+}
+.lifecycle__stage:last-child { margin-right: 0; }
+.lifecycle__stage:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: -18px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0; height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 12px solid var(--stage-color, var(--accent));
+  filter: drop-shadow(1px 0 0 rgba(0,0,0,.08));
+}
+.lifecycle__num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px; height: 26px;
+  border-radius: 999px;
+  background: var(--stage-color, var(--accent));
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.lifecycle__title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 3px;
+}
+.lifecycle__desc {
+  font-size: 11px;
+  color: #64748B;
+  line-height: 1.4;
+}
+.lifecycle__icon {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 20px;
+  line-height: 1;
+  opacity: .85;
+  filter: grayscale(0);
+}
+.lifecycle-bar {
+  margin: 14px 0 0;
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(to right, #93C5FD, #60A5FA, #3B82F6, #2563EB, #1E40AF);
+}
+
+/* ── KPI accent row ── */
+.tobe-kpi {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+.tobe-kpi__item {
+  flex: 1;
+  text-align: center;
+  padding: 14px 8px 12px;
+  background: var(--accent-soft, #EFF6FF);
+  border-radius: var(--radius-sm);
+  border-bottom: 3px solid var(--accent);
+}
+.tobe-kpi__value {
+  display: block;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1.2;
+}
+.tobe-kpi__label {
+  display: block;
+  font-size: 11px;
+  color: #64748B;
+  margin-top: 4px;
+}
+.tobe-kpi__item--hero {
+  flex: 1.5;
+  background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
+  border-bottom: 3px solid #2563EB;
+}
+.tobe-kpi__item--hero .tobe-kpi__value {
+  font-size: 26px;
+  color: #1E40AF;
+}
+
+/* ── Change mini-cards grid (2×3) ── */
+.changes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 14px;
+}
+.change-card {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 10px 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--change-color, var(--accent));
+}
+.change-card__icon {
+  font-size: 16px;
+  flex-shrink: 0;
+  line-height: 1.2;
+}
+.change-card__body { min-width: 0; }
+.change-card__title {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+.change-card__desc {
+  font-size: 10px;
+  color: #64748B;
+  line-height: 1.35;
+}
+
 .lifecycle-target {
   margin-top: 14px;
   border: 1px solid #BFD4FF;
@@ -2744,6 +2895,12 @@ details[open] > summary::before {
 @media (max-width: 768px) {
   .cb__metrics--3, .cb__metrics--4 { grid-template-columns: repeat(2, 1fr); }
   .process-stages { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .lifecycle { flex-wrap: wrap; }
+  .lifecycle__stage { flex: 0 0 calc(50% - 13px); margin-right: 0 !important; margin-bottom: 8px; }
+  .lifecycle__stage:not(:last-child)::after { display: none; }
+  .tobe-kpi { flex-wrap: wrap; }
+  .tobe-kpi__item { flex: 0 0 calc(33% - 10px); }
+  .changes-grid { grid-template-columns: repeat(2, 1fr); }
   .c1-title { font-size: 24px; }
   .c1-grid, .c1-footer { grid-template-columns: 1fr; }
   .oi-presentation-layout--full-width .oi-presentation-layout__carousel {
@@ -2777,6 +2934,12 @@ details[open] > summary::before {
 @page {
   size: A4 landscape;
   margin: 15mm 15mm;
+  @bottom-right {
+    content: counter(page);
+    font-size: 10px;
+    color: #64748B;
+    font-weight: 700;
+  }
 }
 
 @media print {
@@ -2889,6 +3052,16 @@ details[open] > summary::before {
   .grid, .grid--2, .grid--3, .grid--4 { gap: 10px; }
   .process-stages { grid-template-columns: repeat(2, 1fr) !important; gap: 8px; }
   .process-stage { break-inside: avoid; }
+  /* Lifecycle v2 print */
+  .lifecycle { flex-wrap: wrap; gap: 8px; }
+  .lifecycle__stage { flex: 0 0 calc(50% - 4px); margin-right: 0 !important; }
+  .lifecycle__stage:not(:last-child)::after { display: none; }
+  .lifecycle-bar { display: none; }
+  .tobe-kpi__item { padding: 10px 6px 8px; }
+  .tobe-kpi__value { font-size: 18px; }
+  .tobe-kpi__item--hero .tobe-kpi__value { font-size: 22px; }
+  .changes-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .change-card { padding: 8px 10px; }
   .oi-presentation-layout--full-width .oi-presentation-layout__carousel {
     width: 100% !important;
     margin-left: 0 !important;
@@ -2908,16 +3081,23 @@ details[open] > summary::before {
   .manual-note { font-size: 11px; }
 
   /* --- Нумерация слайдов при печати --- */
-  /* Сквозной номер страницы (bottom-right, авто через CSS page counter) */
-  body::after {
-    content: counter(page);
-    position: fixed;
-    right: 8mm;
-    bottom: 4mm;
-    font-size: 10px;
-    line-height: 1;
-    color: #64748B;
-    font-weight: 700;
+  /* CSS counter slide-num: ::after в потоке после контента каждого слайда.
+     Номер появляется внизу контента каждого .hero / .section / .print-break.
+     @page margin boxes (Chrome 131+) не работают в диалоге печати Chrome — не использовать.
+     position: fixed повторяет ПОСЛЕДНЕЕ значение на всех страницах — не использовать. */
+  body { counter-reset: slide-num; }
+  .hero, .section, .print-break { counter-increment: slide-num; }
+  .hero::after,
+  .section::after,
+  .print-break::after {
+    content: counter(slide-num) !important;
+    display: block !important;
+    text-align: right !important;
+    margin-top: 12px !important;
+    font-size: 10px !important;
+    line-height: 1 !important;
+    color: #94A3B8 !important;
+    font-weight: 700 !important;
   }
 
   /* Скрыть экранные номера слайдов в печати */

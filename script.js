@@ -349,12 +349,14 @@ function initSlideCounter() {
           el.appendChild(num);
         }
       } else {
-        // Для контейнеров с вложенными print-break — номер перед первым дочерним
-        const childBreak = el.querySelector(':scope > .print-break');
-        if (childBreak) {
-          childBreak.insertAdjacentElement('beforebegin', num);
+        // print-break: номер в конце содержимого слайда = перед СЛЕДУЮЩИМ слайдом
+        const nextSlide = slides[idx + 1];
+        if (nextSlide) {
+          nextSlide.insertAdjacentElement('beforebegin', num);
         } else {
-          el.appendChild(num);
+          // Последний слайд: в конец родителя
+          if (el.parentElement) el.parentElement.appendChild(num);
+          else el.appendChild(num);
         }
       }
     });
@@ -624,32 +626,6 @@ function initSubsystemDiagram() {
   });
 }
 
-// Interactive platform diagram
-function initPlatformDiagram() {
-  const svg = document.getElementById('platformDiagram');
-  if (!svg) return;
-  svg.querySelectorAll('.src-group').forEach(g => {
-    const idx = g.dataset.idx;
-    g.addEventListener('mouseenter', () => {
-      svg.querySelectorAll('.flow-path, .flow-dot').forEach(el => {
-        if (el.dataset.idx) el.style.opacity = el.dataset.idx === idx ? '1' : '0.1';
-      });
-      svg.querySelectorAll('.src-group').forEach(sg => {
-        sg.style.opacity = sg.dataset.idx === idx ? '1' : '0.2';
-      });
-    });
-    g.addEventListener('mouseleave', () => {
-      svg.querySelectorAll('.flow-path, .flow-dot, .src-group').forEach(el => {
-        el.style.opacity = '';
-      });
-    });
-  });
-  svg.addEventListener('dblclick', () => {
-    if (svg.animationsPaused()) svg.unpauseAnimations();
-    else svg.pauseAnimations();
-  });
-}
-
 // Verify diagram (248-ФЗ) — dblclick pause
 function initVerifyDiagram() {
   const svg = document.getElementById('verifyDiagram');
@@ -809,7 +785,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initSchemaTabs();
   initStickySubnav();
   initSubsystemDiagram();
-  initPlatformDiagram();
   initVerifyDiagram();
   initImageCarousels();
   initCollapseSections();
