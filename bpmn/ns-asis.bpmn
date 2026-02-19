@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_NS_AsIs" targetNamespace="http://rostrud.gov.ru/bpmn" exporter="Camunda Modeler" exporterVersion="5.27.0">
+  <bpmn:collaboration id="Collab_AsIs">
+    <bpmn:participant id="Pool_Employer" name="РАБОТОДАТЕЛЬ (бумажный процесс)" processRef="Proc_Employer" />
+    <bpmn:participant id="Pool_GIT" name="ГИТ / АСУ КНД (процесс РНС — &#62;30 шагов, контроль сроков)" processRef="Proc_GIT" />
+    <bpmn:participant id="Pool_External" name="ВНЕШНИЕ УЧАСТНИКИ" processRef="Proc_External" />
+    <bpmn:messageFlow id="MF_Notice" name="📄 бумажное извещение&#10;(почта/факс) или email" sourceRef="Task_PaperNotice" targetRef="Evt_FromEmployer" />
+    <bpmn:messageFlow id="MF_Inspector" name="письмо об инспекторе" sourceRef="Task_RNSProcess" targetRef="Task_CreateCommission" />
+    <bpmn:messageFlow id="MF_Signatures" name="📄 бумажные подписи" sourceRef="Task_CollectSignatures" targetRef="Task_RNSProcess" />
+    <bpmn:messageFlow id="MF_ActToASU" name="📄 файл акта Н-1" sourceRef="Task_EmployerAct" targetRef="Task_LoadAct" />
+    <bpmn:messageFlow id="MF_ToSFR" name="📄 вручную (не СМЭВ)" sourceRef="Task_TransferSFR" targetRef="Task_SFR" />
+    <bpmn:messageFlow id="MF_Ext_Med" sourceRef="Activity_0ktty50" targetRef="Evt_FromExternal" />
+    <bpmn:messageFlow id="MF_Ext_Unions" sourceRef="Task_Unions" targetRef="Evt_FromExternal" />
+    <bpmn:messageFlow id="MF_Ext_Invest" sourceRef="Activity_07soqnp" targetRef="Evt_FromExternal" />
+    <bpmn:messageFlow id="MF_Ext_SMI" sourceRef="Task_SMI" targetRef="Evt_FromExternal" />
+    <bpmn:messageFlow id="MF_Ext_MChS" sourceRef="Task_MChS" targetRef="Evt_FromExternal" />
+    <bpmn:textAnnotation id="Ann_Mail">
+      <bpmn:text>✋ Почта идёт до 2 недель.
+Нет единого электронного канала.</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Assoc_Mail" sourceRef="Task_PaperNotice" targetRef="Ann_Mail" />
+    <bpmn:textAnnotation id="Ann_Auto">
+      <bpmn:text>✅ Автоматизировано в АСУ КНД:
+контроль сроков (оповещения за 3, 1, 0 дн.),
+формирование документов, связь с КНМ и АП</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Assoc_Auto" sourceRef="Task_RNSProcess" targetRef="Ann_Auto" />
+    <bpmn:textAnnotation id="Ann_Signatures">
+      <bpmn:text>✋ Физическое присутствие.
+Нет ЭП.</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Assoc_Sign" sourceRef="Task_CollectSignatures" targetRef="Ann_Signatures" />
+    <bpmn:textAnnotation id="Ann_Sources">
+      <bpmn:text>✋ Источники о сокрытых НС —
+бумага, телефон, email. Нет СМЭВ-интеграции</bpmn:text>
+    </bpmn:textAnnotation>
+  </bpmn:collaboration>
+  <bpmn:process id="Proc_Employer" isExecutable="false">
+    <bpmn:startEvent id="Start_NS" name="Несчастный&#10;случай" />
+    <bpmn:manualTask id="Task_PaperNotice" name="Бумажное&#10;извещение&#10;(email / факс / почта /&#10;нарочно)" />
+    <bpmn:manualTask id="Task_CreateCommission" name="Формирование&#10;комиссии&#10;(бумажный&#10;приказ)" />
+    <bpmn:manualTask id="Task_CollectSignatures" name="Сбор подписей&#10;членов комиссии&#10;(физич. присутствие)" />
+    <bpmn:manualTask id="Task_EmployerAct" name="Акт о расследовании + Н-1 (бумажный,&#10;неструктурир.)" />
+    <bpmn:sequenceFlow id="SF_E1" sourceRef="Start_NS" targetRef="Task_PaperNotice" />
+    <bpmn:sequenceFlow id="SF_E2" sourceRef="Task_PaperNotice" targetRef="Task_CreateCommission" />
+    <bpmn:sequenceFlow id="SF_E3" sourceRef="Task_CreateCommission" targetRef="Task_CollectSignatures" />
+    <bpmn:sequenceFlow id="SF_E4" sourceRef="Task_CollectSignatures" targetRef="Task_EmployerAct" />
+  </bpmn:process>
+  <bpmn:process id="Proc_GIT" isExecutable="false">
+    <bpmn:startEvent id="Evt_FromEmployer" name="От&#10;работодателя">
+      <bpmn:messageEventDefinition id="MED_Employer" />
+    </bpmn:startEvent>
+    <bpmn:startEvent id="Evt_FromExternal" name="Из внешних&#10;источников">
+      <bpmn:messageEventDefinition id="MED_External" />
+    </bpmn:startEvent>
+    <bpmn:exclusiveGateway id="GW_MergeIn" name="" />
+    <bpmn:sequenceFlow id="SF_FromEmpl" sourceRef="Evt_FromEmployer" targetRef="GW_MergeIn" />
+    <bpmn:sequenceFlow id="SF_FromExt" sourceRef="Evt_FromExternal" targetRef="GW_MergeIn" />
+    <bpmn:sequenceFlow id="SF_MergeToInput" sourceRef="GW_MergeIn" targetRef="Task_InputNS" />
+    <bpmn:userTask id="Task_InputNS" name="Ввод данных о НС&#10;в АСУ КНД" />
+    <bpmn:subProcess id="Task_RNSProcess" name="Процесс РНС в АСУ КНД&#10;&#62;30 шагов · контроль сроков · документы · протоколы · АП">
+      <bpmn:documentation>Включает: назначение инспектора, решение о расследовании, осмотр, протоколы опроса, запросы в СМЭ, привлечение ФОИВ, продление сроков, заключение инспектора, предписание работодателю, возбуждение дела об АП</bpmn:documentation>
+    </bpmn:subProcess>
+    <bpmn:userTask id="Task_LoadAct" name="Загрузка акта о расследовании&#10;и акта Н-1&#10;(файл, не структурир.)" />
+    <bpmn:manualTask id="Task_TransferSFR" name="Передача&#10;данных в СФР&#10;(вручную,&#10;не через СМЭВ)" />
+    <bpmn:endEvent id="End_GIT" name="" />
+    <bpmn:sequenceFlow id="SF_G1" sourceRef="Task_InputNS" targetRef="Task_RNSProcess" />
+    <bpmn:sequenceFlow id="SF_G2" sourceRef="Task_RNSProcess" targetRef="Task_LoadAct" />
+    <bpmn:sequenceFlow id="SF_G3" sourceRef="Task_LoadAct" targetRef="Task_TransferSFR" />
+    <bpmn:sequenceFlow id="SF_G4" sourceRef="Task_TransferSFR" targetRef="End_GIT" />
+    <bpmn:textAnnotation id="Ann_Act">
+      <bpmn:text>✋ Файл, не структурированный.
+Нельзя автоматически проверить соответствие приказу Минтруда</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Assoc_Act" sourceRef="Task_LoadAct" targetRef="Ann_Act" />
+    <bpmn:textAnnotation id="Ann_SFR">
+      <bpmn:text>✋ Нет СМЭВ-интеграции
+с СФР. Ручная передача.
+Нет единой статистики</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Assoc_SFR" sourceRef="Task_TransferSFR" targetRef="Ann_SFR" />
+  </bpmn:process>
+  <bpmn:process id="Proc_External" isExecutable="false">
+    <bpmn:task id="Task_SFR" name="СФР&#10;(реестр НС)" />
+    <bpmn:task id="Activity_0ktty50" name="Медицинские&#10;учреждения&#10;(форма 59-НСП/у)" />
+    <bpmn:task id="Task_Unions" name="Профсоюзы&#10;(звонки,&#10;письма)" />
+    <bpmn:task id="Activity_07soqnp" name="Следственные&#10;органы" />
+    <bpmn:task id="Task_SMI" name="СМИ" />
+    <bpmn:task id="Task_MChS" name="МЧС&#10;(сводка по email)" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_AsIs">
+    <bpmndi:BPMNPlane id="BPMNPlane_AsIs" bpmnElement="Collab_AsIs">
+      <bpmndi:BPMNShape id="Pool_Employer_di" bpmnElement="Pool_Employer" isHorizontal="true">
+        <dc:Bounds x="160" y="60" width="1800" height="260" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Start_NS_di" bpmnElement="Start_NS">
+        <dc:Bounds x="232" y="192" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="218" y="233" width="65" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_PaperNotice_di" bpmnElement="Task_PaperNotice">
+        <dc:Bounds x="310" y="170" width="140" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_CreateCommission_di" bpmnElement="Task_CreateCommission">
+        <dc:Bounds x="540" y="170" width="160" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_CollectSignatures_di" bpmnElement="Task_CollectSignatures">
+        <dc:Bounds x="790" y="170" width="160" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_EmployerAct_di" bpmnElement="Task_EmployerAct">
+        <dc:Bounds x="1140" y="170" width="140" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SF_E1_di" bpmnElement="SF_E1">
+        <di:waypoint x="268" y="210" />
+        <di:waypoint x="310" y="210" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SF_E2_di" bpmnElement="SF_E2">
+        <di:waypoint x="450" y="210" />
+        <di:waypoint x="540" y="210" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SF_E3_di" bpmnElement="SF_E3">
+        <di:waypoint x="700" y="210" />
+        <di:waypoint x="790" y="210" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SF_E4_di" bpmnElement="SF_E4">
+        <di:waypoint x="950" y="210" />
+        <di:waypoint x="1140" y="210" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Pool_GIT_di" bpmnElement="Pool_GIT" isHorizontal="true">
+        <dc:Bounds x="160" y="340" width="1800" height="320" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Evt_FromEmployer_di" bpmnElement="Evt_FromEmployer">
+        <dc:Bounds x="260" y="402" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="236" y="443" width="85" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Evt_FromExternal_di" bpmnElement="Evt_FromExternal">
+        <dc:Bounds x="260" y="562" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="247" y="524.5" width="62" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GW_MergeIn_di" bpmnElement="GW_MergeIn" isMarkerVisible="true">
+        <dc:Bounds x="375" y="475" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_InputNS_di" bpmnElement="Task_InputNS">
+        <dc:Bounds x="490" y="460" width="130" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_RNSProcess_di" bpmnElement="Task_RNSProcess" isExpanded="false">
+        <dc:Bounds x="690" y="445" width="340" height="110" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_LoadAct_di" bpmnElement="Task_LoadAct">
+        <dc:Bounds x="1100" y="460" width="140" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_TransferSFR_di" bpmnElement="Task_TransferSFR">
+        <dc:Bounds x="1500" y="460" width="140" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="End_GIT_di" bpmnElement="End_GIT">
+        <dc:Bounds x="1720" y="482" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Ann_Act_di" bpmnElement="Ann_Act">
+        <dc:Bounds x="1070" y="360" width="210" height="55" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Ann_SFR_di" bpmnElement="Ann_SFR">
+        <dc:Bounds x="1480" y="360" width="190" height="55" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SF_FromEmpl_di" bpmnElement="SF_FromEmpl">
+        <di:waypoint x="296" y="420" />
+        <di:waypoint x="400" y="420" />
+        <di:waypoint x="400" y="475" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SF_FromExt_di" bpmnElement="SF_FromExt">
+        <di:waypoint x="296" y="580" />
+        <di:waypoint x="400" y="580" />
+        <di:waypoint x="400" y="525" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SF_MergeToInput_di" bpmnElement="SF_MergeToInput">
+        <di:waypoint x="425" y="500" />
+        <di:waypoint x="490" y="500" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SF_G1_di" bpmnElement="SF_G1">
+        <di:waypoint x="620" y="500" />
+        <di:waypoint x="690" y="500" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SF_G2_di" bpmnElement="SF_G2">
+        <di:waypoint x="1030" y="500" />
+        <di:waypoint x="1100" y="500" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SF_G3_di" bpmnElement="SF_G3">
+        <di:waypoint x="1240" y="500" />
+        <di:waypoint x="1500" y="500" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SF_G4_di" bpmnElement="SF_G4">
+        <di:waypoint x="1640" y="500" />
+        <di:waypoint x="1720" y="500" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Assoc_Act_di" bpmnElement="Assoc_Act">
+        <di:waypoint x="1170" y="460" />
+        <di:waypoint x="1170" y="415" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Assoc_SFR_di" bpmnElement="Assoc_SFR">
+        <di:waypoint x="1570" y="460" />
+        <di:waypoint x="1570" y="415" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Pool_External_di" bpmnElement="Pool_External" isHorizontal="true">
+        <dc:Bounds x="160" y="680" width="1800" height="210" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_SFR_di" bpmnElement="Task_SFR">
+        <dc:Bounds x="1500" y="730" width="140" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0ktty50_di" bpmnElement="Activity_0ktty50">
+        <dc:Bounds x="210" y="730" width="120" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_Unions_di" bpmnElement="Task_Unions">
+        <dc:Bounds x="350" y="730" width="120" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_07soqnp_di" bpmnElement="Activity_07soqnp">
+        <dc:Bounds x="490" y="730" width="120" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_SMI_di" bpmnElement="Task_SMI">
+        <dc:Bounds x="630" y="730" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_MChS_di" bpmnElement="Task_MChS">
+        <dc:Bounds x="760" y="730" width="140" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Ann_Mail_di" bpmnElement="Ann_Mail">
+        <dc:Bounds x="290" y="80" width="220" height="41" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Ann_Auto_di" bpmnElement="Ann_Auto">
+        <dc:Bounds x="670" y="360" width="310" height="55" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Ann_Signatures_di" bpmnElement="Ann_Signatures">
+        <dc:Bounds x="755" y="79" width="230" height="41" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Ann_Sources_di" bpmnElement="Ann_Sources">
+        <dc:Bounds x="300" y="830" width="290" height="41" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Assoc_Mail_di" bpmnElement="Assoc_Mail">
+        <di:waypoint x="382" y="170" />
+        <di:waypoint x="408" y="121" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Assoc_Auto_di" bpmnElement="Assoc_Auto">
+        <di:waypoint x="850" y="445" />
+        <di:waypoint x="845" y="415" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Assoc_Sign_di" bpmnElement="Assoc_Sign">
+        <di:waypoint x="876" y="170" />
+        <di:waypoint x="884" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="MF_Notice_di" bpmnElement="MF_Notice">
+        <di:waypoint x="380" y="250" />
+        <di:waypoint x="380" y="370" />
+        <di:waypoint x="278" y="370" />
+        <di:waypoint x="278" y="402" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="284" y="315" width="87" height="53" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="MF_Inspector_di" bpmnElement="MF_Inspector">
+        <di:waypoint x="780" y="445" />
+        <di:waypoint x="780" y="330" />
+        <di:waypoint x="620" y="330" />
+        <di:waypoint x="620" y="250" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="645" y="305" width="59" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="MF_Signatures_di" bpmnElement="MF_Signatures">
+        <di:waypoint x="870" y="250" />
+        <di:waypoint x="870" y="330" />
+        <di:waypoint x="900" y="330" />
+        <di:waypoint x="900" y="445" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="MF_ActToASU_di" bpmnElement="MF_ActToASU">
+        <di:waypoint x="1210" y="250" />
+        <di:waypoint x="1210" y="330" />
+        <di:waypoint x="1170" y="330" />
+        <di:waypoint x="1170" y="460" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1140" y="305" width="86" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="MF_ToSFR_di" bpmnElement="MF_ToSFR">
+        <di:waypoint x="1570" y="540" />
+        <di:waypoint x="1570" y="730" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="MF_Ext_Med_di" bpmnElement="MF_Ext_Med">
+        <di:waypoint x="240" y="730" />
+        <di:waypoint x="240" y="580" />
+        <di:waypoint x="260" y="580" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="MF_Ext_Unions_di" bpmnElement="MF_Ext_Unions">
+        <di:waypoint x="400" y="730" />
+        <di:waypoint x="400" y="690" />
+        <di:waypoint x="240" y="690" />
+        <di:waypoint x="240" y="580" />
+        <di:waypoint x="260" y="580" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="MF_Ext_Invest_di" bpmnElement="MF_Ext_Invest">
+        <di:waypoint x="540" y="730" />
+        <di:waypoint x="540" y="670" />
+        <di:waypoint x="240" y="670" />
+        <di:waypoint x="240" y="580" />
+        <di:waypoint x="260" y="580" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="MF_Ext_SMI_di" bpmnElement="MF_Ext_SMI">
+        <di:waypoint x="670" y="730" />
+        <di:waypoint x="670" y="670" />
+        <di:waypoint x="240" y="670" />
+        <di:waypoint x="240" y="580" />
+        <di:waypoint x="260" y="580" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="MF_Ext_MChS_di" bpmnElement="MF_Ext_MChS">
+        <di:waypoint x="830" y="730" />
+        <di:waypoint x="830" y="670" />
+        <di:waypoint x="240" y="670" />
+        <di:waypoint x="240" y="580" />
+        <di:waypoint x="260" y="580" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="Task_RNSProcess" />
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

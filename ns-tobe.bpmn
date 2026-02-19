@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_NS_ToBe" targetNamespace="http://rostrud.gov.ru/bpmn" exporter="Camunda Modeler" exporterVersion="5.27.0">
+  <bpmn:collaboration id="Collab_ToBe">
+    <bpmn:participant id="Pool_Employer" name="РАБОТОДАТЕЛЬ" processRef="Proc_Employer" />
+    <bpmn:participant id="Pool_SOUT" name="ФГИС СОУТ (ЛК работодателя)" processRef="Proc_SOUT" />
+    <bpmn:participant id="Pool_ASUKND" name="АСУ КНД (существующий процесс РНС + новые интеграции)" processRef="Proc_ASUKND" />
+    <bpmn:participant id="Pool_External" name="ВНЕШНИЕ СИСТЕМЫ" processRef="Proc_External" />
+    <bpmn:messageFlow id="MF_ToSOUT" name="электронное извещение" sourceRef="Task_ENotice" targetRef="Task_SOUTReceive" />
+    <bpmn:messageFlow id="MF_SOUTtoASU" name="СМЭВ 3.0 (авто)" sourceRef="Task_SOUTTransfer" targetRef="Evt_FromEmployer" />
+    <bpmn:messageFlow id="MF_ASUtoSFR" name="СМЭВ (авто)" sourceRef="Task_ASUtoSFR" targetRef="Task_SFR" />
+    <bpmn:messageFlow id="MF_GosKey" name="ЭП через ГосКлюч" sourceRef="Task_SOUTSign" targetRef="Task_GosKey" />
+    <bpmn:messageFlow id="MF_Notify" name="уведомления" sourceRef="Task_ASUDashboard" targetRef="Task_GEPS" />
+    <bpmn:messageFlow id="MF_MAX" name="уведомления" sourceRef="Task_ASUDashboard" targetRef="Task_MAX" />
+    <bpmn:messageFlow id="MF_MChS" name="сводки (e-mail)" sourceRef="Task_MChS" targetRef="Evt_FromExternal" />
+    <bpmn:messageFlow id="MF_MedOrg" name="перспектива ЛК" sourceRef="Task_MedOrg" targetRef="Evt_FromExternal" />
+    <bpmn:messageFlow id="MF_StatusToEmpl" name="статусы, уведомления" sourceRef="Task_SOUTSign" targetRef="Task_TrackStatus" />
+    <bpmn:textAnnotation id="Ann_Auto">
+      <bpmn:text>НОВОЕ: Авто-инициация из ФГИС СОУТ
+(сейчас — ручной ввод)</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Assoc_Auto" sourceRef="Task_ASUInit" targetRef="Ann_Auto" />
+  </bpmn:collaboration>
+  <bpmn:process id="Proc_Employer" isExecutable="false">
+    <bpmn:startEvent id="Start_NS" name="Несчастный&#10;случай" />
+    <bpmn:serviceTask id="Task_ENotice" name="Электронное&#10;извещение&#10;(через ФГИС СОУТ)" />
+    <bpmn:serviceTask id="Task_CreateComm" name="Приказ о&#10;комиссии&#10;(в ЛК ФГИС СОУТ)" />
+    <bpmn:serviceTask id="Task_SignGosKey" name="Подписание&#10;через ГосКлюч&#10;(ЭП всех членов)" />
+    <bpmn:serviceTask id="Task_StructAct" name="Акт о расследовании и  Н-1 (структурированный,&#10;электронный)" />
+    <bpmn:serviceTask id="Task_TrackStatus" name="Отслеживание&#10;статуса в ЛК&#10;(уведомления:&#10;ГЭПС + MAX)" />
+    <bpmn:endEvent id="End_Employer" name="" />
+    <bpmn:sequenceFlow id="SF_E1" sourceRef="Start_NS" targetRef="Task_ENotice" />
+    <bpmn:sequenceFlow id="SF_E2" sourceRef="Task_ENotice" targetRef="Task_CreateComm" />
+    <bpmn:sequenceFlow id="SF_E3" sourceRef="Task_CreateComm" targetRef="Task_SignGosKey" />
+    <bpmn:sequenceFlow id="SF_E4" sourceRef="Task_SignGosKey" targetRef="Task_StructAct" />
+    <bpmn:sequenceFlow id="SF_E5" sourceRef="Task_StructAct" targetRef="Task_TrackStatus" />
+    <bpmn:sequenceFlow id="SF_E6" sourceRef="Task_TrackStatus" targetRef="End_Employer" />
+    <bpmn:textAnnotation id="Ann_24h">
+      <bpmn:text>Электронное уведомление
+(требуется изменение
+законодательства)</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Assoc_24h" sourceRef="Task_ENotice" targetRef="Ann_24h" />
+    <bpmn:textAnnotation id="Ann_EP">
+      <bpmn:text>ЭП через ГосКлюч для всех
+членов комиссии.
+Без физического присутствия</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Assoc_EP" sourceRef="Task_SignGosKey" targetRef="Ann_EP" />
+  </bpmn:process>
+  <bpmn:process id="Proc_SOUT" isExecutable="false">
+    <bpmn:serviceTask id="Task_SOUTReceive" name="ЛК работодателя:&#10;приём извещения&#10;+ формы комиссии" />
+    <bpmn:serviceTask id="Task_SOUTSign" name="ГосКлюч:&#10;подписание ЭП&#10;всеми участниками" />
+    <bpmn:serviceTask id="Task_SOUTTransfer" name="Передача данных&#10;в АСУ КНД&#10;(СМЭВ 3.0)" />
+    <bpmn:sequenceFlow id="SF_S1" sourceRef="Task_SOUTReceive" targetRef="Task_SOUTSign" />
+    <bpmn:sequenceFlow id="SF_S2" sourceRef="Task_SOUTSign" targetRef="Task_SOUTTransfer" />
+  </bpmn:process>
+  <bpmn:process id="Proc_ASUKND" isExecutable="false">
+    <bpmn:startEvent id="Evt_FromEmployer" name="От работодателя&#10;(ФГИС СОУТ → СМЭВ)">
+      <bpmn:messageEventDefinition id="MED_Employer" />
+    </bpmn:startEvent>
+    <bpmn:startEvent id="Evt_FromExternal" name="Из внешних&#10;источников">
+      <bpmn:messageEventDefinition id="MED_External" />
+    </bpmn:startEvent>
+    <bpmn:exclusiveGateway id="GW_MergeIn" name="" />
+    <bpmn:sequenceFlow id="SF_FromEmpl" sourceRef="Evt_FromEmployer" targetRef="GW_MergeIn" />
+    <bpmn:sequenceFlow id="SF_FromExt" sourceRef="Evt_FromExternal" targetRef="GW_MergeIn" />
+    <bpmn:sequenceFlow id="SF_MergeToInit" sourceRef="GW_MergeIn" targetRef="Task_ASUInit" />
+    <bpmn:serviceTask id="Task_ASUInit" name="Авто-инициация&#10;процесса РНС&#10;(вместо ручного&#10;ввода)" />
+    <bpmn:exclusiveGateway id="GW_Type" name="Тип НС" />
+    <bpmn:serviceTask id="Task_Normal" name="Обычное:&#10;фиксация +&#10;контроль" />
+    <bpmn:serviceTask id="Task_Additional" name="Доп. расследование:&#10;отказ подписать /&#10;нарушение процедуры" />
+    <bpmn:serviceTask id="Task_Hidden" name="Сокрытый НС:&#10;МЧС / СМИ /&#10;больницы" />
+    <bpmn:exclusiveGateway id="GW_Merge" name="" />
+    <bpmn:serviceTask id="Task_AutoInspector" name="Авто-назначение&#10;инспектора" />
+    <bpmn:serviceTask id="Task_ControlSUDK" name="Автоматический контроль&#10;и мониторинг сроков" />
+    <bpmn:serviceTask id="Task_ASUDashboard" name="Дашборд НС&#10;для руководителей&#10;+ аналитика" />
+    <bpmn:serviceTask id="Task_ASUtoSFR" name="НОВОЕ:&#10;Авто-передача&#10;в СФР&#10;(СМЭВ 3.0)" />
+    <bpmn:endEvent id="End_ASU" name="" />
+    <bpmn:sequenceFlow id="SF_A1" sourceRef="Task_ASUInit" targetRef="GW_Type" />
+    <bpmn:sequenceFlow id="SF_A2" name="обычный" sourceRef="GW_Type" targetRef="Task_Normal" />
+    <bpmn:sequenceFlow id="SF_A3" name="доп." sourceRef="GW_Type" targetRef="Task_Additional" />
+    <bpmn:sequenceFlow id="SF_A4" name="сокрытый" sourceRef="GW_Type" targetRef="Task_Hidden" />
+    <bpmn:sequenceFlow id="SF_A5" sourceRef="Task_Normal" targetRef="GW_Merge" />
+    <bpmn:sequenceFlow id="SF_A6" sourceRef="Task_Additional" targetRef="GW_Merge" />
+    <bpmn:sequenceFlow id="SF_A7" sourceRef="Task_Hidden" targetRef="GW_Merge" />
+    <bpmn:sequenceFlow id="SF_A8" sourceRef="GW_Merge" targetRef="Task_AutoInspector" />
+    <bpmn:sequenceFlow id="SF_A9" sourceRef="Task_AutoInspector" targetRef="Task_ControlSUDK" />
+    <bpmn:sequenceFlow id="SF_A10" sourceRef="Task_ControlSUDK" targetRef="Task_ASUDashboard" />
+    <bpmn:sequenceFlow id="SF_A11" sourceRef="Task_ASUDashboard" targetRef="Task_ASUtoSFR" />
+    <bpmn:sequenceFlow id="SF_A12" sourceRef="Task_ASUtoSFR" targetRef="End_ASU" />
+    <bpmn:textAnnotation id="Ann_Dashboard">
+      <bpmn:text>НОВОЕ: Единая статистика и аналитика
+по всем НС + СМЭВ-передача в СФР
+(сейчас — ручная передача)</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Assoc_Dashboard" sourceRef="Task_ASUDashboard" targetRef="Ann_Dashboard" />
+  </bpmn:process>
+  <bpmn:process id="Proc_External" isExecutable="false">
+    <bpmn:task id="Task_GEPS" name="ГЭПС → ЕПГУ&#10;(уведомления)" />
+    <bpmn:task id="Task_MAX" name="MAX&#10;(мессенджер)" />
+    <bpmn:task id="Task_GosKey" name="ГосКлюч&#10;(ЭП членов&#10;комиссии)" />
+    <bpmn:task id="Task_MChS" name="МЧС&#10;(сводки)" />
+    <bpmn:task id="Task_MedOrg" name="Медучреждения&#10;(перспектива ЛК)" />
+    <bpmn:task id="Task_SFR" name="СФР&#10;(реестр НС,&#10;авто)" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_ToBe">
+    <bpmndi:BPMNPlane id="BPMNPlane_ToBe" bpmnElement="Collab_ToBe">
+      <bpmndi:BPMNShape id="Pool_Employer_di" bpmnElement="Pool_Employer" isHorizontal="true">
+        <dc:Bounds x="160" y="60" width="1900" height="250" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Start_NS_di" bpmnElement="Start_NS">
+        <dc:Bounds x="232" y="182" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="218" y="223" width="65" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_ENotice_di" bpmnElement="Task_ENotice">
+        <dc:Bounds x="320" y="160" width="150" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_CreateComm_di" bpmnElement="Task_CreateComm">
+        <dc:Bounds x="530" y="160" width="150" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_SignGosKey_di" bpmnElement="Task_SignGosKey">
+        <dc:Bounds x="740" y="160" width="150" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_StructAct_di" bpmnElement="Task_StructAct">
+        <dc:Bounds x="940" y="160" width="170" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_TrackStatus_di" bpmnElement="Task_TrackStatus">
+        <dc:Bounds x="1170" y="160" width="160" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="End_Employer_di" bpmnElement="End_Employer">
+        <dc:Bounds x="1400" y="182" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Ann_24h_di" bpmnElement="Ann_24h">
+        <dc:Bounds x="300" y="68" width="200" height="55" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Ann_EP_di" bpmnElement="Ann_EP">
+        <dc:Bounds x="720" y="68" width="210" height="55" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SF_E1_di" bpmnElement="SF_E1">
+        <di:waypoint x="268" y="200" />
+        <di:waypoint x="320" y="200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SF_E2_di" bpmnElement="SF_E2">
+        <di:waypoint x="470" y="200" />
+        <di:waypoint x="530" y="200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SF_E3_di" bpmnElement="SF_E3">
+        <di:waypoint x="680" y="200" />
+        <di:waypoint x="740" y="200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SF_E4_di" bpmnElement="SF_E4">
+        <di:waypoint x="890" y="200" />
+        <di:waypoint x="940" y="200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SF_E5_di" bpmnElement="SF_E5">
+        <di:waypoint x="1110" y="200" />
+        <di:waypoint x="1170" y="200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SF_E6_di" bpmnElement="SF_E6">
+        <di:waypoint x="1330" y="200" />
+        <di:waypoint x="1400" y="200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Assoc_24h_di" bpmnElement="Assoc_24h">
+        <di:waypoint x="395" y="160" />
+        <di:waypoint x="395" y="123" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Assoc_EP_di" bpmnElement="Assoc_EP">
+        <di:waypoint x="815" y="160" />
+        <di:waypoint x="815" y="123" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Pool_SOUT_di" bpmnElement="Pool_SOUT" isHorizontal="true">
+        <dc:Bounds x="160" y="330" width="1900" height="180" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_SOUTReceive_di" bpmnElement="Task_SOUTReceive">
+        <dc:Bounds x="350" y="380" width="170" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_SOUTSign_di" bpmnElement="Task_SOUTSign">
+        <dc:Bounds x="630" y="380" width="170" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_SOUTTransfer_di" bpmnElement="Task_SOUTTransfer">
+        <dc:Bounds x="910" y="380" width="170" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SF_S1_di" bpmnElement="SF_S1">
+        <di:waypoint x="520" y="420" />
+        <di:waypoint x="630" y="420" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SF_S2_di" bpmnElement="SF_S2">
+        <di:waypoint x="800" y="420" />
+        <di:waypoint x="910" y="420" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Pool_ASUKND_di" bpmnElement="Pool_ASUKND" isHorizontal="true">
+        <dc:Bounds x="160" y="530" width="1900" height="360" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Evt_FromEmployer_di" bpmnElement="Evt_FromEmployer">
+        <dc:Bounds x="260" y="580" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="215" y="621" width="130" height="40" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Evt_FromExternal_di" bpmnElement="Evt_FromExternal">
+        <dc:Bounds x="260" y="762" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="237" y="803" width="96" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GW_MergeIn_di" bpmnElement="GW_MergeIn" isMarkerVisible="true">
+        <dc:Bounds x="370" y="655" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_ASUInit_di" bpmnElement="Task_ASUInit">
+        <dc:Bounds x="505" y="640" width="150" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GW_Type_di" bpmnElement="GW_Type" isMarkerVisible="true">
+        <dc:Bounds x="710" y="655" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="681" y="703" width="38" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_Normal_di" bpmnElement="Task_Normal">
+        <dc:Bounds x="820" y="555" width="150" height="70" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_Additional_di" bpmnElement="Task_Additional">
+        <dc:Bounds x="820" y="645" width="170" height="70" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_Hidden_di" bpmnElement="Task_Hidden">
+        <dc:Bounds x="820" y="745" width="150" height="70" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GW_Merge_di" bpmnElement="GW_Merge" isMarkerVisible="true">
+        <dc:Bounds x="1040" y="655" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_AutoInspector_di" bpmnElement="Task_AutoInspector">
+        <dc:Bounds x="1140" y="640" width="150" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_ControlSUDK_di" bpmnElement="Task_ControlSUDK">
+        <dc:Bounds x="1350" y="640" width="150" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_ASUDashboard_di" bpmnElement="Task_ASUDashboard">
+        <dc:Bounds x="1560" y="640" width="160" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_ASUtoSFR_di" bpmnElement="Task_ASUtoSFR">
+        <dc:Bounds x="1755" y="645" width="150" height="70" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="End_ASU_di" bpmnElement="End_ASU">
+        <dc:Bounds x="1942" y="662" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Ann_Dashboard_di" bpmnElement="Ann_Dashboard">
+        <dc:Bounds x="1540" y="545" width="220" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="SF_FromEmpl_di" bpmnElement="SF_FromEmpl">
+        <di:waypoint x="296" y="598" />
+        <di:waypoint x="395" y="598" />
+        <di:waypoint x="395" y="655" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SF_FromExt_di" bpmnElement="SF_FromExt">
+        <di:waypoint x="296" y="780" />
+        <di:waypoint x="395" y="780" />
+        <di:waypoint x="395" y="705" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SF_MergeToInit_di" bpmnElement="SF_MergeToInit">
+        <di:waypoint x="420" y="680" />
+        <di:waypoint x="505" y="680" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SF_A1_di" bpmnElement="SF_A1">
+        <di:waypoint x="655" y="680" />
+        <di:waypoint x="710" y="680" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SF_A2_di" bpmnElement="SF_A2">
+        <di:waypoint x="735" y="655" />
+        <di:waypoint x="735" y="590" />
+        <di:waypoint x="820" y="590" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="756" y="603" width="47" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SF_A3_di" bpmnElement="SF_A3">
+        <di:waypoint x="760" y="680" />
+        <di:waypoint x="820" y="680" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="769" y="653" width="22" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SF_A4_di" bpmnElement="SF_A4">
+        <di:waypoint x="735" y="705" />
+        <di:waypoint x="735" y="780" />
+        <di:waypoint x="820" y="780" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="755" y="763" width="50" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SF_A5_di" bpmnElement="SF_A5">
+        <di:waypoint x="970" y="590" />
+        <di:waypoint x="1065" y="590" />
+        <di:waypoint x="1065" y="655" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SF_A6_di" bpmnElement="SF_A6">
+        <di:waypoint x="990" y="680" />
+        <di:waypoint x="1040" y="680" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SF_A7_di" bpmnElement="SF_A7">
+        <di:waypoint x="970" y="780" />
+        <di:waypoint x="1065" y="780" />
+        <di:waypoint x="1065" y="705" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SF_A8_di" bpmnElement="SF_A8">
+        <di:waypoint x="1090" y="680" />
+        <di:waypoint x="1140" y="680" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SF_A9_di" bpmnElement="SF_A9">
+        <di:waypoint x="1290" y="680" />
+        <di:waypoint x="1350" y="680" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SF_A10_di" bpmnElement="SF_A10">
+        <di:waypoint x="1500" y="680" />
+        <di:waypoint x="1560" y="680" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SF_A11_di" bpmnElement="SF_A11">
+        <di:waypoint x="1720" y="680" />
+        <di:waypoint x="1755" y="680" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="SF_A12_di" bpmnElement="SF_A12">
+        <di:waypoint x="1905" y="680" />
+        <di:waypoint x="1942" y="680" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Assoc_Dashboard_di" bpmnElement="Assoc_Dashboard">
+        <di:waypoint x="1640" y="640" />
+        <di:waypoint x="1644" y="625" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Pool_External_di" bpmnElement="Pool_External" isHorizontal="true">
+        <dc:Bounds x="160" y="1010" width="1900" height="150" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_GEPS_di" bpmnElement="Task_GEPS">
+        <dc:Bounds x="260" y="1035" width="140" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_MAX_di" bpmnElement="Task_MAX">
+        <dc:Bounds x="440" y="1035" width="130" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_GosKey_di" bpmnElement="Task_GosKey">
+        <dc:Bounds x="630" y="1035" width="140" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_MChS_di" bpmnElement="Task_MChS">
+        <dc:Bounds x="830" y="1035" width="130" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_MedOrg_di" bpmnElement="Task_MedOrg">
+        <dc:Bounds x="1020" y="1035" width="150" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Task_SFR_di" bpmnElement="Task_SFR">
+        <dc:Bounds x="1760" y="1035" width="140" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Ann_Auto_di" bpmnElement="Ann_Auto">
+        <dc:Bounds x="490" y="545" width="210" height="65" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Assoc_Auto_di" bpmnElement="Assoc_Auto">
+        <di:waypoint x="555" y="640" />
+        <di:waypoint x="570" y="610" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="MF_ToSOUT_di" bpmnElement="MF_ToSOUT">
+        <di:waypoint x="395" y="240" />
+        <di:waypoint x="395" y="310" />
+        <di:waypoint x="435" y="310" />
+        <di:waypoint x="435" y="380" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="402" y="276" width="65" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="MF_SOUTtoASU_di" bpmnElement="MF_SOUTtoASU">
+        <di:waypoint x="995" y="460" />
+        <di:waypoint x="995" y="525" />
+        <di:waypoint x="278" y="525" />
+        <di:waypoint x="278" y="580" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="596" y="500" width="84" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="MF_ASUtoSFR_di" bpmnElement="MF_ASUtoSFR">
+        <di:waypoint x="1830" y="715" />
+        <di:waypoint x="1830" y="1035" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1842" y="850" width="66" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="MF_GosKey_di" bpmnElement="MF_GosKey">
+        <di:waypoint x="760" y="460" />
+        <di:waypoint x="760" y="1035" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="776" y="826" width="48" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="MF_Notify_di" bpmnElement="MF_Notify">
+        <di:waypoint x="1610" y="720" />
+        <di:waypoint x="1610" y="940" />
+        <di:waypoint x="330" y="940" />
+        <di:waypoint x="330" y="1035" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="970" y="915" width="68" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="MF_MAX_di" bpmnElement="MF_MAX">
+        <di:waypoint x="1680" y="720" />
+        <di:waypoint x="1680" y="975" />
+        <di:waypoint x="505" y="975" />
+        <di:waypoint x="505" y="1035" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1086" y="955" width="68" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="MF_MChS_di" bpmnElement="MF_MChS">
+        <di:waypoint x="895" y="1035" />
+        <di:waypoint x="895" y="910" />
+        <di:waypoint x="240" y="910" />
+        <di:waypoint x="240" y="780" />
+        <di:waypoint x="260" y="780" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="536" y="888" width="75" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="MF_MedOrg_di" bpmnElement="MF_MedOrg">
+        <di:waypoint x="1095" y="1035" />
+        <di:waypoint x="1095" y="990" />
+        <di:waypoint x="240" y="990" />
+        <di:waypoint x="240" y="780" />
+        <di:waypoint x="260" y="780" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="633" y="968" width="81" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="MF_StatusToEmpl_di" bpmnElement="MF_StatusToEmpl">
+        <di:waypoint x="715" y="380" />
+        <di:waypoint x="715" y="300" />
+        <di:waypoint x="1250" y="300" />
+        <di:waypoint x="1250" y="240" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="949" y="251" width="68" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

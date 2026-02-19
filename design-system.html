@@ -1,0 +1,2033 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Дизайн-система — КНД Роструда</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* === Design System Page Only === */
+    .ds-page { max-width: 1140px; margin: 0 auto; padding: 40px 32px 80px; }
+
+    .ds-hero {
+      padding: 48px 0 40px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 48px;
+    }
+    .ds-hero h1 { font-size: 40px; margin: 0 0 8px; }
+    .ds-hero p { color: var(--gray-500); font-size: 16px; margin: 0; max-width: 600px; }
+
+    .ds-section {
+      margin-bottom: 56px;
+    }
+    .ds-section-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--navy);
+      margin: 0 0 8px;
+      letter-spacing: -0.02em;
+    }
+    .ds-section-desc {
+      color: var(--gray-500);
+      font-size: 14px;
+      margin: 0 0 24px;
+    }
+    .ds-subsection {
+      margin-top: 32px;
+    }
+    .ds-subsection-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--navy);
+      margin: 0 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* Color swatches */
+    .ds-swatches {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 12px;
+    }
+    .ds-swatch {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .ds-swatch__color {
+      height: 64px;
+    }
+    .ds-swatch__info {
+      padding: 10px;
+      font-size: 12px;
+      background: white;
+    }
+    .ds-swatch__name {
+      font-weight: 700;
+      color: var(--navy);
+      display: block;
+      margin-bottom: 2px;
+    }
+    .ds-swatch__value {
+      color: var(--gray-500);
+      font-family: 'SF Mono', 'Cascadia Code', monospace;
+      font-size: 11px;
+    }
+
+    /* Token table */
+    .ds-token-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      font-size: 13px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .ds-token-table th {
+      background: var(--surface-soft);
+      color: var(--navy);
+      font-weight: 600;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 10px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    .ds-token-table td {
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+    .ds-token-table tr:last-child td { border-bottom: none; }
+    .ds-token-table code {
+      font-family: 'SF Mono', 'Cascadia Code', monospace;
+      font-size: 12px;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    /* Type specimens */
+    .ds-type-specimen {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .ds-type-specimen:last-child { border-bottom: none; }
+    .ds-type-meta {
+      display: flex;
+      gap: 16px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+    .ds-type-meta span {
+      font-size: 11px;
+      color: var(--gray-400);
+      font-family: 'SF Mono', 'Cascadia Code', monospace;
+    }
+
+    /* Component showcase */
+    .ds-showcase {
+      background: var(--surface-soft);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 16px;
+    }
+    .ds-showcase--dark {
+      background: var(--navy);
+    }
+    .ds-showcase-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--gray-400);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    /* Shadow demos */
+    .ds-shadow-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 16px;
+    }
+    .ds-shadow-box {
+      background: white;
+      border-radius: var(--radius);
+      padding: 24px 16px;
+      text-align: center;
+    }
+    .ds-shadow-box span {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--gray-500);
+    }
+
+    /* Radius demos */
+    .ds-radius-grid {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      align-items: flex-end;
+    }
+    .ds-radius-box {
+      width: 80px;
+      height: 80px;
+      background: var(--accent-soft);
+      border: 2px solid var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    .ds-radius-box span {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    /* Inline row */
+    .ds-inline-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    /* Code preview */
+    .ds-code {
+      background: #1E293B;
+      color: #E2E8F0;
+      padding: 16px 20px;
+      border-radius: 10px;
+      font-family: 'SF Mono', 'Cascadia Code', monospace;
+      font-size: 12px;
+      line-height: 1.6;
+      overflow-x: auto;
+      margin-top: 12px;
+    }
+    .ds-code .c { color: #94A3B8; }
+    .ds-code .k { color: #60A5FA; }
+    .ds-code .v { color: #34D399; }
+    .ds-code .s { color: #FBBF24; }
+
+    /* Spacing scale */
+    .ds-spacing-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 8px;
+    }
+    .ds-spacing-bar {
+      height: 24px;
+      background: var(--accent-soft);
+      border: 1px solid #BFD4FF;
+      border-radius: 4px;
+    }
+    .ds-spacing-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--navy);
+      min-width: 40px;
+    }
+    .ds-spacing-value {
+      font-size: 11px;
+      color: var(--gray-500);
+      font-family: 'SF Mono', 'Cascadia Code', monospace;
+    }
+  </style>
+</head>
+<body>
+
+<div class="ds-page">
+
+  <!-- ===== HERO ===== -->
+  <div class="ds-hero">
+    <div class="pill">ДИЗАЙН-СИСТЕМА <span class="version-badge" style="margin-left: 8px;">v5_codex</span></div>
+    <h1>Дизайн-код КНД Роструда</h1>
+    <p>Визуальный справочник всех токенов, компонентов и паттернов для презентации-сайта. Шрифт: Inter. Подход: flat design, белый фон, синяя акцентная гамма.</p>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- 1. ПАЛИТРА ЦВЕТОВ                                            -->
+  <!-- ============================================================ -->
+  <div class="ds-section">
+    <h2 class="ds-section-title">1. Палитра цветов</h2>
+    <p class="ds-section-desc">Основные и семантические цвета. Все доступны через CSS-переменные в <code>:root</code>.</p>
+
+    <!-- Основные акценты -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">Акцентные цвета</h3>
+      <div class="ds-swatches">
+        <div class="ds-swatch"><div class="ds-swatch__color" style="background: #2F5EFF"></div><div class="ds-swatch__info"><span class="ds-swatch__name">Accent</span><span class="ds-swatch__value">--accent: #2F5EFF</span></div></div>
+        <div class="ds-swatch"><div class="ds-swatch__color" style="background: #EDF3FF"></div><div class="ds-swatch__info"><span class="ds-swatch__name">Accent Soft</span><span class="ds-swatch__value">--accent-soft: #EDF3FF</span></div></div>
+        <div class="ds-swatch"><div class="ds-swatch__color" style="background: #2563EB"></div><div class="ds-swatch__info"><span class="ds-swatch__name">Blue 600</span><span class="ds-swatch__value">--blue-600: #2563EB</span></div></div>
+        <div class="ds-swatch"><div class="ds-swatch__color" style="background: #1D4ED8"></div><div class="ds-swatch__info"><span class="ds-swatch__name">Blue 700</span><span class="ds-swatch__value">--blue-700: #1D4ED8</span></div></div>
+        <div class="ds-swatch"><div class="ds-swatch__color" style="background: #3B82F6"></div><div class="ds-swatch__info"><span class="ds-swatch__name">Blue 500</span><span class="ds-swatch__value">--blue-500: #3B82F6</span></div></div>
+        <div class="ds-swatch"><div class="ds-swatch__color" style="background: #60A5FA"></div><div class="ds-swatch__info"><span class="ds-swatch__name">Blue 400</span><span class="ds-swatch__value">--blue-400: #60A5FA</span></div></div>
+      </div>
+    </div>
+
+    <!-- Синяя шкала -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">Шкала синего</h3>
+      <div class="ds-swatches">
+        <div class="ds-swatch"><div class="ds-swatch__color" style="background: #EFF6FF"></div><div class="ds-swatch__info"><span class="ds-swatch__name">Blue 50</span><span class="ds-swatch__value">#EFF6FF</span></div></div>
+        <div class="ds-swatch"><div class="ds-swatch__color" style="background: #DBEAFE"></div><div class="ds-swatch__info"><span class="ds-swatch__name">Blue 100</span><span class="ds-swatch__value">#DBEAFE</span></div></div>
+        <div class="ds-swatch"><div class="ds-swatch__color" style="background: #BFDBFE"></div><div class="ds-swatch__info"><span class="ds-swatch__name">Blue 200</span><span class="ds-swatch__value">#BFDBFE</span></div></div>
+        <div class="ds-swatch"><div class="ds-swatch__color" style="background: #93C5FD"></div><div class="ds-swatch__info"><span class="ds-swatch__name">Blue 300</span><span class="ds-swatch__value">#93C5FD</span></div></div>
+      </div>
+    </div>
+
+    <!-- Серые / Нейтральные -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">Нейтральные</h3>
+      <div class="ds-swatches">
+        <div class="ds-swatch"><div class="ds-swatch__color" style="background: #0F172A"></div><div class="ds-swatch__info"><span class="ds-swatch__name">Navy</span><span class="ds-swatch__value">--navy: #0F172A</span></div></div>
+        <div class="ds-swatch"><div class="ds-swatch__color" style="background: #1E293B"></div><div class="ds-swatch__info"><span class="ds-swatch__name">Navy Light</span><span class="ds-swatch__value">#1E293B</span></div></div>
+        <div class="ds-swatch"><div class="ds-swatch__color" style="background: #334155"></div><div class="ds-swatch__info"><span class="ds-swatch__name">Gray 700</span><span class="ds-swatch__value">#334155</span></div></div>
+        <div class="ds-swatch"><div class="ds-swatch__color" style="background: #475569"></div><div class="ds-swatch__info"><span class="ds-swatch__name">Gray 600</span><span class="ds-swatch__value">#475569</span></div></div>
+        <div class="ds-swatch"><div class="ds-swatch__color" style="background: #64748B"></div><div class="ds-swatch__info"><span class="ds-swatch__name">Gray 500</span><span class="ds-swatch__value">--muted: #64748B</span></div></div>
+        <div class="ds-swatch"><div class="ds-swatch__color" style="background: #94A3B8"></div><div class="ds-swatch__info"><span class="ds-swatch__name">Gray 400</span><span class="ds-swatch__value">#94A3B8</span></div></div>
+        <div class="ds-swatch"><div class="ds-swatch__color" style="background: #CBD5E1"></div><div class="ds-swatch__info"><span class="ds-swatch__name">Gray 300</span><span class="ds-swatch__value">#CBD5E1</span></div></div>
+        <div class="ds-swatch"><div class="ds-swatch__color" style="background: #E2E8F0"></div><div class="ds-swatch__info"><span class="ds-swatch__name">Gray 200</span><span class="ds-swatch__value">#E2E8F0</span></div></div>
+        <div class="ds-swatch"><div class="ds-swatch__color" style="background: #F1F5F9"></div><div class="ds-swatch__info"><span class="ds-swatch__name">Gray 100</span><span class="ds-swatch__value">#F1F5F9</span></div></div>
+        <div class="ds-swatch"><div class="ds-swatch__color" style="background: #F8FAFC; border-bottom: 1px solid #E2E8F0"></div><div class="ds-swatch__info"><span class="ds-swatch__name">Gray 50</span><span class="ds-swatch__value">#F8FAFC</span></div></div>
+      </div>
+    </div>
+
+    <!-- Поверхности -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">Поверхности и границы</h3>
+      <div class="ds-swatches">
+        <div class="ds-swatch"><div class="ds-swatch__color" style="background: #FFFFFF; border-bottom: 1px solid #E2E8F0"></div><div class="ds-swatch__info"><span class="ds-swatch__name">Surface</span><span class="ds-swatch__value">--surface: #FFF</span></div></div>
+        <div class="ds-swatch"><div class="ds-swatch__color" style="background: #F8FAFD; border-bottom: 1px solid #E2E8F0"></div><div class="ds-swatch__info"><span class="ds-swatch__name">Surface Soft</span><span class="ds-swatch__value">--surface-soft: #F8FAFD</span></div></div>
+        <div class="ds-swatch"><div class="ds-swatch__color" style="background: #D6DFEC"></div><div class="ds-swatch__info"><span class="ds-swatch__name">Border</span><span class="ds-swatch__value">--border: #D6DFEC</span></div></div>
+        <div class="ds-swatch"><div class="ds-swatch__color" style="background: #BFD4FF"></div><div class="ds-swatch__info"><span class="ds-swatch__name">Hover Border</span><span class="ds-swatch__value">#BFD4FF</span></div></div>
+      </div>
+    </div>
+
+    <!-- Семантические -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">Семантические цвета</h3>
+      <div class="ds-swatches">
+        <div class="ds-swatch"><div class="ds-swatch__color" style="background: #10B981"></div><div class="ds-swatch__info"><span class="ds-swatch__name">Emerald (success)</span><span class="ds-swatch__value">--emerald: #10B981</span></div></div>
+        <div class="ds-swatch"><div class="ds-swatch__color" style="background: #F59E0B"></div><div class="ds-swatch__info"><span class="ds-swatch__name">Amber (warning)</span><span class="ds-swatch__value">--amber: #F59E0B</span></div></div>
+        <div class="ds-swatch"><div class="ds-swatch__color" style="background: #F43F5E"></div><div class="ds-swatch__info"><span class="ds-swatch__name">Rose (danger)</span><span class="ds-swatch__value">--rose: #F43F5E</span></div></div>
+        <div class="ds-swatch"><div class="ds-swatch__color" style="background: #E11D48"></div><div class="ds-swatch__info"><span class="ds-swatch__name">Red (problem)</span><span class="ds-swatch__value">#E11D48</span></div></div>
+        <div class="ds-swatch"><div class="ds-swatch__color" style="background: #6366F1"></div><div class="ds-swatch__info"><span class="ds-swatch__name">Indigo</span><span class="ds-swatch__value">--indigo: #6366F1</span></div></div>
+        <div class="ds-swatch"><div class="ds-swatch__color" style="background: #0EA5E9"></div><div class="ds-swatch__info"><span class="ds-swatch__name">Sky</span><span class="ds-swatch__value">--sky: #0EA5E9</span></div></div>
+      </div>
+    </div>
+
+    <!-- SVG статусы интеграций -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">Статусы интеграций (SVG)</h3>
+      <div class="ds-swatches">
+        <div class="ds-swatch"><div class="ds-swatch__color" style="background: #059669"></div><div class="ds-swatch__info"><span class="ds-swatch__name">Реализовано</span><span class="ds-swatch__value">#059669</span></div></div>
+        <div class="ds-swatch"><div class="ds-swatch__color" style="background: #D97706"></div><div class="ds-swatch__info"><span class="ds-swatch__name">Завершается</span><span class="ds-swatch__value">#D97706</span></div></div>
+        <div class="ds-swatch"><div class="ds-swatch__color" style="background: #DC2626"></div><div class="ds-swatch__info"><span class="ds-swatch__name">Требует доработки</span><span class="ds-swatch__value">#DC2626</span></div></div>
+      </div>
+    </div>
+
+    <!-- ======== 1.7 Цветовая идентичность систем ======== -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">Цветовая идентичность систем</h3>
+      <p style="font-size: 13px; color: var(--gray-600); margin-bottom: 20px;">Каждая из трёх систем + РвР имеет закреплённый цвет. Он используется <strong>везде</strong>: border-left карточек, fill SVG-нод, обводка schema-container, tag, маркеры стрелок.</p>
+
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;">
+        <!-- АСУ КНД -->
+        <div style="border-radius: 12px; overflow: hidden; border: 1px solid var(--border);">
+          <div style="height: 8px; background: #2563EB;"></div>
+          <div style="padding: 16px;">
+            <div style="font-size: 14px; font-weight: 800; color: #1E40AF; margin-bottom: 4px;">АСУ КНД</div>
+            <div style="font-size: 11px; color: var(--gray-500); margin-bottom: 12px;">Бэк-офис надзора</div>
+            <div style="display: flex; flex-direction: column; gap: 6px; font-size: 11px;">
+              <div><span style="display:inline-block;width:14px;height:14px;background:#2563EB;border-radius:3px;vertical-align:middle;margin-right:6px;"></span><code style="font-size:10px;">#2563EB</code> основной</div>
+              <div><span style="display:inline-block;width:14px;height:14px;background:#1E40AF;border-radius:3px;vertical-align:middle;margin-right:6px;"></span><code style="font-size:10px;">#1E40AF</code> текст</div>
+              <div><span style="display:inline-block;width:14px;height:14px;background:#DBEAFE;border-radius:3px;vertical-align:middle;margin-right:6px;"></span><code style="font-size:10px;">#DBEAFE</code> фон блоков</div>
+              <div><span style="display:inline-block;width:14px;height:14px;background:#93C5FD;border-radius:3px;vertical-align:middle;margin-right:6px;"></span><code style="font-size:10px;">#93C5FD</code> обводка KPI</div>
+              <div><span style="display:inline-block;width:14px;height:14px;background:#EFF6FF;border-radius:3px;vertical-align:middle;margin-right:6px;border:1px solid #DBEAFE;"></span><code style="font-size:10px;">#EFF6FF</code> подложка</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ОИ.рф -->
+        <div style="border-radius: 12px; overflow: hidden; border: 1px solid var(--border);">
+          <div style="height: 8px; background: #7C3AED;"></div>
+          <div style="padding: 16px;">
+            <div style="font-size: 14px; font-weight: 800; color: #5B21B6; margin-bottom: 4px;">Онлайн-инспекция</div>
+            <div style="font-size: 11px; color: var(--gray-500); margin-bottom: 12px;">Фронт-офис надзора</div>
+            <div style="display: flex; flex-direction: column; gap: 6px; font-size: 11px;">
+              <div><span style="display:inline-block;width:14px;height:14px;background:#7C3AED;border-radius:3px;vertical-align:middle;margin-right:6px;"></span><code style="font-size:10px;">#7C3AED</code> основной</div>
+              <div><span style="display:inline-block;width:14px;height:14px;background:#5B21B6;border-radius:3px;vertical-align:middle;margin-right:6px;"></span><code style="font-size:10px;">#5B21B6</code> текст</div>
+              <div><span style="display:inline-block;width:14px;height:14px;background:#F5F3FF;border-radius:3px;vertical-align:middle;margin-right:6px;border:1px solid #DDD6FE;"></span><code style="font-size:10px;">#F5F3FF</code> фон</div>
+              <div style="margin-top: 4px; font-size: 10px; color: var(--gray-400);">Используется только на hero-SVG. Карточки ОИ = синий (#2563EB)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- АИС УБР -->
+        <div style="border-radius: 12px; overflow: hidden; border: 1px solid var(--border);">
+          <div style="height: 8px; background: #F59E0B;"></div>
+          <div style="padding: 16px;">
+            <div style="font-size: 14px; font-weight: 800; color: #92400E; margin-bottom: 4px;">АИС УБР</div>
+            <div style="font-size: 11px; color: var(--gray-500); margin-bottom: 12px;">Финансовый бэк-офис</div>
+            <div style="display: flex; flex-direction: column; gap: 6px; font-size: 11px;">
+              <div><span style="display:inline-block;width:14px;height:14px;background:#F59E0B;border-radius:3px;vertical-align:middle;margin-right:6px;"></span><code style="font-size:10px;">#F59E0B</code> основной</div>
+              <div><span style="display:inline-block;width:14px;height:14px;background:#92400E;border-radius:3px;vertical-align:middle;margin-right:6px;"></span><code style="font-size:10px;">#92400E</code> текст</div>
+              <div><span style="display:inline-block;width:14px;height:14px;background:#FEF3C7;border-radius:3px;vertical-align:middle;margin-right:6px;"></span><code style="font-size:10px;">#FEF3C7</code> фон</div>
+              <div><span style="display:inline-block;width:14px;height:14px;background:#FCD34D;border-radius:3px;vertical-align:middle;margin-right:6px;"></span><code style="font-size:10px;">#FCD34D</code> обводка</div>
+              <div><span style="display:inline-block;width:14px;height:14px;background:#B45309;border-radius:3px;vertical-align:middle;margin-right:6px;"></span><code style="font-size:10px;">#B45309</code> доп. текст</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- РвР / ЭКДО -->
+        <div style="border-radius: 12px; overflow: hidden; border: 1px solid var(--border);">
+          <div style="height: 8px; background: #10B981;"></div>
+          <div style="padding: 16px;">
+            <div style="font-size: 14px; font-weight: 800; color: #065F46; margin-bottom: 4px;">РвР / ЭКДО</div>
+            <div style="font-size: 11px; color: var(--gray-500); margin-bottom: 12px;">Платформа «Работа в России»</div>
+            <div style="display: flex; flex-direction: column; gap: 6px; font-size: 11px;">
+              <div><span style="display:inline-block;width:14px;height:14px;background:#10B981;border-radius:3px;vertical-align:middle;margin-right:6px;"></span><code style="font-size:10px;">#10B981</code> основной</div>
+              <div><span style="display:inline-block;width:14px;height:14px;background:#065F46;border-radius:3px;vertical-align:middle;margin-right:6px;"></span><code style="font-size:10px;">#065F46</code> текст</div>
+              <div><span style="display:inline-block;width:14px;height:14px;background:#ECFDF5;border-radius:3px;vertical-align:middle;margin-right:6px;border:1px solid #A7F3D0;"></span><code style="font-size:10px;">#ECFDF5</code> фон</div>
+              <div><span style="display:inline-block;width:14px;height:14px;background:#34D399;border-radius:3px;vertical-align:middle;margin-right:6px;"></span><code style="font-size:10px;">#34D399</code> обводка</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======== 1.8 Цветовые роли (как применять) ======== -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">Цветовые роли — когда какой цвет</h3>
+
+      <table class="ds-token-table">
+        <thead><tr><th>Роль</th><th>Цвет</th><th>Где применяется</th><th>Пример</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Акцент (CTA)</strong></td>
+            <td><span style="display:inline-block;width:12px;height:12px;background:#2F5EFF;border-radius:2px;vertical-align:middle;margin-right:4px;"></span> <code>#2F5EFF</code></td>
+            <td>Кнопки, ссылки внутри текста, активные элементы навигации, pill «Дата/версия»</td>
+            <td><code>.pill</code>, <code>.nav a.active</code>, <code>.effect-box__value</code></td>
+          </tr>
+          <tr>
+            <td><strong>Основной синий</strong></td>
+            <td><span style="display:inline-block;width:12px;height:12px;background:#2563EB;border-radius:2px;vertical-align:middle;margin-right:4px;"></span> <code>#2563EB</code></td>
+            <td>border-left карточек АСУ КНД, fill SVG-центра, fullscreen-кнопка, ссылки .bpmn</td>
+            <td><code>border-left: 4px solid var(--blue-600)</code></td>
+          </tr>
+          <tr>
+            <td><strong>Текст заголовков</strong></td>
+            <td><span style="display:inline-block;width:12px;height:12px;background:#0F172A;border-radius:2px;vertical-align:middle;margin-right:4px;"></span> <code>#0F172A</code></td>
+            <td>h1-h3, strong внутри абзацев, заголовки карточек</td>
+            <td><code>var(--navy)</code></td>
+          </tr>
+          <tr>
+            <td><strong>Текст основной</strong></td>
+            <td><span style="display:inline-block;width:12px;height:12px;background:#334155;border-radius:2px;vertical-align:middle;margin-right:4px;"></span> <code>#334155</code></td>
+            <td>Абзацы, списки, описания в challenge-блоках</td>
+            <td><code>p</code>, <code>li</code>, <code>.cb p</code></td>
+          </tr>
+          <tr>
+            <td><strong>Вторичный текст</strong></td>
+            <td><span style="display:inline-block;width:12px;height:12px;background:#64748B;border-radius:2px;vertical-align:middle;margin-right:4px;"></span> <code>#64748B</code></td>
+            <td>Подписи, подзаголовки, мета-информация, .muted</td>
+            <td><code>.muted</code>, <code>.lead</code>, подписи под графиками</td>
+          </tr>
+          <tr>
+            <td><strong>Третичный текст</strong></td>
+            <td><span style="display:inline-block;width:12px;height:12px;background:#94A3B8;border-radius:2px;vertical-align:middle;margin-right:4px;"></span> <code>#94A3B8</code></td>
+            <td>Источники данных, примечания, заголовки колонок SVG</td>
+            <td><code>.small.muted</code>, SVG column headers</td>
+          </tr>
+          <tr>
+            <td><strong>Поверхность 1</strong></td>
+            <td><span style="display:inline-block;width:12px;height:12px;background:#FFFFFF;border-radius:2px;vertical-align:middle;margin-right:4px;border:1px solid #D6DFEC;"></span> <code>#FFFFFF</code></td>
+            <td>Карточки, hero, основной фон</td>
+            <td><code>.card</code>, <code>.hero</code>, <code>body</code></td>
+          </tr>
+          <tr>
+            <td><strong>Поверхность 2</strong></td>
+            <td><span style="display:inline-block;width:12px;height:12px;background:#F8FAFD;border-radius:2px;vertical-align:middle;margin-right:4px;border:1px solid #D6DFEC;"></span> <code>#F8FAFD</code></td>
+            <td>Вложенные блоки, note-box, schema-wrapper, details</td>
+            <td><code>var(--surface-soft)</code></td>
+          </tr>
+          <tr>
+            <td><strong>Поверхность 3</strong></td>
+            <td><span style="display:inline-block;width:12px;height:12px;background:#F1F5F9;border-radius:2px;vertical-align:middle;margin-right:4px;border:1px solid #D6DFEC;"></span> <code>#F1F5F9</code></td>
+            <td>Разделительные линии SVG, альтернативные строки</td>
+            <td>SVG <code>&lt;line&gt;</code> stroke</td>
+          </tr>
+          <tr>
+            <td><strong>Граница</strong></td>
+            <td><span style="display:inline-block;width:12px;height:12px;background:#D6DFEC;border-radius:2px;vertical-align:middle;margin-right:4px;"></span> <code>#D6DFEC</code></td>
+            <td>Обводка карточек, разделители, border-bottom секций</td>
+            <td><code>var(--border)</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ======== 1.9 Рецепты: цвет по ситуации ======== -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">Цветовые рецепты — комбинации по назначению</h3>
+
+      <!-- Challenge blocks -->
+      <p style="font-size: 12px; font-weight: 700; color: var(--navy); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.05em;">Блоки вызовов (challenge flow)</p>
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px;">
+        <div style="border-radius: 10px; overflow: hidden; border: 1px solid var(--border);">
+          <div style="height: 4px; background: #64748B;"></div>
+          <div style="padding: 12px; background: #F8FAFC;">
+            <div style="font-size: 12px; font-weight: 700; color: #475569;">AS-IS</div>
+            <div style="font-size: 10px; color: var(--gray-500); margin-top: 4px;">
+              border-left: <code style="font-size:10px;">#64748B</code><br>
+              label bg: <code style="font-size:10px;">#F8FAFC</code><br>
+              label border: <code style="font-size:10px;">#CBD5E1</code><br>
+              label text: <code style="font-size:10px;">#475569</code><br>
+              body text: <code style="font-size:10px;">#475569</code>
+            </div>
+          </div>
+        </div>
+        <div style="border-radius: 10px; overflow: hidden; border: 1px solid var(--border);">
+          <div style="height: 4px; background: #E11D48;"></div>
+          <div style="padding: 12px; background: #FFF1F2;">
+            <div style="font-size: 12px; font-weight: 700; color: #BE123C;">ПРОБЛЕМА</div>
+            <div style="font-size: 10px; color: var(--gray-500); margin-top: 4px;">
+              border-left: <code style="font-size:10px;">#E11D48</code><br>
+              label bg: <code style="font-size:10px;">#FFF1F2</code><br>
+              label border: <code style="font-size:10px;">#FDA4AF</code><br>
+              label text: <code style="font-size:10px;">#BE123C</code><br>
+              lead text: <code style="font-size:10px;">#1E293B</code> 600
+            </div>
+          </div>
+        </div>
+        <div style="border-radius: 10px; overflow: hidden; border: 1px solid var(--border);">
+          <div style="height: 4px; background: var(--accent);"></div>
+          <div style="padding: 12px; background: var(--accent-soft);">
+            <div style="font-size: 12px; font-weight: 700; color: var(--accent);">TO-BE</div>
+            <div style="font-size: 10px; color: var(--gray-500); margin-top: 4px;">
+              border-left: <code style="font-size:10px;">var(--accent)</code><br>
+              label bg: <code style="font-size:10px;">var(--accent-soft)</code><br>
+              label border: <code style="font-size:10px;">#BFD4FF</code><br>
+              label text: <code style="font-size:10px;">var(--accent)</code><br>
+              body text: <code style="font-size:10px;">#334155</code>
+            </div>
+          </div>
+        </div>
+        <div style="border-radius: 10px; overflow: hidden; border: 1px solid var(--border);">
+          <div style="height: 4px; background: #10B981;"></div>
+          <div style="padding: 12px; background: #ECFDF5;">
+            <div style="font-size: 12px; font-weight: 700; color: #047857;">ЭФФЕКТ</div>
+            <div style="font-size: 10px; color: var(--gray-500); margin-top: 4px;">
+              border-left: <code style="font-size:10px;">#10B981</code><br>
+              label bg: <code style="font-size:10px;">#ECFDF5</code><br>
+              label border: <code style="font-size:10px;">#A7F3D0</code><br>
+              label text: <code style="font-size:10px;">#047857</code><br>
+              body text: <code style="font-size:10px;">#334155</code>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Информационные акценты (border-left) -->
+      <p style="font-size: 12px; font-weight: 700; color: var(--navy); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.05em;">Информационные акценты (border-left на карточках)</p>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 24px;">
+        <div style="border-left: 4px solid #2563EB; background: white; border-radius: 0 8px 8px 0; padding: 12px 16px; border-top: 1px solid var(--border); border-right: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+          <div style="font-size: 12px; font-weight: 700; color: #1E40AF;">АСУ КНД / ОИ.рф</div>
+          <div style="font-size: 10px; color: var(--gray-500); margin-top: 4px;">border-left: 4px solid <code style="font-size:10px;">#2563EB</code></div>
+          <div style="font-size: 10px; color: var(--gray-500);">Вложенные: border-left: 3px solid <code style="font-size:10px;">#2563EB</code></div>
+        </div>
+        <div style="border-left: 4px solid #F59E0B; background: white; border-radius: 0 8px 8px 0; padding: 12px 16px; border-top: 1px solid var(--border); border-right: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+          <div style="font-size: 12px; font-weight: 700; color: #92400E;">АИС УБР</div>
+          <div style="font-size: 10px; color: var(--gray-500); margin-top: 4px;">border-left: 4px solid <code style="font-size:10px;">#F59E0B</code></div>
+          <div style="font-size: 10px; color: var(--gray-500);">Вложенные: border-left: 3px solid <code style="font-size:10px;">#F59E0B</code></div>
+        </div>
+        <div style="border-left: 4px solid #E11D48; background: white; border-radius: 0 8px 8px 0; padding: 12px 16px; border-top: 1px solid var(--border); border-right: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+          <div style="font-size: 12px; font-weight: 700; color: #BE123C;">Риски</div>
+          <div style="font-size: 10px; color: var(--gray-500); margin-top: 4px;">border-left: 4px solid <code style="font-size:10px;">#E11D48</code></div>
+          <div style="font-size: 10px; color: var(--gray-500);">h3 color: <code style="font-size:10px;">#BE123C</code></div>
+        </div>
+      </div>
+
+      <!-- Семантические фоны -->
+      <p style="font-size: 12px; font-weight: 700; color: var(--navy); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.05em;">Семантические подложки (surface + border)</p>
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px;">
+        <div style="background: #EFF6FF; border: 1px solid #DBEAFE; border-radius: 8px; padding: 12px;">
+          <div style="font-size: 11px; font-weight: 600; color: #1E40AF;">Информация (синий)</div>
+          <div style="font-size: 10px; color: #3B82F6; margin-top: 4px;">bg #EFF6FF · border #DBEAFE<br>text #1E40AF / #3B82F6</div>
+          <div style="font-size: 9px; color: var(--gray-400); margin-top: 6px;">Справочные блоки, выделения внутри карточек</div>
+        </div>
+        <div style="background: #FEF9C3; border: 1px solid #FDE047; border-radius: 8px; padding: 12px;">
+          <div style="font-size: 11px; font-weight: 600; color: #92400E;">Внимание (amber)</div>
+          <div style="font-size: 10px; color: #B45309; margin-top: 4px;">bg #FEF9C3 · border #FDE047<br>text #92400E / #78350F</div>
+          <div style="font-size: 9px; color: var(--gray-400); margin-top: 6px;">Предупреждения, блоки «нет интеграции»</div>
+        </div>
+        <div style="background: #F0FDF4; border: 1px solid #BBF7D0; border-radius: 8px; padding: 12px;">
+          <div style="font-size: 11px; font-weight: 600; color: #166534;">Успех (зелёный)</div>
+          <div style="font-size: 10px; color: #15803D; margin-top: 4px;">bg #F0FDF4 · border #BBF7D0<br>text #166534 / #15803D</div>
+          <div style="font-size: 9px; color: var(--gray-400); margin-top: 6px;">Итоговые цифры, эффект, позитивные сравнения</div>
+        </div>
+        <div style="background: #FFF1F2; border: 1px solid #FECDD3; border-radius: 8px; padding: 12px;">
+          <div style="font-size: 11px; font-weight: 600; color: #BE123C;">Проблема (красный)</div>
+          <div style="font-size: 10px; color: #E11D48; margin-top: 4px;">bg #FFF1F2 · border #FECDD3<br>text #BE123C / #9F1239</div>
+          <div style="font-size: 9px; color: var(--gray-400); margin-top: 6px;">Негативные сравнения, текущие проблемы</div>
+        </div>
+      </div>
+
+      <!-- Градиенты -->
+      <p style="font-size: 12px; font-weight: 700; color: var(--navy); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.05em;">Градиенты (только для bar-графиков и SVG-фона центра)</p>
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px;">
+        <div>
+          <div style="height: 48px; background: linear-gradient(180deg, #3B82F6, #2563EB); border-radius: 8px;"></div>
+          <div style="font-size: 10px; color: var(--gray-500); margin-top: 6px; text-align: center;">Bar высокий<br>#3B82F6 → #2563EB</div>
+        </div>
+        <div>
+          <div style="height: 48px; background: linear-gradient(180deg, #2563EB, #1D4ED8); border-radius: 8px;"></div>
+          <div style="font-size: 10px; color: var(--gray-500); margin-top: 6px; text-align: center;">Bar пиковый<br>#2563EB → #1D4ED8</div>
+        </div>
+        <div>
+          <div style="height: 48px; background: linear-gradient(180deg, #60A5FA, #3B82F6); border-radius: 8px;"></div>
+          <div style="font-size: 10px; color: var(--gray-500); margin-top: 6px; text-align: center;">Bar средний<br>#60A5FA → #3B82F6</div>
+        </div>
+        <div>
+          <div style="height: 48px; background: linear-gradient(180deg, #93C5FD, #60A5FA); border-radius: 8px;"></div>
+          <div style="font-size: 10px; color: var(--gray-500); margin-top: 6px; text-align: center;">Bar низкий<br>#93C5FD → #60A5FA</div>
+        </div>
+      </div>
+      <p style="font-size: 11px; color: var(--gray-400); margin-bottom: 8px;">Правило: чем больше значение — тем темнее градиент. Максимум — #2563EB → #1D4ED8, минимум — #93C5FD → #60A5FA.</p>
+      <p style="font-size: 11px; color: #BE123C;"><strong>Градиенты НЕ используются</strong> для нод SVG, карточек, фонов секций или кнопок. Единственное исключение — SVG <code>linearGradient sd-core</code> (#DBEAFE → #BFDBFE) для фона центрального rect архитектурной схемы.</p>
+    </div>
+
+    <!-- ======== 1.10 Правила цветовой иерархии ======== -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">Правила цветовой иерархии</h3>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+        <div style="background: #F0FDF4; border: 1px solid #BBF7D0; border-radius: 12px; padding: 20px;">
+          <div style="font-size: 12px; font-weight: 700; color: #166534; margin-bottom: 10px;">ПРИНЦИПЫ</div>
+          <ul style="margin: 0; padding-left: 16px; font-size: 12px; line-height: 1.8; color: #334155;">
+            <li><strong>Белый = первый план.</strong> Карточки, hero, основной контент — всегда белый</li>
+            <li><strong>Цвет = сигнал, не декор.</strong> Каждый цвет несёт смысл (система, статус, эмоция)</li>
+            <li><strong>border-left = принадлежность.</strong> Синий = АСУ КНД/ОИ, amber = УБР, красный = риск</li>
+            <li><strong>Насыщенность = важность.</strong> #2563EB (кнопки) > #60A5FA (числа) > #93C5FD (обводки) > #DBEAFE (фон)</li>
+            <li><strong>Фон = 50-уровень.</strong> Семантические подложки: самый светлый оттенок палитры</li>
+            <li><strong>Тёмные = SVG-ноды.</strong> #0F172A-#64748B только для fill нод-источников на схемах</li>
+            <li><strong>1 акцент на блок.</strong> Не смешивать синий + зелёный + amber в одном challenge-block</li>
+          </ul>
+        </div>
+        <div style="background: #FFF1F2; border: 1px solid #FECDD3; border-radius: 12px; padding: 20px;">
+          <div style="font-size: 12px; font-weight: 700; color: #BE123C; margin-bottom: 10px;">ЗАПРЕЩЕНО</div>
+          <ul style="margin: 0; padding-left: 16px; font-size: 12px; line-height: 1.8; color: #334155;">
+            <li>Цветной текст на цветном фоне (кроме white на #2563EB)</li>
+            <li>Градиенты для нод, карточек, кнопок, фонов секций</li>
+            <li>Оттенки красного (#E11D48, #BE123C) для не-проблемных блоков</li>
+            <li>border-left разных цветов в одной карточке</li>
+            <li>Больше 3 семантических цветов на одной странице print</li>
+            <li>Прозрачность (opacity) на тексте — только на SVG-связях</li>
+            <li>Цвет #E94E1B (оранжевый РвР) — на сайте НЕ используется, только в палитре бренда</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- 2. ТИПОГРАФИКА                                               -->
+  <!-- ============================================================ -->
+  <div class="ds-section">
+    <h2 class="ds-section-title">2. Типографика</h2>
+    <p class="ds-section-desc">Шрифт Inter, 6 весов (400-900). Заголовки с отрицательным letter-spacing для плотности.</p>
+
+    <div class="ds-type-specimen">
+      <h1 style="margin: 0;">Концепция цифровизации КНД</h1>
+      <div class="ds-type-meta">
+        <span>h1</span>
+        <span>48px / 1.1</span>
+        <span>weight: 800</span>
+        <span>letter-spacing: -0.03em</span>
+        <span>color: --navy</span>
+      </div>
+    </div>
+
+    <div class="ds-type-specimen">
+      <h2 style="margin: 0;">Единая система обеспечения КНД</h2>
+      <div class="ds-type-meta">
+        <span>h2</span>
+        <span>32px / 1.2</span>
+        <span>weight: 700</span>
+        <span>letter-spacing: -0.02em</span>
+        <span>color: --navy</span>
+      </div>
+    </div>
+
+    <div class="ds-type-specimen">
+      <h3 style="margin: 0;">Автоматизация процессов контроля</h3>
+      <div class="ds-type-meta">
+        <span>h3</span>
+        <span>18px / 1.4</span>
+        <span>weight: 600</span>
+        <span>color: --navy</span>
+      </div>
+    </div>
+
+    <div class="ds-type-specimen">
+      <h4 style="margin: 0;">Интеграция с ЕРКНМ и ЕРВК</h4>
+      <div class="ds-type-meta">
+        <span>h4</span>
+        <span>18px / 1.4</span>
+        <span>weight: 700</span>
+        <span>letter-spacing: -0.01em</span>
+      </div>
+    </div>
+
+    <div class="ds-type-specimen">
+      <div class="platform-name" style="margin-top: 0;">Единая система обеспечения КНД</div>
+      <div class="ds-type-meta">
+        <span>.platform-name</span>
+        <span>28px / 1.2</span>
+        <span>weight: 800</span>
+        <span>color: --blue-600</span>
+      </div>
+    </div>
+
+    <div class="ds-type-specimen">
+      <p class="lead" style="margin: 0;">Материалы для совещания у Министра труда и социальной защиты Российской Федерации</p>
+      <div class="ds-type-meta">
+        <span>.lead</span>
+        <span>18px / 1.7</span>
+        <span>weight: 400</span>
+        <span>color: --gray-500</span>
+        <span>max-width: 560px</span>
+      </div>
+    </div>
+
+    <div class="ds-type-specimen">
+      <p style="margin: 0; color: var(--text);">Основной текст документа. Управление процессами контрольно-надзорной деятельности, контроль сроков исполнения, не позволяет идти не в ту сторону.</p>
+      <div class="ds-type-meta">
+        <span>body/p</span>
+        <span>16px / 1.6</span>
+        <span>weight: 400</span>
+        <span>color: --text (--navy)</span>
+      </div>
+    </div>
+
+    <div class="ds-type-specimen">
+      <p class="muted small" style="margin: 0;">Вспомогательный текст — примечания, подписи к схемам, источники данных</p>
+      <div class="ds-type-meta">
+        <span>.muted.small</span>
+        <span>13px / 1.6</span>
+        <span>weight: 400</span>
+        <span>color: --muted (#64748B)</span>
+      </div>
+    </div>
+
+    <div class="ds-type-specimen">
+      <span class="section-title-number">01.</span><span style="font-size: 32px; font-weight: 700; color: var(--navy);">Нумерация секций</span>
+      <div class="ds-type-meta">
+        <span>.section-title-number</span>
+        <span>color: --accent</span>
+        <span>weight: 800</span>
+        <span>margin-right: 8px</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- 3. SPACING, RADIUS, SHADOWS                                  -->
+  <!-- ============================================================ -->
+  <div class="ds-section">
+    <h2 class="ds-section-title">3. Spacing, Radius, Shadows</h2>
+    <p class="ds-section-desc">Единые отступы, скругления и тени создают ощущение глубины и иерархии.</p>
+
+    <!-- Spacing -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">Шкала отступов</h3>
+      <div class="ds-spacing-row"><span class="ds-spacing-label">4px</span><div class="ds-spacing-bar" style="width: 16px;"></div><span class="ds-spacing-value">micro — gap внутри компактных элементов</span></div>
+      <div class="ds-spacing-row"><span class="ds-spacing-label">8px</span><div class="ds-spacing-bar" style="width: 32px;"></div><span class="ds-spacing-value">xs — gap между иконками и текстом</span></div>
+      <div class="ds-spacing-row"><span class="ds-spacing-label">12px</span><div class="ds-spacing-bar" style="width: 48px;"></div><span class="ds-spacing-value">sm — gap в grid, margin внутри карточек</span></div>
+      <div class="ds-spacing-row"><span class="ds-spacing-label">16px</span><div class="ds-spacing-bar" style="width: 64px;"></div><span class="ds-spacing-value">md — padding карточек (компактных), gap grid</span></div>
+      <div class="ds-spacing-row"><span class="ds-spacing-label">20px</span><div class="ds-spacing-bar" style="width: 80px;"></div><span class="ds-spacing-value">— gap в основных grid, margin-top секций</span></div>
+      <div class="ds-spacing-row"><span class="ds-spacing-label">24px</span><div class="ds-spacing-bar" style="width: 96px;"></div><span class="ds-spacing-value">— padding основных карточек (.card: 28px)</span></div>
+      <div class="ds-spacing-row"><span class="ds-spacing-label">32px</span><div class="ds-spacing-bar" style="width: 128px;"></div><span class="ds-spacing-value">lg — padding container, отступы между секциями</span></div>
+      <div class="ds-spacing-row"><span class="ds-spacing-label">48px</span><div class="ds-spacing-bar" style="width: 192px;"></div><span class="ds-spacing-value">xl — padding big-metric, gap между hero и nav</span></div>
+      <div class="ds-spacing-row"><span class="ds-spacing-label">60px</span><div class="ds-spacing-bar" style="width: 240px;"></div><span class="ds-spacing-value">section — padding-top/bottom секций (.section)</span></div>
+    </div>
+
+    <!-- Radius -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">Border Radius</h3>
+      <div class="ds-showcase">
+        <div class="ds-radius-grid">
+          <div class="ds-radius-box" style="border-radius: 6px;"><span>6px</span><span style="font-size: 9px; color: #64748B;">--radius-xs</span></div>
+          <div class="ds-radius-box" style="border-radius: 10px;"><span>10px</span><span style="font-size: 9px; color: #64748B;">--radius-sm</span></div>
+          <div class="ds-radius-box" style="border-radius: 14px;"><span>14px</span><span style="font-size: 9px; color: #64748B;">--radius-md</span></div>
+          <div class="ds-radius-box" style="border-radius: 16px;"><span>16px</span><span style="font-size: 9px; color: #64748B;">--radius</span></div>
+          <div class="ds-radius-box" style="border-radius: 20px;"><span>20px</span><span style="font-size: 9px; color: #64748B;">--radius-lg</span></div>
+          <div class="ds-radius-box" style="border-radius: 999px;"><span>999px</span><span style="font-size: 9px; color: #64748B;">pill</span></div>
+        </div>
+      </div>
+      <table class="ds-token-table" style="margin-top: 16px;">
+        <thead><tr><th>Токен</th><th>Значение</th><th>Применение</th></tr></thead>
+        <tbody>
+          <tr><td><code>--radius-xs</code></td><td>6px</td><td>stage__bar, flow-step, мелкие элементы</td></tr>
+          <tr><td><code>--radius-sm</code></td><td>10px</td><td>stat, note-box, owner-line, smev-group</td></tr>
+          <tr><td><code>--radius-md</code></td><td>14px</td><td>cb (challenge blocks), effect-box, oi-slice, lifecycle</td></tr>
+          <tr><td><code>--radius</code></td><td>16px</td><td>kpi, основные карточки (по умолчанию)</td></tr>
+          <tr><td><code>--radius-lg</code></td><td>20px</td><td>card, big-metric, summary-box, completed</td></tr>
+          <tr><td><code>999px</code></td><td>pill</td><td>pill, tag, badge, nav link, carousel dot</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Shadows -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">Тени</h3>
+      <div class="ds-showcase">
+        <div class="ds-shadow-grid">
+          <div class="ds-shadow-box" style="box-shadow: var(--shadow-sm);"><span>--shadow-sm</span></div>
+          <div class="ds-shadow-box" style="box-shadow: var(--shadow);"><span>--shadow</span></div>
+          <div class="ds-shadow-box" style="box-shadow: var(--shadow-md);"><span>--shadow-md</span></div>
+          <div class="ds-shadow-box" style="box-shadow: var(--shadow-lg);"><span>--shadow-lg</span></div>
+          <div class="ds-shadow-box" style="box-shadow: var(--shadow-xl);"><span>--shadow-xl</span></div>
+          <div class="ds-shadow-box" style="box-shadow: var(--shadow-blue);"><span>--shadow-blue</span></div>
+        </div>
+      </div>
+      <p class="muted small" style="margin-top: 8px;">Все тени используют <code>rgba(15, 23, 42, ...)</code> (navy base). shadow-blue: <code>rgba(37, 99, 235, 0.2)</code> — для акцентных кнопок.</p>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- 4. КОМПОНЕНТЫ UI                                             -->
+  <!-- ============================================================ -->
+  <div class="ds-section">
+    <h2 class="ds-section-title">4. Компоненты UI</h2>
+    <p class="ds-section-desc">Переиспользуемые элементы интерфейса. Все используют CSS-переменные для единообразия.</p>
+
+    <!-- Pill -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">Pill (маркер)</h3>
+      <div class="ds-showcase">
+        <span class="ds-showcase-label">Pill — идентификатор контекста</span>
+        <div class="pill">РОСТРУД • 2026-2030 <span class="version-badge" style="margin-left: 8px;">v5_codex</span></div>
+      </div>
+      <div class="ds-code"><span class="k">&lt;div class=</span><span class="s">"pill"</span><span class="k">&gt;</span>РОСТРУД • 2026-2030<span class="k">&lt;/div&gt;</span></div>
+    </div>
+
+    <!-- Tags -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">Tag (метки)</h3>
+      <div class="ds-showcase">
+        <span class="ds-showcase-label">Варианты тегов</span>
+        <div class="ds-inline-row">
+          <span class="tag blue">АСУ КНД</span>
+          <span class="tag green">Реализовано</span>
+          <span class="tag">По умолчанию</span>
+        </div>
+      </div>
+      <div class="ds-code"><span class="k">&lt;span class=</span><span class="s">"tag blue"</span><span class="k">&gt;</span>АСУ КНД<span class="k">&lt;/span&gt;</span>
+<span class="k">&lt;span class=</span><span class="s">"tag green"</span><span class="k">&gt;</span>Реализовано<span class="k">&lt;/span&gt;</span></div>
+    </div>
+
+    <!-- Status badges -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">Status Badge (статус автоматизации)</h3>
+      <div class="ds-showcase">
+        <span class="ds-showcase-label">Три уровня автоматизации</span>
+        <div class="ds-inline-row">
+          <span class="status-auto">Автоматизировано</span>
+          <span class="status-semi">Частично</span>
+          <span class="status-manual">Ручной процесс</span>
+        </div>
+      </div>
+      <div class="ds-code"><span class="k">&lt;span class=</span><span class="s">"status-auto"</span><span class="k">&gt;</span>Автоматизировано<span class="k">&lt;/span&gt;</span>
+<span class="k">&lt;span class=</span><span class="s">"status-semi"</span><span class="k">&gt;</span>Частично<span class="k">&lt;/span&gt;</span>
+<span class="k">&lt;span class=</span><span class="s">"status-manual"</span><span class="k">&gt;</span>Ручной процесс<span class="k">&lt;/span&gt;</span></div>
+    </div>
+
+    <!-- System badges -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">System Badge (бейдж системы)</h3>
+      <div class="ds-showcase">
+        <div class="ds-inline-row">
+          <span class="system-badge">АСУ КНД</span>
+          <span class="system-badge">ОИ.рф</span>
+          <span class="system-badge">АИС УБР</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Challenge 1 chips -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">Chips (c1-chip)</h3>
+      <div class="ds-showcase">
+        <span class="ds-showcase-label">Inline-чипы для нормативного контекста</span>
+        <div class="ds-inline-row">
+          <span class="c1-chip">248-ФЗ О госконтроле</span>
+          <span class="c1-chip">1028-р Концепция 2015</span>
+          <span class="c1-chip--alt c1-chip">3745-р Концепция КНД</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Manual badges -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">Manual Badge (ручной процесс)</h3>
+      <div class="ds-showcase">
+        <div class="manual-badges">
+          <span class="manual-badge">&#9888; Сбор данных вручную</span>
+          <span class="manual-badge">&#9888; Расчёт индикатора вручную</span>
+          <span class="manual-badge">&#9888; Проверка вручную</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">Кнопки</h3>
+      <div class="ds-showcase">
+        <span class="ds-showcase-label">Collapse toggle + Schema fullscreen</span>
+        <div class="ds-inline-row">
+          <button class="collapse-toggle">Подробнее <span class="collapse-arrow">&#9660;</span></button>
+          <button class="schema-fullscreen-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+            На весь экран
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Nav -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">Навигация (hero)</h3>
+      <div class="ds-showcase">
+        <nav class="nav">
+          <a href="#">Архитектура</a>
+          <a href="#">Системы</a>
+          <a href="#">Вызовы</a>
+          <a href="#">Бюджет</a>
+          <a href="#">Эффекты</a>
+          <a href="#">Решение</a>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Card -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">Card (карточка)</h3>
+      <div class="ds-showcase">
+        <div class="card" style="max-width: 480px;">
+          <div class="card__head">
+            <h3>АСУ КНД</h3>
+            <span class="tag blue">Бэк-офис</span>
+          </div>
+          <p style="margin: 0; color: var(--gray-600); font-size: 14px;">Управление процессами контрольно-надзорной деятельности. 65 процессов, 56 подсистем, 65 ГИТ.</p>
+        </div>
+      </div>
+      <div class="ds-code"><span class="k">&lt;div class=</span><span class="s">"card"</span><span class="k">&gt;</span>
+  <span class="k">&lt;div class=</span><span class="s">"card__head"</span><span class="k">&gt;</span>
+    <span class="k">&lt;h3&gt;</span>...<span class="k">&lt;/h3&gt;</span>
+    <span class="k">&lt;span class=</span><span class="s">"tag blue"</span><span class="k">&gt;</span>...<span class="k">&lt;/span&gt;</span>
+  <span class="k">&lt;/div&gt;</span>
+  <span class="k">&lt;p&gt;</span>...<span class="k">&lt;/p&gt;</span>
+<span class="k">&lt;/div&gt;</span></div>
+      <p class="muted small" style="margin-top: 8px;">Параметры: <code>padding: 28px</code>, <code>border-radius: --radius-lg (20px)</code>, <code>border: 1px solid --border</code>, <code>shadow: --shadow-sm</code>. Hover: border <code>#BFD4FF</code>, shadow <code>--shadow-md</code>.</p>
+    </div>
+
+    <!-- Note box -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">Note Box (примечание)</h3>
+      <div class="ds-showcase">
+        <div class="note-box" style="max-width: 480px;">Паспорта проверок размещаются в ЕРКНМ. ЕРВК v.1.3.* лишь добавляет признак подписания паспорта.</div>
+      </div>
+    </div>
+
+    <!-- Owner line -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">Owner Line (владелец)</h3>
+      <div class="ds-showcase">
+        <div class="owner-line">Заказчик: <strong>Роструд</strong> | Исполнитель: подрядчик</div>
+      </div>
+    </div>
+
+    <!-- Completed -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">Completed (статус готовности)</h3>
+      <div class="ds-showcase">
+        <div class="completed" style="max-width: 560px;">
+          <div class="completed__icon">&#10003;</div>
+          <div class="completed__text">
+            <h3>Реализовано в АСУ КНД</h3>
+            <p>Полноценный процесс расследования НС, >30 шагов, контроль сроков</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- 5. CHALLENGE-БЛОКИ                                            -->
+  <!-- ============================================================ -->
+  <div class="ds-section">
+    <h2 class="ds-section-title">5. Challenge-блоки (вызовы)</h2>
+    <p class="ds-section-desc">Порядок подачи: КАК СЕЙЧАС (AS-IS) → ПРОБЛЕМА → КАК НАДО (TO-BE) → ЭФФЕКТ. Каждый блок имеет цветовой маркер слева.</p>
+
+    <!-- AS-IS -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">КАК СЕЙЧАС (.cb--asis) — серый</h3>
+      <div class="cb cb--asis" style="max-width: 640px;">
+        <div class="cb__label">КАК СЕЙЧАС</div>
+        <p class="cb__lead" style="font-size: 14px; font-weight: 600; color: #1E293B; margin: 0 0 8px;">Инспектор создаёт КНМ вручную за 40 минут</p>
+        <p style="margin: 0;">Данные вводятся в несколько систем параллельно. Отсутствует сквозной цифровой контур.</p>
+      </div>
+    </div>
+
+    <!-- PROBLEM -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">ПРОБЛЕМА (.cb--problem) — красный</h3>
+      <div class="cb cb--problem" style="max-width: 640px;">
+        <div class="cb__label">ПРОБЛЕМА</div>
+        <p class="cb__lead">Ручной ввод данных в 3+ системы, дублирование, ошибки</p>
+        <p style="margin: 0;">Высокая нагрузка на инспектора. Отсутствие автоматического контроля за соблюдением сроков процессуальных действий.</p>
+      </div>
+    </div>
+
+    <!-- TO-BE -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">КАК НАДО (.cb--tobe) — синий</h3>
+      <div class="cb cb--tobe" style="max-width: 640px;">
+        <div class="cb__label">КАК НАДО</div>
+        <p style="margin: 0 0 12px; font-size: 14px; font-weight: 600; color: #1E293B;">Система автоматически формирует и размещает КНМ в ЕРКНМ за 3 минуты</p>
+        <div class="cb__metrics cb__metrics--3">
+          <div class="cb__metric"><div class="cb__metric-value">3 мин</div><div class="cb__metric-label">создание КНМ</div></div>
+          <div class="cb__metric"><div class="cb__metric-value">0</div><div class="cb__metric-label">ручных вводов</div></div>
+          <div class="cb__metric"><div class="cb__metric-value">100%</div><div class="cb__metric-label">контроль сроков</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EFFECT -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">ЭФФЕКТ (.cb--effect) — зелёный</h3>
+      <div class="cb cb--effect" style="max-width: 640px;">
+        <div class="cb__label">ЭФФЕКТ</div>
+        <p style="margin: 0 0 12px; font-size: 14px; font-weight: 600; color: #1E293B;">Экономия >2 000 человеко-часов ежемесячно</p>
+        <div class="cb__metrics cb__metrics--3">
+          <div class="cb__metric"><div class="cb__metric-value" style="color: #10B981;">92%</div><div class="cb__metric-label">экономия времени</div></div>
+          <div class="cb__metric"><div class="cb__metric-value" style="color: #10B981;">+17 млрд ₽</div><div class="cb__metric-label">доначисления</div></div>
+          <div class="cb__metric"><div class="cb__metric-value" style="color: #10B981;">65 ГИТ</div><div class="cb__metric-label">охват</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Flow steps -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">Flow steps (шаги процесса внутри cb)</h3>
+      <div class="ds-showcase">
+        <div class="cb__flow">
+          <span class="cb__flow-step">Получение данных ФНС</span>
+          <span class="cb__flow-arrow">&#8594;</span>
+          <span class="cb__flow-step">Кассирование</span>
+          <span class="cb__flow-arrow cb__flow-arrow--break">&#8594; &#9995;</span>
+          <span class="cb__flow-step cb__flow-step--problem">Ручное распределение</span>
+          <span class="cb__flow-arrow">&#8594;</span>
+          <span class="cb__flow-step cb__flow-step--solution">Автоматическое распределение</span>
+        </div>
+      </div>
+      <p class="muted small" style="margin-top: 8px;">Модификаторы: <code>.cb__flow-step--problem</code> (розовый), <code>.cb__flow-step--solution</code> (синий), <code>.cb__flow-arrow--break</code> (красная стрелка ✋).</p>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- 6. МЕТРИКИ, KPI, ТАБЛИЦЫ                                     -->
+  <!-- ============================================================ -->
+  <div class="ds-section">
+    <h2 class="ds-section-title">6. Метрики, KPI, Таблицы</h2>
+    <p class="ds-section-desc">Числовые показатели — ключевой элемент презентации для министра.</p>
+
+    <!-- KPI -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">KPI карточки (.kpi)</h3>
+      <div class="ds-showcase">
+        <div class="kpis" style="grid-template-columns: repeat(4, 1fr);">
+          <div class="kpi">
+            <div class="kpi__label">Процессов</div>
+            <div class="kpi__value blue">65</div>
+            <div class="kpi__hint">видов надзора</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi__label">Подсистем</div>
+            <div class="kpi__value blue">56</div>
+            <div class="kpi__hint">АСУ КНД</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi__label">Документов</div>
+            <div class="kpi__value green">27.7 млн</div>
+            <div class="kpi__hint">в системе</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi__label">ГИТ</div>
+            <div class="kpi__value blue">65</div>
+            <div class="kpi__hint">территориальных</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stat row -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">Stat Row (.stat-row)</h3>
+      <div class="ds-showcase">
+        <div class="stat-row">
+          <div class="stat"><div class="stat__num blue">49</div><div class="stat__label">видов СМЭВ (АСУ КНД)</div></div>
+          <div class="stat"><div class="stat__num">16</div><div class="stat__label">видов СМЭВ (АИС УБР)</div></div>
+          <div class="stat"><div class="stat__num green">10</div><div class="stat__label">ФОИВ-источников</div></div>
+          <div class="stat"><div class="stat__num">12</div><div class="stat__label">сервисов ОИ.рф</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Big metric -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">Big Metric (.big-metric)</h3>
+      <div class="ds-showcase">
+        <div class="big-metric" style="max-width: 400px;">
+          <div class="big-metric__value">826 млн ₽</div>
+          <div class="big-metric__label">Общий бюджет 2027-2030</div>
+          <div class="big-metric__hint">526 млн проекты + 300 млн импортозамещение</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Effect box -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">Effect Box (.effect-box)</h3>
+      <div class="ds-showcase">
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; max-width: 540px;">
+          <div class="effect-box">
+            <div class="effect-box__label">Экономия</div>
+            <div class="effect-box__value">&gt;26 млрд ₽</div>
+          </div>
+          <div class="effect-box">
+            <div class="effect-box__label">Доначисления</div>
+            <div class="effect-box__value">+2.5 млрд</div>
+          </div>
+          <div class="effect-box">
+            <div class="effect-box__label">Охват</div>
+            <div class="effect-box__value">65 ГИТ</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Data table -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">Data Table (.data-table)</h3>
+      <div class="ds-showcase">
+        <div style="overflow-x: auto;">
+          <table class="data-table" style="max-width: 640px;">
+            <thead><tr><th>Год</th><th>Нарушений</th><th>Штрафов</th><th>Сумма, млн ₽</th></tr></thead>
+            <tbody>
+              <tr><td>2022</td><td>8 859 105</td><td><span class="amount">410 866</span></td><td><span class="amount">1 100</span></td></tr>
+              <tr><td>2023</td><td>9 173 544</td><td><span class="amount">426 377</span></td><td><span class="amount">1 200</span></td></tr>
+              <tr class="total-row"><td><strong>Итого</strong></td><td></td><td><span class="amount">837 243</span></td><td><span class="amount">2 300</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- 7. СПИСКИ                                                    -->
+  <!-- ============================================================ -->
+  <div class="ds-section">
+    <h2 class="ds-section-title">7. Списки</h2>
+    <p class="ds-section-desc">Три типа списков для разных контекстов.</p>
+
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">Bullets (.bullets) — основной список</h3>
+      <div class="ds-showcase" style="max-width: 480px;">
+        <ul class="bullets">
+          <li>Реинжиниринг 65 процессов по 3 видам контроля</li>
+          <li>Интеграция с ЕРКНМ и ЕРВК</li>
+          <li>Автоматизация индикаторов риска</li>
+        </ul>
+      </div>
+      <p class="muted small" style="margin-top: 8px;">Маркер: <code>›</code>, цвет: <code>--blue-500</code>, вес: 700.</p>
+    </div>
+
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">Checks (.checks) — галочки</h3>
+      <div class="ds-showcase" style="max-width: 480px;">
+        <ul class="checks">
+          <li>Документооборот КНД (п. 21.1) — реализовано</li>
+          <li>Административные правонарушения (п. 22.1) — реализовано</li>
+          <li>ЕРВК (v.1.3.*) — в тесте</li>
+        </ul>
+      </div>
+      <p class="muted small" style="margin-top: 8px;">Иконка: зелёный чекбокс (emerald), <code>border-radius: 6px</code>.</p>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- 8. СЕТКА И LAYOUT                                            -->
+  <!-- ============================================================ -->
+  <div class="ds-section">
+    <h2 class="ds-section-title">8. Сетка и Layout</h2>
+    <p class="ds-section-desc">CSS Grid для адаптивных раскладок. Container 1140px, padding 32px.</p>
+
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">Grid варианты</h3>
+      <table class="ds-token-table">
+        <thead><tr><th>Класс</th><th>Колонки</th><th>Gap</th><th>Применение</th></tr></thead>
+        <tbody>
+          <tr><td><code>.grid</code></td><td>3</td><td>20px</td><td>Карточки систем, эффекты, проекты</td></tr>
+          <tr><td><code>.grid--2</code></td><td>2</td><td>20px</td><td>Парные блоки, AS-IS / TO-BE</td></tr>
+          <tr><td><code>.grid--4</code></td><td>4</td><td>20px</td><td>Компактные карточки, KPI</td></tr>
+          <tr><td><code>.kpis</code></td><td>4</td><td>16px</td><td>KPI-метрики на hero</td></tr>
+          <tr><td><code>.cb__metrics--3</code></td><td>3</td><td>10px</td><td>Метрики внутри challenge-блоков</td></tr>
+          <tr><td><code>.cb__metrics--4</code></td><td>4</td><td>10px</td><td>4 метрики внутри блока</td></tr>
+          <tr><td><code>.c1-grid</code></td><td>2</td><td>14px</td><td>AS-IS / TO-BE в подвызовах</td></tr>
+          <tr><td><code>.process-stages</code></td><td>5</td><td>12px</td><td>5 стадий жизненного цикла</td></tr>
+          <tr><td><code>.manual-grid</code></td><td>2</td><td>12px</td><td>Индикаторы СОУТ</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">Grid демо: 3 колонки</h3>
+      <div class="ds-showcase">
+        <div class="grid">
+          <div class="card" style="padding: 16px; text-align: center;"><span class="tag blue">1</span><p style="margin: 8px 0 0; font-size: 13px;">АСУ КНД</p></div>
+          <div class="card" style="padding: 16px; text-align: center;"><span class="tag green">2</span><p style="margin: 8px 0 0; font-size: 13px;">ОИ.рф</p></div>
+          <div class="card" style="padding: 16px; text-align: center;"><span class="tag">3</span><p style="margin: 8px 0 0; font-size: 13px;">АИС УБР</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">Container</h3>
+      <table class="ds-token-table">
+        <thead><tr><th>Параметр</th><th>Значение</th><th>Примечание</th></tr></thead>
+        <tbody>
+          <tr><td><code>max-width</code></td><td>1140px</td><td>Основной контейнер</td></tr>
+          <tr><td><code>padding</code></td><td>0 32px</td><td>Боковые отступы (20px на mobile)</td></tr>
+          <tr><td><code>margin</code></td><td>0 auto</td><td>Центрирование</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- 9. CHALLENGE 1 DECK (ПОДВЫЗОВЫ)                              -->
+  <!-- ============================================================ -->
+  <div class="ds-section">
+    <h2 class="ds-section-title">9. Challenge 1 Deck</h2>
+    <p class="ds-section-desc">Специальная композиция для Вызова 1: заголовок + подвызовы с AS-IS/TO-BE сравнением.</p>
+
+    <div class="ds-showcase">
+      <div class="c1-deck card" style="padding: 20px;">
+        <div class="c1-head">
+          <p class="c1-kicker">ПОДВЫЗОВ 1</p>
+          <h3 class="c1-title" style="font-size: 22px;">Сквозной цифровой контур КНД</h3>
+          <p class="c1-subtitle">Единый процесс от инициации до принуждения</p>
+          <div class="c1-chips">
+            <span class="c1-chip">248-ФЗ</span>
+            <span class="c1-chip c1-chip--alt">65 процессов</span>
+          </div>
+        </div>
+        <div class="c1-grid" style="margin-top: 14px;">
+          <div class="c1-state c1-state--asis">
+            <div class="c1-state__label">КАК СЕЙЧАС</div>
+            <div class="c1-steps">
+              <span class="c1-step">ЕРКНМ</span>
+              <span class="c1-arrow">&#8594;</span>
+              <span class="c1-step">АСУ КНД</span>
+              <span class="c1-arrow">&#8594;</span>
+              <span class="c1-step" style="color: #BE123C; border-color: #FDA4AF; background: #FFF1F2;">&#9995; Ручной ввод</span>
+            </div>
+          </div>
+          <div class="c1-state c1-state--tobe">
+            <div class="c1-state__label">КАК НАДО</div>
+            <div class="c1-steps">
+              <span class="c1-step">ЕРКНМ</span>
+              <span class="c1-arrow">&#8594;</span>
+              <span class="c1-step" style="background: var(--accent-soft); border-color: #BFD4FF; color: var(--accent);">Авто-размещение</span>
+              <span class="c1-arrow">&#8594;</span>
+              <span class="c1-step">АСУ КНД</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- 10. LIFECYCLE / PROCESS STAGES                               -->
+  <!-- ============================================================ -->
+  <div class="ds-section">
+    <h2 class="ds-section-title">10. Жизненный цикл (Process Stages)</h2>
+    <p class="ds-section-desc">5 стадий КНД: Инициация → Заведение → Проведение → Завершение → Принуждение.</p>
+
+    <div class="ds-showcase">
+      <div class="process-stages" style="max-width: 100%;">
+        <div class="process-stage">
+          <div class="process-stage__num">1</div>
+          <div class="process-stage__title">Инициация</div>
+          <ul class="process-stage__list"><li>Анализ рисков</li><li>Формирование плана</li></ul>
+        </div>
+        <div class="process-stage">
+          <div class="process-stage__num">2</div>
+          <div class="process-stage__title">Заведение</div>
+          <ul class="process-stage__list"><li>Создание КНМ</li><li>Размещение в ЕРКНМ</li></ul>
+        </div>
+        <div class="process-stage">
+          <div class="process-stage__num">3</div>
+          <div class="process-stage__title">Проведение</div>
+          <ul class="process-stage__list"><li>Выездная / документарная</li><li>Контроль сроков</li></ul>
+        </div>
+        <div class="process-stage">
+          <div class="process-stage__num">4</div>
+          <div class="process-stage__title">Завершение</div>
+          <ul class="process-stage__list"><li>Формирование акта</li><li>Предписание</li></ul>
+        </div>
+        <div class="process-stage">
+          <div class="process-stage__num">5</div>
+          <div class="process-stage__title">Принуждение</div>
+          <ul class="process-stage__list"><li>Штрафы</li><li>Взыскание ФССП</li></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- 11. ROADMAP / TIMELINE                                       -->
+  <!-- ============================================================ -->
+  <div class="ds-section">
+    <h2 class="ds-section-title">11. Roadmap и Timeline</h2>
+    <p class="ds-section-desc">Дорожная карта по годам и таймлайн этапов.</p>
+
+    <!-- Timeline -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">Timeline (.timeline)</h3>
+      <div class="ds-showcase" style="max-width: 400px;">
+        <div class="timeline">
+          <div class="timeline__title">Этапы реализации</div>
+          <div class="timeline__stages">
+            <div class="stage"><div class="stage__bar blue" style="width: 100%;">2027 — Разработка</div></div>
+            <div class="stage"><div class="stage__bar green" style="width: 70%;">2028 — Пилот</div></div>
+            <div class="stage"><div class="stage__bar blue" style="width: 50%;">2029 — Масштабирование</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Roadmap -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">Roadmap (.roadmap)</h3>
+      <div class="ds-showcase">
+        <div class="roadmap" style="max-width: 640px;">
+          <div class="roadmap__year">
+            <h4>2027</h4>
+            <div class="roadmap__dot"></div>
+            <div class="roadmap__tasks">
+              <div class="roadmap__task blue">ЕРКНМ 2П</div>
+              <div class="roadmap__task">ЕРВК 1.3.*</div>
+            </div>
+          </div>
+          <div class="roadmap__year">
+            <h4>2028</h4>
+            <div class="roadmap__dot"></div>
+            <div class="roadmap__tasks">
+              <div class="roadmap__task blue">ст. 15.33.2</div>
+              <div class="roadmap__task green">НС электронный</div>
+            </div>
+          </div>
+          <div class="roadmap__year">
+            <h4>2029</h4>
+            <div class="roadmap__dot"></div>
+            <div class="roadmap__tasks">
+              <div class="roadmap__task">ЭКДО ↔ АСУ КНД</div>
+              <div class="roadmap__task green">ИИ-модели</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- 12. RISK & ASK CARDS                                         -->
+  <!-- ============================================================ -->
+  <div class="ds-section">
+    <h2 class="ds-section-title">12. Risk и Ask карточки</h2>
+    <p class="ds-section-desc">Специальные карточки для секций рисков и запрашиваемых решений.</p>
+
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">Risk Card (.risk-card)</h3>
+      <div class="ds-showcase">
+        <div class="card risk-card" style="max-width: 480px;">
+          <div class="risk-icon">!</div>
+          <h3>Импортозамещение СУБД</h3>
+          <ul class="bullets">
+            <li>Миграция с Oracle на PostgreSQL</li>
+            <li>Риск потери данных при переходе</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">Ask Card (.ask-card)</h3>
+      <div class="ds-showcase">
+        <div class="ask-list" style="max-width: 560px;">
+          <div class="card ask-card" style="display: flex; gap: 20px; padding: 20px;">
+            <div class="ask-number">1</div>
+            <div class="ask-content">
+              <h3>Утвердить Концепцию</h3>
+              <p style="margin: 0; color: var(--gray-600); font-size: 14px;">Концепция цифровизации КНД Роструда до 2030 года</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- 13. ПРИНЦИПЫ                                                 -->
+  <!-- ============================================================ -->
+  <div class="ds-section">
+    <h2 class="ds-section-title">13. Принципы дизайн-системы</h2>
+
+    <div class="grid--2 grid">
+      <div class="card" style="padding: 20px;">
+        <h3 style="color: var(--accent);">Flat Design</h3>
+        <p style="margin: 0; font-size: 14px; color: var(--gray-600);">Без градиентов, без глубоких теней. Белые поверхности + тонкие границы <code>#D6DFEC</code>. Hover: граница синеет <code>#BFD4FF</code>, тень усиливается.</p>
+      </div>
+      <div class="card" style="padding: 20px;">
+        <h3 style="color: var(--accent);">Цветовая иерархия</h3>
+        <p style="margin: 0; font-size: 14px; color: var(--gray-600);">Акцент <code>#2F5EFF</code> — для заголовков, метрик, CTA. Серые — для нейтрального контента. Семантические (red/green/amber) — только для статусов.</p>
+      </div>
+      <div class="card" style="padding: 20px;">
+        <h3 style="color: var(--accent);">Типографическая плотность</h3>
+        <p style="margin: 0; font-size: 14px; color: var(--gray-600);">Отрицательный letter-spacing на заголовках (-0.03em). Body — 1.6 line-height. Контраст весов: 800 vs 400.</p>
+      </div>
+      <div class="card" style="padding: 20px;">
+        <h3 style="color: var(--accent);">Адаптивность</h3>
+        <p style="margin: 0; font-size: 14px; color: var(--gray-600);">Breakpoints: 1024px (2 колонки), 768px (компактнее), 600px (1 колонка), 480px (минимум). Print: A4 landscape.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- 14. СХЕМЫ И ВИЗУАЛИЗАЦИИ                                     -->
+  <!-- ============================================================ -->
+  <div class="ds-section">
+    <h2 class="ds-section-title">14. Схемы и визуализации</h2>
+    <p class="ds-section-desc">Визуальный язык для всех типов диаграмм, графиков и схем. 17 inline SVG + BPMN-рендеры + CSS-графики.</p>
+
+    <!-- ======== 14.1 Иерархия нод ======== -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">14.1 Анатомия нод (блоков на схемах)</h3>
+
+      <p style="font-size: 13px; color: var(--gray-600); margin-bottom: 20px;">Четыре уровня визуального веса — от центрального объекта до вспомогательных.</p>
+
+      <div class="ds-showcase" style="background: #FAFBFF; padding: 40px 32px;">
+        <svg viewBox="0 0 880 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;font-family:Inter,system-ui,sans-serif">
+          <!-- L1: Центральный объект -->
+          <rect x="0" y="30" width="180" height="100" rx="14" fill="#2563EB"/>
+          <text x="90" y="65" text-anchor="middle" fill="white" font-size="14" font-weight="800">АСУ КНД</text>
+          <text x="90" y="85" text-anchor="middle" fill="#93C5FD" font-size="10" font-weight="600">собственная ВИС</text>
+          <line x1="20" y1="95" x2="160" y2="95" stroke="#3B82F6" stroke-width="0.5"/>
+          <text x="90" y="115" text-anchor="middle" fill="#BFDBFE" font-size="9">65 процессов · СМЭВ 3</text>
+          <text x="90" y="155" text-anchor="middle" fill="var(--gray-400)" font-size="10" font-weight="600">L1 — Центр</text>
+          <text x="90" y="170" text-anchor="middle" fill="var(--gray-400)" font-size="9">fill: #2563EB · rx: 14</text>
+          <text x="90" y="183" text-anchor="middle" fill="var(--gray-400)" font-size="9">text: white · 14/800</text>
+
+          <!-- L2: Внешняя система (важная) -->
+          <rect x="220" y="30" width="180" height="100" rx="12" fill="white" stroke="#059669" stroke-width="2"/>
+          <text x="310" y="65" text-anchor="middle" fill="#059669" font-size="13" font-weight="700">ЕРВК</text>
+          <text x="310" y="85" text-anchor="middle" fill="#64748B" font-size="10">Единый реестр</text>
+          <text x="310" y="105" text-anchor="middle" fill="#059669" font-size="9" font-weight="600">v.1.3.* в тесте</text>
+          <circle cx="388" cy="42" r="7" fill="#059669"/><text x="388" y="46" text-anchor="middle" fill="white" font-size="8" font-weight="700">3</text>
+          <text x="310" y="155" text-anchor="middle" fill="var(--gray-400)" font-size="10" font-weight="600">L2 — Внешняя система</text>
+          <text x="310" y="170" text-anchor="middle" fill="var(--gray-400)" font-size="9">fill: white · stroke: цвет статуса</text>
+          <text x="310" y="183" text-anchor="middle" fill="var(--gray-400)" font-size="9">badge-circle: номер пункта</text>
+
+          <!-- L3: Источник данных -->
+          <rect x="440" y="40" width="145" height="70" rx="10" fill="#1E40AF"/>
+          <text x="512" y="68" text-anchor="middle" fill="white" font-size="12" font-weight="700">ОИ.рф</text>
+          <text x="512" y="86" text-anchor="middle" fill="#93C5FD" font-size="12" font-weight="800">82 456</text>
+          <text x="512" y="100" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="8">>30 млн посетителей</text>
+          <text x="512" y="140" text-anchor="middle" fill="var(--gray-400)" font-size="10" font-weight="600">L3 — Источник данных</text>
+          <text x="512" y="155" text-anchor="middle" fill="var(--gray-400)" font-size="9">fill: тёмный · rx: 10</text>
+          <text x="512" y="168" text-anchor="middle" fill="var(--gray-400)" font-size="9">число: #93C5FD · 12/800</text>
+
+          <!-- L4: KPI-чип -->
+          <rect x="625" y="45" width="80" height="38" rx="5" fill="white" stroke="#93C5FD"/>
+          <text x="665" y="60" text-anchor="middle" fill="#1E40AF" font-size="8" font-weight="600">Документов</text>
+          <text x="665" y="76" text-anchor="middle" fill="#2563EB" font-size="12" font-weight="800">27,7 млн</text>
+          <text x="665" y="115" text-anchor="middle" fill="var(--gray-400)" font-size="10" font-weight="600">L4 — KPI-чип</text>
+          <text x="665" y="130" text-anchor="middle" fill="var(--gray-400)" font-size="9">fill: white · stroke: #93C5FD</text>
+          <text x="665" y="143" text-anchor="middle" fill="var(--gray-400)" font-size="9">label: 8/600 · value: 12/800</text>
+
+          <!-- L5: Статусная зона -->
+          <rect x="745" y="40" width="130" height="55" rx="6" fill="#FEF9C3" stroke="#FDE047"/>
+          <text x="810" y="60" text-anchor="middle" fill="#92400E" font-size="8" font-weight="700">⚠ Нет интеграции</text>
+          <text x="810" y="78" text-anchor="middle" fill="#78350F" font-size="9">ФНС НПД · ФГИС СОУТ</text>
+          <text x="810" y="120" text-anchor="middle" fill="var(--gray-400)" font-size="10" font-weight="600">L5 — Предупреждение</text>
+          <text x="810" y="135" text-anchor="middle" fill="var(--gray-400)" font-size="9">fill: #FEF9C3 · #FDE047</text>
+          <text x="810" y="148" text-anchor="middle" fill="var(--gray-400)" font-size="9">text: #92400E · 8-9px</text>
+        </svg>
+      </div>
+
+      <table class="ds-token-table" style="margin-top: 16px;">
+        <thead><tr><th>Уровень</th><th>Назначение</th><th>fill</th><th>stroke</th><th>rx</th><th>font</th></tr></thead>
+        <tbody>
+          <tr><td><strong>L1</strong></td><td>Центральный объект (АСУ КНД)</td><td><code>#2563EB</code> / <code>url(#sd-core)</code></td><td><code>#2563EB</code> 3px</td><td><code>14-20</code></td><td>white · 18-20/800</td></tr>
+          <tr><td><strong>L2</strong></td><td>Внешняя система (ЕРВК, ЕРКНМ, ФГИС РОТ)</td><td><code>white</code></td><td>цвет статуса · 2px</td><td><code>12</code></td><td>цвет статуса · 13-14/700</td></tr>
+          <tr><td><strong>L3</strong></td><td>Источник данных (ОИ.рф, СФР, ЕПГУ)</td><td>тёмный (<code>#0F172A</code>...<code>#64748B</code>)</td><td>нет / акцент 1.5px</td><td><code>10</code></td><td>white · 11-12/700</td></tr>
+          <tr><td><strong>L4</strong></td><td>KPI-чип внутри центра</td><td><code>white</code></td><td><code>#93C5FD</code> 1px</td><td><code>5</code></td><td>label #1E40AF 8/600 · value #2563EB 12/800</td></tr>
+          <tr><td><strong>L5</strong></td><td>Предупреждение / результат</td><td>семантический фон</td><td>семантический 1px</td><td><code>6</code></td><td>тёмный вариант семантики · 8-9px</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ======== 14.2 Стрелки и связи ======== -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">14.2 Грамматика связей</h3>
+
+      <div class="ds-showcase" style="background: #FAFBFF; padding: 32px;">
+        <svg viewBox="0 0 880 260" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;font-family:Inter,system-ui,sans-serif">
+          <defs>
+            <marker id="ds-arr-gray" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#64748B" opacity="0.7"/></marker>
+            <marker id="ds-arr-blue" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#2563EB" opacity="0.8"/></marker>
+            <marker id="ds-arr-green" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#059669" opacity="0.8"/></marker>
+            <marker id="ds-arr-amber" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#D97706" opacity="0.8"/></marker>
+            <marker id="ds-arr-red" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#DC2626" opacity="0.8"/></marker>
+            <filter id="ds-glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur in="SourceGraphic" stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          </defs>
+
+          <!-- 1. Сплошная + анимация (активный поток) -->
+          <text x="0" y="20" fill="var(--navy)" font-size="11" font-weight="700">Активный поток данных</text>
+          <rect x="0" y="30" width="100" height="35" rx="6" fill="#1E40AF"/>
+          <text x="50" y="52" text-anchor="middle" fill="white" font-size="10" font-weight="600">ОИ.рф</text>
+          <path id="ds-path1" d="M100,47 Q160,47 220,47" stroke="#2563EB" stroke-width="2.5" fill="none" opacity="0.6" marker-end="url(#ds-arr-blue)"/>
+          <circle r="4" fill="#60A5FA" filter="url(#ds-glow)"><animateMotion dur="1.4s" repeatCount="indefinite"><mpath href="#ds-path1"/></animateMotion></circle>
+          <rect x="225" y="30" width="100" height="35" rx="14" fill="#2563EB"/>
+          <text x="275" y="52" text-anchor="middle" fill="white" font-size="10" font-weight="600">АСУ КНД</text>
+          <text x="0" y="85" fill="var(--gray-400)" font-size="9">stroke: 2-2.5px сплошная · opacity 0.5-0.6 · animateMotion circle r=3-4 + glow</text>
+
+          <!-- 2. Пунктирная (план / в разработке) -->
+          <text x="400" y="20" fill="var(--navy)" font-size="11" font-weight="700">Плановая связь</text>
+          <rect x="400" y="30" width="100" height="35" rx="6" fill="#10B981"/>
+          <text x="450" y="52" text-anchor="middle" fill="white" font-size="10" font-weight="600">ЭКДО</text>
+          <path d="M500,47 Q560,47 620,47" stroke="#D97706" stroke-width="2" fill="none" stroke-dasharray="6,3" marker-end="url(#ds-arr-amber)"/>
+          <text x="555" y="40" fill="#D97706" font-size="8" font-style="italic">план 2027</text>
+          <rect x="625" y="30" width="100" height="35" rx="14" fill="#2563EB"/>
+          <text x="675" y="52" text-anchor="middle" fill="white" font-size="10" font-weight="600">АСУ КНД</text>
+          <text x="400" y="85" fill="var(--gray-400)" font-size="9">stroke-dasharray: 6,3 · подпись italic · цвет amber #D97706</text>
+
+          <!-- 3. Тонкая внутренняя (внутри схемы) -->
+          <text x="0" y="120" fill="var(--navy)" font-size="11" font-weight="700">Внутренняя связь</text>
+          <rect x="0" y="130" width="90" height="35" rx="6" fill="#DBEAFE" stroke="#60A5FA" stroke-width="1.5"/>
+          <text x="45" y="152" text-anchor="middle" fill="#1E40AF" font-size="10" font-weight="700">Обработка</text>
+          <path d="M90,147 L130,147" stroke="#2563EB" stroke-width="1" marker-end="url(#ds-arr-blue)" opacity="0.4"/>
+          <rect x="135" y="130" width="90" height="35" rx="6" fill="white" stroke="#93C5FD"/>
+          <text x="180" y="152" text-anchor="middle" fill="#1E40AF" font-size="10" font-weight="700">Результат</text>
+          <text x="0" y="185" fill="var(--gray-400)" font-size="9">stroke: 1px · opacity 0.4 · marker тот же, но мельче</text>
+
+          <!-- 4. Квадратная Безье (между уровнями) -->
+          <text x="400" y="120" fill="var(--navy)" font-size="11" font-weight="700">Кривая между уровнями</text>
+          <rect x="400" y="140" width="80" height="35" rx="10" fill="#0F172A"/>
+          <text x="440" y="162" text-anchor="middle" fill="white" font-size="10" font-weight="600">СФР</text>
+          <path d="M480,157 Q530,157 580,140" stroke="#60A5FA" stroke-width="2" fill="none" opacity="0.5" marker-end="url(#ds-arr-blue)"/>
+          <rect x="585" y="120" width="120" height="35" rx="14" fill="#2563EB"/>
+          <text x="645" y="142" text-anchor="middle" fill="white" font-size="10" font-weight="600">АСУ КНД</text>
+          <text x="400" y="195" fill="var(--gray-400)" font-size="9">Q-кривая (quadratic Bézier) · stroke: 2px · opacity 0.5</text>
+
+          <!-- 5. Цветовая семантика стрелок -->
+          <text x="0" y="220" fill="var(--navy)" font-size="11" font-weight="700">Цвета стрелок</text>
+          <rect x="0" y="230" width="60" height="18" rx="3" fill="#2563EB"/><text x="30" y="243" text-anchor="middle" fill="white" font-size="8">blue</text>
+          <text x="70" y="243" fill="var(--gray-500)" font-size="9">данные / основной поток</text>
+
+          <rect x="220" y="230" width="60" height="18" rx="3" fill="#059669"/><text x="250" y="243" text-anchor="middle" fill="white" font-size="8">green</text>
+          <text x="290" y="243" fill="var(--gray-500)" font-size="9">реализовано / работает</text>
+
+          <rect x="440" y="230" width="60" height="18" rx="3" fill="#D97706"/><text x="470" y="243" text-anchor="middle" fill="white" font-size="8">amber</text>
+          <text x="510" y="243" fill="var(--gray-500)" font-size="9">завершается / план</text>
+
+          <rect x="650" y="230" width="60" height="18" rx="3" fill="#DC2626"/><text x="680" y="243" text-anchor="middle" fill="white" font-size="8">red</text>
+          <text x="720" y="243" fill="var(--gray-500)" font-size="9">нет интеграции / проблема</text>
+        </svg>
+      </div>
+
+      <table class="ds-token-table" style="margin-top: 16px;">
+        <thead><tr><th>Тип связи</th><th>stroke</th><th>dash</th><th>width</th><th>opacity</th><th>Анимация</th></tr></thead>
+        <tbody>
+          <tr><td>Активный поток (данные идут)</td><td>цвет семантики</td><td>сплошная</td><td>2-2.5px</td><td>0.5-0.6</td><td><code>circle r=3-4</code> + glow filter + animateMotion</td></tr>
+          <tr><td>Вторичный поток (фон)</td><td>серый <code>#64748B</code></td><td>сплошная</td><td>1.5-2px</td><td>0.4-0.5</td><td>нет</td></tr>
+          <tr><td>Плановая / в разработке</td><td>amber <code>#D97706</code></td><td><code>6,3</code></td><td>1.5-2px</td><td>0.4</td><td>нет · подпись italic</td></tr>
+          <tr><td>Внутренняя (блок → блок)</td><td>blue <code>#2563EB</code></td><td>сплошная</td><td>1px</td><td>0.4</td><td>нет</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ======== 14.3 Маркеры стрелок ======== -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">14.3 Маркеры стрелок (arrow markers)</h3>
+
+      <p style="font-size: 13px; color: var(--gray-600); margin-bottom: 16px;">Единый треугольник <code>M0,0 L8,3 L0,6</code> · markerWidth=8 · markerHeight=6. По одному маркеру на каждый цвет.</p>
+
+      <div class="ds-code">
+<span class="c">&lt;!-- Шаблон маркера --&gt;</span>
+<span class="k">&lt;marker</span> <span class="s">id="sd-arrow-blue"</span> markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"<span class="k">&gt;</span>
+  <span class="k">&lt;path</span> d="M0,0 L8,3 L0,6" <span class="s">fill="#2563EB"</span> opacity="0.8"<span class="k">/&gt;</span>
+<span class="k">&lt;/marker&gt;</span>
+
+<span class="c">&lt;!-- Glow filter для анимированных точек --&gt;</span>
+<span class="k">&lt;filter</span> <span class="s">id="sd-glow"</span> x="-50%" y="-50%" width="200%" height="200%"<span class="k">&gt;</span>
+  <span class="k">&lt;feGaussianBlur</span> in="SourceGraphic" stdDeviation="3" result="blur"<span class="k">/&gt;</span>
+  <span class="k">&lt;feMerge&gt;&lt;feMergeNode</span> in="blur"<span class="k">/&gt;&lt;feMergeNode</span> in="SourceGraphic"<span class="k">/&gt;&lt;/feMerge&gt;</span>
+<span class="k">&lt;/filter&gt;</span>
+
+<span class="c">&lt;!-- Цвета маркеров --&gt;</span>
+gray:   <span class="v">#64748B</span> (по умолчанию)
+blue:   <span class="v">#2563EB</span> (основной поток)
+green:  <span class="v">#059669</span> (реализовано)
+amber:  <span class="v">#D97706</span> / <span class="v">#F59E0B</span> (завершается)
+red:    <span class="v">#DC2626</span> (проблема)
+purple: <span class="v">#1E40AF</span> (особый)
+      </div>
+    </div>
+
+    <!-- ======== 14.4 Семантика цвета в SVG ======== -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">14.4 Семантический цвет в SVG</h3>
+
+      <table class="ds-token-table">
+        <thead><tr><th>Значение</th><th>Обводка / fill</th><th>Текст</th><th>Фон зон</th><th>Badge circle</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#059669;vertical-align:middle;margin-right:6px;"></span> Реализовано</td>
+            <td><code>#059669</code></td>
+            <td><code>#059669</code> / <code>#34D399</code></td>
+            <td><code>#F0FDF4</code> + <code>#BBF7D0</code></td>
+            <td>fill <code>#059669</code></td>
+          </tr>
+          <tr>
+            <td><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#D97706;vertical-align:middle;margin-right:6px;"></span> Завершается / план</td>
+            <td><code>#D97706</code> / <code>#F59E0B</code></td>
+            <td><code>#D97706</code> / <code>#92400E</code></td>
+            <td><code>#FEF3C7</code> + <code>#FCD34D</code></td>
+            <td>fill <code>#D97706</code></td>
+          </tr>
+          <tr>
+            <td><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#DC2626;vertical-align:middle;margin-right:6px;"></span> Требует доработки</td>
+            <td><code>#DC2626</code></td>
+            <td><code>#DC2626</code> / <code>#FCD34D</code></td>
+            <td><code>rgba(251,191,36,0.15)</code></td>
+            <td>fill <code>#DC2626</code></td>
+          </tr>
+          <tr>
+            <td><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#2563EB;vertical-align:middle;margin-right:6px;"></span> Основная система</td>
+            <td><code>#2563EB</code></td>
+            <td>white / <code>#1E40AF</code></td>
+            <td><code>#DBEAFE</code> + <code>#93C5FD</code></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#F59E0B;vertical-align:middle;margin-right:6px;"></span> АИС УБР</td>
+            <td><code>#F59E0B</code></td>
+            <td>white / <code>#92400E</code></td>
+            <td><code>#FEF3C7</code> + <code>#FCD34D</code></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#10B981;vertical-align:middle;margin-right:6px;"></span> РвР / ЭКДО</td>
+            <td><code>#10B981</code> / <code>#34D399</code></td>
+            <td>white / <code>#065F46</code></td>
+            <td><code>#ECFDF5</code> + <code>#10B981</code></td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ======== 14.5 Типы схем ======== -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">14.5 Типы схем (шаблоны)</h3>
+
+      <table class="ds-token-table">
+        <thead><tr><th>Тип</th><th>viewBox</th><th>Фон</th><th>Контейнер</th><th>Применение</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Архитектурная</strong></td>
+            <td>1200&times;750</td>
+            <td>нет (transparent)</td>
+            <td><code>.schema-wrapper</code> (#FAFBFC, rx 16)</td>
+            <td>Главная схема единой системы, потоки данных</td>
+          </tr>
+          <tr>
+            <td><strong>Системная (pipeline)</strong></td>
+            <td>1000-1230 &times; 520-580</td>
+            <td><code>background: #fff</code></td>
+            <td><code>.schema-wrapper</code></td>
+            <td>АСУ КНД pipeline, ОИ.рф, АИС УБР — столбцы: Входящие → Обработка → Результат</td>
+          </tr>
+          <tr>
+            <td><strong>Экосистемная</strong></td>
+            <td>940&times;520</td>
+            <td><code>#FAFBFF</code></td>
+            <td>внутри details</td>
+            <td>ЕРВК/ЕРКНМ/ФГИС РОТ/МП Инспектор вокруг АСУ КНД</td>
+          </tr>
+          <tr>
+            <td><strong>Обзорная (hero)</strong></td>
+            <td>900&times;500</td>
+            <td>нет</td>
+            <td>без wrapper</td>
+            <td>Три системы на hero-слайде</td>
+          </tr>
+          <tr>
+            <td><strong>Интеграционная</strong></td>
+            <td>940-1000 &times; 200-490</td>
+            <td>нет</td>
+            <td>внутри details</td>
+            <td>Конкретные интеграции (СМЭВ, ФНС, индикаторы)</td>
+          </tr>
+          <tr>
+            <td><strong>Платформенная</strong></td>
+            <td>1000&times;280</td>
+            <td>нет</td>
+            <td>внутри card</td>
+            <td>Логическая схема платформы (platformDiagram)</td>
+          </tr>
+          <tr>
+            <td><strong>Верификационная</strong></td>
+            <td>960&times;195</td>
+            <td>нет</td>
+            <td>внутри card</td>
+            <td>Схема верификации данных (verifyDiagram)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p style="font-size: 12px; color: var(--gray-500); margin-top: 12px;">Все SVG: <code>font-family: Inter, system-ui, sans-serif</code> · <code>width: 100%</code> · <code>min-width: 680-800px</code> · <code>display: block</code></p>
+    </div>
+
+    <!-- ======== 14.6 Schema container ======== -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">14.6 Schema container (обёртка крупных схем)</h3>
+
+      <div class="ds-showcase">
+        <div class="card schema-container" style="margin: 0; border-left: 4px solid var(--blue-600);">
+          <div class="card__head">
+            <h3 style="margin: 0;">Название схемы</h3>
+            <span class="tag blue">65 процессов</span>
+          </div>
+          <p class="muted small" style="margin-bottom: 12px;">Описание: откуда начинается, что показывает, как взаимодействовать</p>
+          <div class="schema-wrapper" style="min-height: 80px; display: flex; align-items: center; justify-content: center;">
+            <span style="color: var(--gray-400); font-size: 13px;">[ SVG-схема ]</span>
+            <div class="schema-toolbar" style="position: absolute; top: 12px; right: 12px; margin: 0;">
+              <button class="schema-fullscreen-btn" style="pointer-events: none; opacity: 0.7;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                На весь экран
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-code" style="margin-top: 12px;">
+<span class="c">&lt;!-- Анатомия schema-container --&gt;</span>
+<span class="k">.schema-container</span>  { position: relative }
+<span class="k">.schema-wrapper</span>   { background: <span class="v">#FAFBFC</span>; border-radius: <span class="v">16px</span>; padding: <span class="v">16px</span>; overflow: auto }
+<span class="k">.schema-toolbar</span>   { display: flex; justify-content: flex-end; margin-bottom: <span class="v">12px</span> }
+<span class="k">.schema-fullscreen-btn</span> { background: <span class="v">var(--blue-600)</span>; color: white; border-radius: <span class="v">8px</span>; padding: <span class="v">8px 14px</span> }
+
+<span class="c">&lt;!-- Fullscreen mode --&gt;</span>
+<span class="k">:fullscreen</span>       { background: white; padding: <span class="v">20px</span> }
+<span class="k">:fullscreen svg</span>  { max-width: <span class="v">95vw</span>; max-height: <span class="v">calc(100vh - 80px)</span>; margin: 0 auto }
+<span class="k">:fullscreen .schema-toolbar</span> { position: fixed; top: <span class="v">20px</span>; right: <span class="v">20px</span> }
+
+<span class="c">&lt;!-- Print --&gt;</span>
+<span class="k">@media print</span>: .schema-fullscreen-btn { display: none }
+              .schema-wrapper svg { max-height: <span class="v">440px</span> }
+      </div>
+    </div>
+
+    <!-- ======== 14.7 BPMN-рендеры ======== -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">14.7 BPMN-изображения (рендер из bpmn-to-image)</h3>
+
+      <p style="font-size: 13px; color: var(--gray-600); margin-bottom: 16px;">BPMN-процессы рендерятся в SVG/PNG через <code>npx bpmn-to-image</code> и вставляются как <code>&lt;img&gt;</code>.</p>
+
+      <div class="ds-showcase">
+        <div style="overflow-x: auto; margin: 0;">
+          <div style="width: 100%; min-width: 500px; max-width: 800px; height: 120px; border: 1px solid #E2E8F0; border-radius: 8px; background: #FAFBFC; display: flex; align-items: center; justify-content: center; cursor: zoom-in;" class="zoomable">
+            <span style="color: var(--gray-400); font-size: 12px;">[ BPMN SVG/PNG — .zoomable для lightbox ]</span>
+          </div>
+        </div>
+        <p style="margin: 8px 0 0; font-size: 11px; color: #64748B;">Рис. N. Описание процесса. <a href="#" style="color: #1E40AF; text-decoration: underline;">Скачать .bpmn</a> · <a href="#" style="color: #1E40AF; text-decoration: underline;">Полная версия</a></p>
+      </div>
+
+      <table class="ds-token-table" style="margin-top: 12px;">
+        <thead><tr><th>Параметр</th><th>Значение</th></tr></thead>
+        <tbody>
+          <tr><td>Контейнер</td><td><code>overflow-x: auto; margin: 0 -10px</code></td></tr>
+          <tr><td>Изображение</td><td><code>width: 100%; min-width: 700-900px; max-width: 1200px</code></td></tr>
+          <tr><td>Рамка</td><td><code>border: 1px solid #E2E8F0; border-radius: 6-8px</code></td></tr>
+          <tr><td>Взаимодействие</td><td><code>class="zoomable"; cursor: zoom-in; data-caption="..."</code></td></tr>
+          <tr><td>Подпись</td><td><code>font-size: 11px; color: #64748B</code> · ссылки: <code>color: #1E40AF; underline</code></td></tr>
+          <tr><td>Ссылки</td><td>«Скачать .bpmn» (download) · «Полная версия» (target _blank)</td></tr>
+          <tr><td>Print</td><td><code>overflow: visible !important; min-width: 0 !important</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ======== 14.8 Flow-стрелки (CSS) ======== -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">14.8 Flow-стрелки (CSS-процессы внутри challenge-блоков)</h3>
+
+      <div class="ds-showcase">
+        <span class="ds-showcase-label">Нормальный поток</span>
+        <div class="cb__flow" style="padding: 0;">
+          <span class="cb__flow-step">Источник данных</span>
+          <span class="cb__flow-arrow">&#8594;</span>
+          <span class="cb__flow-step">Обработка в ИС</span>
+          <span class="cb__flow-arrow">&#8594;</span>
+          <span class="cb__flow-step">Результат</span>
+        </div>
+
+        <span class="ds-showcase-label" style="margin-top: 20px;">Поток с проблемой (ручной разрыв)</span>
+        <div class="cb__flow" style="padding: 0;">
+          <span class="cb__flow-step">СФР</span>
+          <span class="cb__flow-arrow">&#8594;</span>
+          <span class="cb__flow-step cb__flow-step--problem">&#9995; Ручная выгрузка</span>
+          <span class="cb__flow-arrow cb__flow-arrow--break">&#8594; &#9995;</span>
+          <span class="cb__flow-step cb__flow-step--problem">Ручное распределение</span>
+          <span class="cb__flow-arrow">&#8594;</span>
+          <span class="cb__flow-step">ГИТ</span>
+        </div>
+
+        <span class="ds-showcase-label" style="margin-top: 20px;">Целевой поток (решение)</span>
+        <div class="cb__flow" style="padding: 0;">
+          <span class="cb__flow-step cb__flow-step--solution">СФР &#8594; АСУ КНД (авто)</span>
+          <span class="cb__flow-arrow">&#8594;</span>
+          <span class="cb__flow-step cb__flow-step--solution" style="font-weight: 600;">Авто-постановление</span>
+          <span class="cb__flow-arrow">&#8594;</span>
+          <span class="cb__flow-step cb__flow-step--solution">ЕПГУ &#8594; вручение</span>
+          <span class="cb__flow-arrow">&#8594;</span>
+          <span class="cb__flow-step cb__flow-step--solution">АИС УБР &#8594; ФССП</span>
+        </div>
+      </div>
+
+      <table class="ds-token-table" style="margin-top: 12px;">
+        <thead><tr><th>Класс</th><th>Фон</th><th>Рамка</th><th>Текст</th></tr></thead>
+        <tbody>
+          <tr><td><code>.cb__flow-step</code></td><td><code>var(--surface-soft)</code></td><td><code>var(--border)</code></td><td><code>#334155</code></td></tr>
+          <tr><td><code>.cb__flow-step--problem</code></td><td><code>#FFF1F2</code></td><td><code>#FDA4AF</code></td><td><code>#BE123C</code></td></tr>
+          <tr><td><code>.cb__flow-step--solution</code></td><td><code>var(--accent-soft)</code></td><td><code>#BFD4FF</code></td><td><code>var(--accent)</code> 600</td></tr>
+          <tr><td><code>.cb__flow-arrow</code></td><td colspan="3"><code>#94A3B8</code> · font-size: 18px</td></tr>
+          <tr><td><code>.cb__flow-arrow--break</code></td><td colspan="3"><code>#BE123C</code> · &#9995; для обозначения ручного разрыва</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ======== 14.9 CSS bar-графики ======== -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">14.9 Bar-графики (CSS-столбцы)</h3>
+
+      <div class="ds-showcase">
+        <span class="ds-showcase-label">Столбчатая диаграмма (тренд по годам)</span>
+        <div style="display: flex; gap: 12px; align-items: flex-end; padding-top: 8px;">
+          <div style="flex: 1; text-align: center;">
+            <div style="font-size: 11px; font-weight: 600; color: #334155; margin-bottom: 4px;">5,6 млн</div>
+            <div style="height: 55px; background: linear-gradient(180deg, #3B82F6, #2563EB); border-radius: 4px 4px 0 0;"></div>
+            <div style="font-size: 10px; color: #64748B; margin-top: 4px;">2021</div>
+          </div>
+          <div style="flex: 1; text-align: center;">
+            <div style="font-size: 11px; font-weight: 600; color: #334155; margin-bottom: 4px;">8,9 млн</div>
+            <div style="height: 87px; background: linear-gradient(180deg, #3B82F6, #2563EB); border-radius: 4px 4px 0 0;"></div>
+            <div style="font-size: 10px; color: #64748B; margin-top: 4px;">2022</div>
+          </div>
+          <div style="flex: 1; text-align: center;">
+            <div style="font-size: 11px; font-weight: 600; color: #334155; margin-bottom: 4px;">9,2 млн</div>
+            <div style="height: 90px; background: linear-gradient(180deg, #2563EB, #1D4ED8); border-radius: 4px 4px 0 0;"></div>
+            <div style="font-size: 10px; color: #64748B; margin-top: 4px;">2023</div>
+          </div>
+          <div style="flex: 1; text-align: center;">
+            <div style="font-size: 11px; font-weight: 600; color: #334155; margin-bottom: 4px;">6,3 млн</div>
+            <div style="height: 61px; background: linear-gradient(180deg, #60A5FA, #3B82F6); border-radius: 4px 4px 0 0;"></div>
+            <div style="font-size: 10px; color: #64748B; margin-top: 4px;">2024</div>
+          </div>
+          <div style="flex: 1; text-align: center;">
+            <div style="font-size: 11px; font-weight: 600; color: #334155; margin-bottom: 4px;">5,1 млн</div>
+            <div style="height: 50px; background: linear-gradient(180deg, #93C5FD, #60A5FA); border-radius: 4px 4px 0 0;"></div>
+            <div style="font-size: 10px; color: #64748B; margin-top: 4px;">2025</div>
+          </div>
+        </div>
+        <div style="font-size: 11px; color: #64748B; margin-top: 10px; text-align: center;">Пояснение к диаграмме — <strong>акцент на ключевое</strong></div>
+      </div>
+
+      <table class="ds-token-table" style="margin-top: 12px;">
+        <thead><tr><th>Элемент</th><th>Стиль</th></tr></thead>
+        <tbody>
+          <tr><td>Контейнер</td><td><code>display: flex; gap: 12px; align-items: flex-end</code></td></tr>
+          <tr><td>Столбец</td><td><code>flex: 1; text-align: center</code></td></tr>
+          <tr><td>Значение (сверху)</td><td><code>font-size: 11px; font-weight: 600; color: #334155</code></td></tr>
+          <tr><td>Полоска</td><td><code>height: Npx</code> (пропорционально) · <code>border-radius: 4px 4px 0 0</code></td></tr>
+          <tr><td>Градиент (высокие)</td><td><code>linear-gradient(180deg, #3B82F6, #2563EB)</code> или <code>#2563EB → #1D4ED8</code></td></tr>
+          <tr><td>Градиент (низкие)</td><td><code>linear-gradient(180deg, #93C5FD, #60A5FA)</code> — светлее для меньших значений</td></tr>
+          <tr><td>Подпись (снизу)</td><td><code>font-size: 10px; color: #64748B</code></td></tr>
+          <tr><td>Итоговая строка</td><td><code>font-size: 11px; color: #64748B; text-align: center</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ======== 14.10 Сравнение AS-IS / TO-BE ======== -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">14.10 Сравнительные карточки (AS-IS vs TO-BE)</h3>
+
+      <div class="ds-showcase">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div style="background: #FFF1F2; border: 1px solid #FECDD3; border-radius: 8px; padding: 16px;">
+            <div style="font-size: 11px; font-weight: 700; color: #BE123C; margin-bottom: 8px;">Сейчас</div>
+            <div style="font-size: 24px; font-weight: 800; color: #9F1239;">~2 130</div>
+            <div style="font-size: 11px; color: #BE123C;">ручных операций/мес</div>
+          </div>
+          <div style="background: #F0FDF4; border: 1px solid #BBF7D0; border-radius: 8px; padding: 16px;">
+            <div style="font-size: 11px; font-weight: 700; color: #166534; margin-bottom: 8px;">После автоматизации</div>
+            <div style="font-size: 24px; font-weight: 800; color: #15803D;">~27 700</div>
+            <div style="font-size: 11px; color: #166534;">при 13x росте объёма</div>
+          </div>
+        </div>
+      </div>
+
+      <table class="ds-token-table" style="margin-top: 12px;">
+        <thead><tr><th>Тип</th><th>Фон</th><th>Рамка</th><th>Заголовок</th><th>Число</th></tr></thead>
+        <tbody>
+          <tr><td>Негатив (AS-IS / проблема)</td><td><code>#FFF1F2</code></td><td><code>#FECDD3</code></td><td><code>#BE123C</code> 11/700</td><td><code>#9F1239</code> 24/800</td></tr>
+          <tr><td>Позитив (TO-BE / решение)</td><td><code>#F0FDF4</code></td><td><code>#BBF7D0</code></td><td><code>#166534</code> 11/700</td><td><code>#15803D</code> 24/800</td></tr>
+          <tr><td>Нейтральный</td><td><code>#F8FAFC</code></td><td><code>#E2E8F0</code></td><td><code>#334155</code> 11/700</td><td><code>#1E293B</code> 24/800</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ======== 14.11 Интерактивность SVG ======== -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">14.11 Интерактивность SVG-схем</h3>
+
+      <table class="ds-token-table">
+        <thead><tr><th>Поведение</th><th>Реализация</th><th>Где применяется</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Hover → подсветка связей</strong></td><td><code>data-sys</code> атрибут на <code>&lt;g&gt;</code> · JS: все элементы с тем же <code>data-sys</code> подсвечиваются, остальные dimmed</td><td>Архитектурная схема (#subsystemDiagram)</td></tr>
+          <tr><td><strong>Двойной клик → пауза анимации</strong></td><td>JS toggle: <code>animationPlayState</code> на всех <code>&lt;animateMotion&gt;</code></td><td>Архитектурная схема</td></tr>
+          <tr><td><strong>Fullscreen</strong></td><td><code>toggleFullscreen(wrapperId)</code> · <code>requestFullscreen()</code> API</td><td>Все schema-container</td></tr>
+          <tr><td><strong>Lightbox (zoom)</strong></td><td><code>.zoomable</code> + <code>data-caption</code> · клик открывает оверлей</td><td>Все BPMN-изображения, скриншоты</td></tr>
+          <tr><td><strong>Pulse-анимация</strong></td><td><code>animate stroke-opacity 0.4→1→0.4 dur=3s</code></td><td>Обводка центрального объекта (АСУ КНД)</td></tr>
+          <tr><td><strong>Glow-точки</strong></td><td><code>&lt;circle r=3-4&gt;</code> + <code>feGaussianBlur</code> filter + <code>&lt;animateMotion dur=1-1.5s&gt;</code></td><td>Потоки данных на архитектурной и экосистемной схемах</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ======== 14.12 Текст внутри SVG ======== -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">14.12 Типографика внутри SVG</h3>
+
+      <table class="ds-token-table">
+        <thead><tr><th>Роль</th><th>font-size</th><th>font-weight</th><th>fill</th><th>Пример</th></tr></thead>
+        <tbody>
+          <tr><td>Заголовок центра</td><td>18-20</td><td>800</td><td>white / <code>#0F172A</code></td><td>«АСУ КНД»</td></tr>
+          <tr><td>Подзаголовок</td><td>11-12</td><td>600</td><td><code>#93C5FD</code> / <code>#64748B</code></td><td>«собственная ВИС Роструда»</td></tr>
+          <tr><td>Заголовок блока</td><td>13-14</td><td>700</td><td>цвет системы</td><td>«ЕРВК», «ЕРКНМ»</td></tr>
+          <tr><td>Описание</td><td>9-10</td><td>400</td><td><code>#64748B</code></td><td>«Единый реестр видов контроля»</td></tr>
+          <tr><td>Числовое значение</td><td>12-14</td><td>800</td><td><code>#2563EB</code> / <code>#60A5FA</code> / white</td><td>«27,7 млн», «722 578»</td></tr>
+          <tr><td>Статус / действие</td><td>9</td><td>600</td><td>цвет статуса</td><td>«v.1.3.* в тесте»</td></tr>
+          <tr><td>Подпись связи</td><td>8</td><td>600</td><td>цвет связи</td><td>«п. 1.3 / 2.1» · может быть rotated</td></tr>
+          <tr><td>Колонка-заголовок</td><td>11</td><td>600</td><td><code>#94A3B8</code></td><td>«ВХОДЯЩИЕ», «ОБРАБОТКА» · letter-spacing: 1</td></tr>
+          <tr><td>Мелкий пояснительный</td><td>8</td><td>400</td><td><code>rgba(255,255,255,0.6)</code> / <code>#94A3B8</code></td><td>«>30 млн посетителей»</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ======== 14.13 Правила построения ======== -->
+    <div class="ds-subsection">
+      <h3 class="ds-subsection-title">14.13 Правила построения схем</h3>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+        <div style="background: #F0FDF4; border: 1px solid #BBF7D0; border-radius: 12px; padding: 20px;">
+          <div style="font-size: 12px; font-weight: 700; color: #166534; margin-bottom: 10px;">DO</div>
+          <ul style="margin: 0; padding-left: 16px; font-size: 12px; line-height: 1.8; color: #334155;">
+            <li>Один центральный объект крупнее остальных</li>
+            <li>Направление потока: слева → направо, сверху → вниз</li>
+            <li>Qudratic Bézier для связей между уровнями</li>
+            <li>Анимация только для активных потоков данных</li>
+            <li>Цвет стрелки = цвет источника, не приёмника</li>
+            <li>Числа в нодах — крупнее текста (12-14 / 800)</li>
+            <li>Разделители-линии для зонирования внутри rect</li>
+            <li>Badge-circle для номеров пунктов ТЗ / ТР</li>
+            <li>Подпись-hint внизу: «наведите на систему...»</li>
+            <li>Статусные зоны (warning) — внутри или снизу центра</li>
+          </ul>
+        </div>
+        <div style="background: #FFF1F2; border: 1px solid #FECDD3; border-radius: 12px; padding: 20px;">
+          <div style="font-size: 12px; font-weight: 700; color: #BE123C; margin-bottom: 10px;">DON'T</div>
+          <ul style="margin: 0; padding-left: 16px; font-size: 12px; line-height: 1.8; color: #334155;">
+            <li>Больше 3 уровней глубины на одной схеме</li>
+            <li>Пересекающиеся стрелки без обоснования</li>
+            <li>Анимация на плановых / пунктирных связях</li>
+            <li>Фиксированные размеры без min-width</li>
+            <li>Больше 6 цветов маркеров на одной схеме</li>
+            <li>Текст мельче 8px (нечитаем при print)</li>
+            <li>Inline style на SVG без display:block</li>
+            <li>Использовать ёж вместо &#9995; для ручных разрывов</li>
+            <li>Градиенты для нод (только для фона центра)</li>
+            <li>Забыть font-family: Inter на &lt;svg&gt;</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- 15. PRINT CSS СПРАВКА                                        -->
+  <!-- ============================================================ -->
+  <div class="ds-section" style="margin-bottom: 0;">
+    <h2 class="ds-section-title">15. Print CSS</h2>
+    <p class="ds-section-desc">Ключевые правила для печати A4 landscape.</p>
+
+    <table class="ds-token-table">
+      <thead><tr><th>Правило</th><th>Значение</th><th>Зачем</th></tr></thead>
+      <tbody>
+        <tr><td><code>@page</code></td><td>A4 landscape, margin 15mm</td><td>Формат и поля</td></tr>
+        <tr><td><code>.section</code></td><td>break-before: page</td><td>Каждая секция = новая страница</td></tr>
+        <tr><td><code>.print-break</code></td><td>break-before: page</td><td>Ручной разрыв</td></tr>
+        <tr><td><code>.card</code></td><td>break-inside: avoid</td><td>Карточки не разрезаются</td></tr>
+        <tr><td><code>.grid</code></td><td>break-inside: auto</td><td>Grid можно ломать между карточками</td></tr>
+        <tr><td><code>h1-h4</code></td><td>break-after: avoid-page</td><td>Заголовок не отрывается от контента</td></tr>
+        <tr><td><code>.collapse-content</code></td><td>display: block, max-height: none</td><td>Раскрыть скрытое</td></tr>
+        <tr><td><code>details > summary</code></td><td>display: none</td><td>Скрыть toggle, показать содержимое</td></tr>
+        <tr><td>break-after: page</td><td style="color: #E11D48;">НЕ ИСПОЛЬЗОВАТЬ</td><td>Вызывает пустые страницы</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+</body>
+</html>
